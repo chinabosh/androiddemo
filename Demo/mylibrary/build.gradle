@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 26
-
 
 
     defaultConfig {
@@ -12,16 +12,29 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "boolean", "isDebug", 'false'
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "isDebug", 'true'
+
         }
     }
 
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.china.bosh.mylibrary.db'
+        targetGenDir 'src/main/java'
+    }
 }
 
 dependencies {
