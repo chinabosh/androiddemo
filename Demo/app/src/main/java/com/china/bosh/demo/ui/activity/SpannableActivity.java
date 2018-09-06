@@ -19,6 +19,11 @@ import butterknife.BindView;
 /**
  * 前景色 {@link #setForegroundColor()}
  * 背景色{@link #setBackGroundColor()}
+ * 大小比例文字 {@link #setRelativeText()}
+ * 中划线 {@link #setStrikeThrough()}
+ * 下划线 {@link #setUnderline()}
+ * 上标 {@link #setSuperscript()}
+ * 下标 {@link #setSubscript()}
  * @author chinabosh
  * @Description SpannableString demo
  */
