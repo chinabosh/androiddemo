@@ -1,5 +1,6 @@
 package com.china.bosh.mylibrary.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -19,32 +20,13 @@ import org.greenrobot.eventbus.ThreadMode;
 
 public abstract class BaseActivity extends FragmentActivity{
 
-    /**
-     * get resource id
-     * @return return resource id.
-     */
-    @LayoutRes
-    protected abstract int attachLayoutRes();
-
-    /**
-     * 初始化view
-     */
-    protected void initView(){}
-
-    /**
-     * 获取数据
-     */
-    protected void initData(){}
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(attachLayoutRes());
         if(this.getClass().isAnnotationPresent(BindEventBus.class)){
             EventBus.getDefault().register(this);
         }
-        initData();
-        initView();
     }
 
     @Override
@@ -53,6 +35,11 @@ public abstract class BaseActivity extends FragmentActivity{
         if(this.getClass().isAnnotationPresent(BindEventBus.class)){
             EventBus.getDefault().unregister(this);
         }
+    }
+
+    public void startActivity(Class targetClass) {
+        Intent intent = new Intent(this, targetClass);
+        startActivity(intent);
     }
 
     @SuppressWarnings("unused")

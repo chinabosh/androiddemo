@@ -17,6 +17,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
+import freemarker.template.utility.StringUtil;
+
 /**
  * @author lzq
  * @date 2018/5/17
@@ -30,6 +32,7 @@ public class FileUtils {
     }
 
     public static String getSdCardDir(){
+//        StringUtil
         if(isSdcardExist()){
             return Environment.getExternalStorageDirectory().getAbsolutePath();
         }
@@ -72,10 +75,12 @@ public class FileUtils {
     /**
      *
      * @param context applicationContext is better
-     * @return
+     * @return log file dir
      */
     @NonNull
     public static String getLogFileDir(Context context){
         return context.getExternalFilesDir(null) + Constants.LOG_PATH;
     }
+
+
 }

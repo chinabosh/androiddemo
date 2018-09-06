@@ -21,6 +21,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
+ * log工具类
  * @author lzq
  * @date 2018/7/17
  */
@@ -198,7 +199,7 @@ public class LogUtils {
                     //log日志名，使用时间命名，保证不重复
                     String fileName = logPath + "/" + dateFormat.format(new Date()) + ".log";
                     //log日志内容，可以自行定制
-                    String log = "\r\n" + logDateFormat.format(date) + ":" + msg;
+                    String log = "\r\n" + logDateFormat.format(new Date()) + ":" + msg;
 
                     //如果父路径不存在
                     File file = new File(logPath);
