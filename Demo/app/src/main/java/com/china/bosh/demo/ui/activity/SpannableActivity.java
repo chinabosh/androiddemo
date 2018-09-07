@@ -1,15 +1,23 @@
 package com.china.bosh.demo.ui.activity;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StrikethroughSpan;
+import android.text.style.StyleSpan;
 import android.text.style.SubscriptSpan;
 import android.text.style.SuperscriptSpan;
+import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
+import android.view.View;
 import android.widget.TextView;
 
 import com.china.bosh.demo.R;
@@ -22,8 +30,12 @@ import butterknife.BindView;
  * 大小比例文字 {@link #setRelativeText()}
  * 中划线 {@link #setStrikeThrough()}
  * 下划线 {@link #setUnderline()}
- * 上标 {@link #setSuperscript()}
- * 下标 {@link #setSubscript()}
+ * 上标 {@link #setSuperscript()} 若显示不全，设置padding可解决
+ * 下标 {@link #setSubscript()} 若显示不全，设置padding可解决
+ * 点击 {@link #setClickable()}
+ * 图片 {@link #setImageText()}
+ * 风格 {@link #setStyle()} 若显示不全，设置padding可解决
+ * 超链接 {@link #setUrl()}
  * @author chinabosh
  * @Description SpannableString demo
  */
@@ -43,6 +55,14 @@ public class SpannableActivity extends BaseActivity {
     TextView mTvSuperscript;
     @BindView(R.id.tv_subscript)
     TextView mTvSubscript;
+    @BindView(R.id.tv_click)
+    TextView mTvClick;
+    @BindView(R.id.tv_image)
+    TextView mTvImage;
+    @BindView(R.id.tv_style)
+    TextView mTvStyle;
+    @BindView(R.id.tv_url)
+    TextView mTvUrl;
 
     @Override
     protected int attachLayoutRes() {
@@ -58,6 +78,10 @@ public class SpannableActivity extends BaseActivity {
         setUnderline();
         setSuperscript();
         setSubscript();
+        setClickable();
+        setImageText();
+        setStyle();
+        setUrl();
     }
 
     @Override
@@ -116,5 +140,51 @@ public class SpannableActivity extends BaseActivity {
         SubscriptSpan span = new SubscriptSpan();
         ss.setSpan(span, 2, 4, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         mTvSubscript.setText(ss);
+    }
+
+    private void setClickable(){
+        SpannableString ss = new SpannableString("点击这里试试");
+        ClickableSpan span = new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                toast("当然只有个toast啦");
+            }
+        };
+        ss.setSpan(span, 2, 4, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        mTvClick.setMovementMethod(LinkMovementMethod.getInstance());
+        mTvClick.setText(ss);
+    }
+
+    private void setImageText(){
+        mTvImage.setText(getHuaji());
+    }
+
+    private SpannableString getHuaji(){
+        SpannableString ss = new SpannableString("手动滑稽xx");
+        Drawable drawable = getResources().getDrawable(R.drawable.huaji);
+        int drawableHeight = drawable.getMinimumHeight();
+        drawable.setBounds(0, 0, drawableHeight, drawableHeight);
+        ImageSpan span = new ImageSpan(drawable);
+        ss.setSpan(span,4, 6, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        return ss;
+    }
+
+    private void setStyle(){
+        SpannableString ss = new SpannableString("这是粗体、斜体、粗斜");
+        StyleSpan spanBold = new StyleSpan(Typeface.BOLD);
+        StyleSpan spanItalic = new StyleSpan(Typeface.ITALIC);
+        StyleSpan spanBi = new StyleSpan(Typeface.BOLD_ITALIC);
+        ss.setSpan(spanBold, 2, 4, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        ss.setSpan(spanItalic, 5, 7, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        ss.setSpan(spanBi, 8, 10, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        mTvStyle.setText(ss);
+    }
+
+    private void setUrl(){
+        SpannableString ss = new SpannableString("这是百度网址");
+        URLSpan span= new URLSpan("https://www.baidu.com");
+        ss.setSpan(span, 2, 6, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        mTvUrl.setMovementMethod(LinkMovementMethod.getInstance());
+        mTvUrl.setText(ss);
     }
 }

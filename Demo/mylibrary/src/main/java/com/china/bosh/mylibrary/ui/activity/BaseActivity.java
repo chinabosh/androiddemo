@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
 import com.china.bosh.mylibrary.annotation.BindEventBus;
 import com.china.bosh.mylibrary.entity.DataEvent;
+import com.china.bosh.mylibrary.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -40,6 +43,22 @@ public abstract class BaseActivity extends FragmentActivity{
     public void startActivity(Class targetClass) {
         Intent intent = new Intent(this, targetClass);
         startActivity(intent);
+    }
+
+    public void toast(@StringRes int id){
+        ToastUtil.showShort(id);
+    }
+
+    public void toast(String msg){
+        ToastUtil.showShort(msg);
+    }
+
+    public void toastLong(@StringRes int id){
+        ToastUtil.showLong(id);
+    }
+
+    public void toastLong(String msg){
+        ToastUtil.showLong(msg);
     }
 
     @SuppressWarnings("unused")

@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
         <TextView
@@ -33,10 +34,28 @@
 
         <TextView
             android:id="@+id/tv_superscript"
+            android:paddingTop="10dp"
             style="@style/spannable_item"/>
 
         <TextView
             android:id="@+id/tv_subscript"
+            android:paddingBottom="10dp"
+            style="@style/spannable_item"/>
+
+        <TextView
+            android:id="@+id/tv_click"
+            style="@style/spannable_item"/>
+
+        <TextView
+            android:id="@+id/tv_image"
+            style="@style/spannable_item"/>
+
+        <TextView
+            android:id="@+id/tv_style"
+            style="@style/spannable_item"/>
+
+        <TextView
+            android:id="@+id/tv_url"
             style="@style/spannable_item"/>
     </LinearLayout>
 

@@ -12,11 +12,14 @@ import com.china.bosh.mylibrary.utils.LogUtils;
 
 public class BaseApplication  extends Application{
 
+    public static BaseApplication instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
         initLog();
         initCrashHandler();
+        instance = this;
     }
 
     /**
