@@ -53,6 +53,8 @@ public class LogUtils {
 
     private static boolean isRunning = false;
 
+    private static int MAX_LENGTH = 2000;
+
     /**
      * 初始化，须在使用之前设置，最好在Application创建时调用
      *
@@ -93,7 +95,7 @@ public class LogUtils {
 
     public static void v(String msg){
         if(BuildConfig.DEBUG) {
-            Log.v(TEST, msg);
+            dealLong(TEST, msg, VERBOSE);
         }
     }
 
@@ -102,13 +104,13 @@ public class LogUtils {
         String log = "d/" + tag + ": " + msg;
         logList.offer(log);
         if(isDebug){
-            Log.d(tag,msg);
+            dealLong(tag, msg, DEBUG);
         }
     }
 
     public static void d(String msg){
         if(BuildConfig.DEBUG) {
-            Log.d(TEST,msg);
+            dealLong(TEST, msg, DEBUG);
         }
     }
 
@@ -117,13 +119,13 @@ public class LogUtils {
         String log = "i/" + tag + ": " + msg;
         logList.offer(log);
         if(isDebug){
-            Log.i(tag,msg);
+            dealLong(tag, msg, INFO);
         }
     }
 
     public static void i(String msg){
         if(BuildConfig.DEBUG){
-            Log.d(TEST,msg);
+            dealLong(TEST, msg, INFO);
         }
     }
 
@@ -132,13 +134,13 @@ public class LogUtils {
         String log = "w/" + tag + ": " + msg;
         logList.offer(log);
         if(isDebug){
-            Log.w(tag,msg);
+            dealLong(tag, msg, WARN);
         }
     }
 
     public static void w(String msg){
         if(BuildConfig.DEBUG){
-            Log.w(TEST,msg);
+            dealLong(TEST, msg, WARN);
         }
     }
 
@@ -147,13 +149,13 @@ public class LogUtils {
         String log = "e/" + tag + ": " + msg;
         logList.offer(log);
         if(isDebug){
-            Log.e(tag,msg);
+            dealLong(tag, msg, ERROR);
         }
     }
 
     public static void e(String msg){
         if(BuildConfig.DEBUG){
-            Log.e(TEST,msg);
+            dealLong(TEST, msg, ERROR);
         }
     }
 
@@ -236,51 +238,40 @@ public class LogUtils {
     }
 
     /**
-     * 将log信息写入文件中
-     *
-     * @param type unused
-     * @param tag d,i,w,e
-     * @param msg log
+     *  处理log过长显示不全问题，一条logcat最多显示4k，
+     *  TODO 待测试
      */
-    private static void writeToFile(char type, String tag, String msg) {
-        if (null == logPath) {
-            String TAG = "LogToFile";
-            Log.e(TAG, "logPath == null ，未初始化LogToFile");
+    private static void dealLong(String tag, String msg, char level){
+        int length = msg.length();
+        if(length <= MAX_LENGTH){
             return;
         }
-
-        //log日志名，使用时间命名，保证不重复
-        String fileName = logPath + "/" + dateFormat.format(new Date()) + ".log";
-        //log日志内容，可以自行定制
-        String log = "\n" + logDateFormat.format(new Date()) + ":" + msg;
-
-        //如果父路径不存在
-        File file = new File(logPath);
-        if (!file.exists()) {
-            file.mkdirs();//创建父路径
-        }
-
-        //FileOutputStream会自动调用底层的close()方法，不用关闭
-        FileOutputStream fos;
-        BufferedWriter bw = null;
-        try {
-
-            //这里的第二个参数代表追加还是覆盖，true为追加，flase为覆盖
-            fos = new FileOutputStream(fileName, true);
-            bw = new BufferedWriter(new OutputStreamWriter(fos));
-            bw.write(log);
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (bw != null) {
-                    bw.close();//关闭缓冲流
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        int index = 0;
+        String sub = "";
+        while (index < length){
+            if(index + MAX_LENGTH <= length){
+                sub = msg.substring(index, index + MAX_LENGTH);
+            }else{
+                sub = msg.substring(index, length);
+            }
+            index += MAX_LENGTH;
+            switch (level){
+                case VERBOSE:
+                    Log.v(tag, sub);
+                    break;
+                case DEBUG:
+                    Log.d(tag, sub);
+                    break;
+                case INFO:
+                    Log.i(tag, sub);
+                    break;
+                case WARN:
+                    Log.w(tag, sub);
+                    break;
+                case ERROR:
+                    Log.e(tag, sub);
+                    break;
+                default:
             }
         }
     }
