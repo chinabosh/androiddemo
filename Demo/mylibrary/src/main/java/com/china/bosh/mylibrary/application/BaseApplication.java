@@ -1,6 +1,7 @@
 package com.china.bosh.mylibrary.application;
 
 import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.china.bosh.mylibrary.utils.CrashHandler;
 import com.china.bosh.mylibrary.utils.LogUtils;
@@ -10,7 +11,7 @@ import com.china.bosh.mylibrary.utils.LogUtils;
  * @date 2018/9/6
  */
 
-public class BaseApplication  extends Application{
+public class BaseApplication  extends MultiDexApplication{
 
     public static BaseApplication instance;
 
