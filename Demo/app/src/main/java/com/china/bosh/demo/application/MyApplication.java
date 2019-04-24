@@ -1,8 +1,10 @@
 package com.china.bosh.demo.application;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.multidex.MultiDex;
 
+import com.china.bosh.demo.util.NotificationChannels;
 import com.china.bosh.mylibrary.application.BaseApplication;
 import com.china.bosh.mylibrary.db.DaoManager;
 
@@ -22,13 +24,25 @@ public class MyApplication extends BaseApplication {
         super.onCreate();
         DaoManager.getInstance().init(this);
 
-        closeAndroidPDialog();
+        if(Build.VERSION.SDK_INT == Build.VERSION_CODES.P) {
+            closeAndroidPDialog();
+        }
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            initNotification();
+        }
     }
 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    /**
+     * android 8.0以上通知
+     */
+    private void initNotification(){
+        NotificationChannels.createAllNotificationChannels(this);
     }
 
     /**

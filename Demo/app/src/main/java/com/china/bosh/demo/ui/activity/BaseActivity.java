@@ -104,4 +104,9 @@ public abstract class BaseActivity extends com.china.bosh.mylibrary.ui.activity.
         activityDisplayMetrics.scaledDensity = targetScaledDensity;
         activityDisplayMetrics.densityDpi = targetDensityDpi;
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

@@ -1,16 +1,10 @@
 package com.china.bosh.demo.ui.activity;
 
 
-import android.graphics.Color;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.china.bosh.demo.R;
 import com.china.bosh.mylibrary.entity.DataEvent;
 
@@ -45,7 +39,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.tv_span, R.id.tv_sms, R.id.tv_recycler})
+    @OnClick({R.id.tv_span, R.id.tv_sms, R.id.tv_recycler, R.id.tv_notify})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_span:
@@ -54,7 +48,7 @@ public class MainActivity extends BaseActivity {
                 try {
                     event.getErrorCode();
                 } catch (Exception e) {
-                    writeExpetion(e);
+                    writeException(e);
                 }
 
                 break;
@@ -64,11 +58,18 @@ public class MainActivity extends BaseActivity {
             case R.id.tv_recycler:
                 startActivity(RecyclerViewActivity.class);
                 break;
+            case R.id.tv_notify:
+                startActivity(NotificationActivity.class);
+                break;
             default:
         }
     }
 
-    private void writeExpetion(Exception ex) {
+    /**
+     * exception转string，可以将错误写入文件、或者上传
+     * @param ex
+     */
+    private void writeException(Exception ex) {
         Writer writer = new StringWriter();
         PrintWriter printWriter = new PrintWriter(writer);
         try{
