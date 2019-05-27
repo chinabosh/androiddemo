@@ -52,7 +52,7 @@ dependencies {
     api 'com.squareup.retrofit2:converter-gson:2.1.0'
     api 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.4.2'//输出log
-    api 'com.github.bumptech.glide:glide:3.7.0'//图片加载
+    api 'com.github.bumptech.glide:glide:3.8.0'//图片加载
     implementation 'com.google.zxing:core:3.3.2'//二维码
     api 'io.reactivex.rxjava2:rxandroid:2.0.2'
     api 'io.reactivex.rxjava2:rxjava:2.1.14'
@@ -60,4 +60,6 @@ dependencies {
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v1.9.7'//封装adapter
     api 'com.github.Aspsine:SwipeToLoadLayout:1.0.4'//下拉刷新、上拉加载库
     api 'com.android.support:multidex:1.0.3'
+    api 'jp.wasabeef:blurry:3.0.0'//高斯模糊
+    //apt技术
 }

@@ -5,7 +5,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.china.bosh.demo.R;
+import com.china.bosh.demo.ui.flutter.FlutterActivity;
 import com.china.bosh.mylibrary.entity.DataEvent;
 
 import java.io.PrintWriter;
@@ -31,7 +33,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-//        Glide.with(this).load("http://192.168.30.38:8185/interface/open/picture/2018/11/06/4913813220181106.png").into(mImTest);
+//        Glide.with(this).load("http://192.168.30.38:8185/interface/open/picture/2019/04/28/6704256120190428.png").into(mImTest);
     }
 
     @Override
@@ -39,17 +41,17 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.tv_span, R.id.tv_sms, R.id.tv_recycler, R.id.tv_notify})
+    @OnClick({R.id.tv_span, R.id.tv_sms, R.id.tv_recycler, R.id.tv_notify, R.id.tv_flutter})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_span:
-//                startActivity(SpannableActivity.class);
-                DataEvent event = null;
-                try {
-                    event.getErrorCode();
-                } catch (Exception e) {
-                    writeException(e);
-                }
+                startActivity(SpannableActivity.class);
+//                DataEvent event = null;
+//                try {
+//                    event.getErrorCode();
+//                } catch (Exception e) {
+//                    writeException(e);
+//                }
 
                 break;
             case R.id.tv_sms:
@@ -60,6 +62,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_notify:
                 startActivity(NotificationActivity.class);
+                break;
+            case R.id.tv_flutter:
+                startActivity(FlutterActivity.class);
                 break;
             default:
         }

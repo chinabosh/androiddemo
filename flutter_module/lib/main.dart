@@ -1,6 +1,24 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
-void main() => runApp(MyApp());
+import 'package:flutter/material.dart';
+import 'package:flutter_module/tts.dart';
+
+void main() => runApp(
+//    MyApp()
+//_widgetForRoute(window.defaultRouteName)
+_widgetForRoute("voice")
+);
+
+Widget _widgetForRoute(String route) {
+  switch(route) {
+    case "MyApp":
+      return MyApp();
+    case "voice":
+      return TestVoicePage(title: 'voice');
+    default:
+      throw Exception("don't have thie root:" + route) ;
+  }
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -8,6 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //

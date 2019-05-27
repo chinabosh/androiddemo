@@ -17,6 +17,8 @@ import com.china.bosh.demo.R;
 import com.china.bosh.demo.receive.NotificationReceiver;
 import com.china.bosh.demo.util.NotificationChannels;
 
+import java.sql.BatchUpdateException;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -34,6 +36,7 @@ public class NotificationActivity extends BaseActivity {
     private NotificationManager mNotificationManager;
     private final int NOTIFICATION_ID_NORMAL = 0;
     private final int NOTIFICATION_ID_ACTION = 1;
+    private final int NOTIFICATION_ID_CRITICAL = 2;
 
     @Override
     protected int attachLayoutRes() {
@@ -63,7 +66,6 @@ public class NotificationActivity extends BaseActivity {
                     .setShowWhen(true)
                     //设置通知右侧大图标
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.huaji))
-
                     .setSmallIcon(icon);
             PendingIntent pendingintent = PendingIntent.getActivity(this, 0, new Intent(), PendingIntent.FLAG_CANCEL_CURRENT);
             //设置点击通知相应事件
@@ -116,12 +118,12 @@ public class NotificationActivity extends BaseActivity {
             Intent yesIntent = new Intent(this, NotificationReceiver.class);
             yesIntent.setAction("yes");
             PendingIntent yesPendingIntent = PendingIntent.getBroadcast(this, 0, yesIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            NotificationCompat.Action yesAction = new NotificationCompat.Action(R.drawable.ic_launcher_background, "yes", yesPendingIntent);
+            NotificationCompat.Action yesAction = new NotificationCompat.Action(R.drawable.huaji, "yes", yesPendingIntent);
             Intent noIntent = new Intent(this, NotificationReceiver.class);
             noIntent.setAction("no");
             PendingIntent noPendingIntent = PendingIntent.getBroadcast(this, 0, noIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             NotificationCompat.Action noAction = new NotificationCompat.Action(
-                    R.drawable.ic_launcher_background, "no", noPendingIntent
+                    R.drawable.huaji, "no", noPendingIntent
             );
             builder.addAction(yesAction)
                     .addAction(noAction);
@@ -129,11 +131,32 @@ public class NotificationActivity extends BaseActivity {
         }
     }
 
+    private void showNotificationCritical(){
+        int icon = R.drawable.huaji;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+        } else {
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+            builder.setSmallIcon(icon);
+            builder.setContentTitle("重要通知")
+                    .setAutoCancel(true)
+                    .setTicker("123")
+                    .setContentText("你的钱被偷了")
+                    .setVisibility(Notification.VISIBILITY_PUBLIC);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(), PendingIntent.FLAG_UPDATE_CURRENT);
+            builder.setContentIntent(pendingIntent);
+            builder.setFullScreenIntent(pendingIntent, true);
+            builder.setPriority(NotificationManager.IMPORTANCE_DEFAULT);
+            mNotificationManager.notify(NOTIFICATION_ID_CRITICAL, builder.build());
+        }
+    }
+
     private void closeNotification(int id){
         mNotificationManager.cancel(id);
     }
 
-    @OnClick({R.id.tv_notify_normal, R.id.tv_close_normal, R.id.tv_notify_action, R.id.tv_close_action})
+    @OnClick({R.id.tv_notify_normal, R.id.tv_close_normal, R.id.tv_notify_action, R.id.tv_close_action,
+    R.id.tv_notify_critical, R.id.tv_close_critical})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_notify_normal:
@@ -148,6 +171,11 @@ public class NotificationActivity extends BaseActivity {
             case R.id.tv_close_action:
                 closeNotification(NOTIFICATION_ID_ACTION);
                 break;
+            case R.id.tv_notify_critical:
+                showNotificationCritical();
+                break;
+            case R.id.tv_close_critical:
+                closeNotification(NOTIFICATION_ID_CRITICAL);
             default:
         }
     }

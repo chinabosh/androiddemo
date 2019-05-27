@@ -1,0 +1,1 @@
+import 'package:flutter_amap/flutter_amap.dart';

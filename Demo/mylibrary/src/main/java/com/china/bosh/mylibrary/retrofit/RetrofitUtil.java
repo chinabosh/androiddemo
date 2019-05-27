@@ -1,5 +1,6 @@
 package com.china.bosh.mylibrary.retrofit;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.china.bosh.mylibrary.BuildConfig;
@@ -38,6 +39,10 @@ public class RetrofitUtil {
     private ApiService mApiService;
 
     private RetrofitUtil(){
+        changeBaseUrl("");
+    }
+
+    public void changeBaseUrl(String url){
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         setSSLOptions(builder);
         Interceptor interceptor=new Interceptor(){
@@ -55,7 +60,6 @@ public class RetrofitUtil {
                             request.body().writeTo(buffer);
                             Log.i("http请求入参"+"["+t1+"]", "Sending RequestParams:"+ buffer.readUtf8().toString()+"}");
                         }
-
                     }
 
                 }
@@ -77,7 +81,7 @@ public class RetrofitUtil {
         builder.connectTimeout(Constants.TIME_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(Constants.TIME_TIMEOUT, TimeUnit.SECONDS);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Url.BASE_URL)
+                .baseUrl(TextUtils.isEmpty(url) ? Url.BASE_URL : url)
                 .client(builder.build())
                 .addConverterFactory(JacksonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())

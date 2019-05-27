@@ -4,13 +4,18 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.china.bosh.demo"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
     }
+
     buildTypes {
         debug {
             minifyEnabled false

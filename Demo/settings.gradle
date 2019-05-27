@@ -1,4 +1,4 @@
-include ':app', ':mylibrary'
+include ':app', ':mylibrary', ':lib', ':libs'
 setBinding(new Binding([gradle: this]))
 evaluate(new File(
   settingsDir.parentFile,
