@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.tv_span, R.id.tv_sms, R.id.tv_recycler, R.id.tv_notify, R.id.tv_flutter})
+    @OnClick({R.id.tv_span, R.id.tv_sms, R.id.tv_recycler, R.id.tv_notify, R.id.tv_flutter, R.id.tv_gauss})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_span:
@@ -65,6 +65,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.tv_flutter:
                 startActivity(FlutterActivity.class);
+                break;
+            case R.id.tv_gauss:
+                startActivity(GaussActivity.class);
                 break;
             default:
         }
