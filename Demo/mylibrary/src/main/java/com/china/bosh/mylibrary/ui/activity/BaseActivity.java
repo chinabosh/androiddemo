@@ -6,11 +6,11 @@ import android.content.pm.ActivityInfo;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v4.app.FragmentActivity;
-import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.fragment.app.FragmentActivity;
+
 
 import com.china.bosh.mylibrary.annotation.BindEventBus;
 import com.china.bosh.mylibrary.entity.DataEvent;
@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
  * @date 2018/7/4
  */
 
-public abstract class BaseActivity extends FragmentActivity{
+public abstract class BaseActivity extends FragmentActivity {
 
 
     @Override

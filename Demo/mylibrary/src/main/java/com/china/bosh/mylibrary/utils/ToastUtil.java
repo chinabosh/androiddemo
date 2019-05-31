@@ -3,8 +3,8 @@ package com.china.bosh.mylibrary.utils;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.IdRes;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.StringRes;
 import android.widget.Toast;
 
 import com.china.bosh.mylibrary.application.BaseApplication;

@@ -1,23 +1,16 @@
 package com.china.bosh.mylibrary.utils;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Environment;
 import android.os.storage.StorageManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
 
 
-import com.china.bosh.mylibrary.BuildConfig;
 import com.china.bosh.mylibrary.constant.Constants;
 
-import java.io.File;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-
-import freemarker.template.utility.StringUtil;
 
 /**
  * @author lzq

@@ -2,7 +2,7 @@ package com.china.bosh.demo.application;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.multidex.MultiDex;
+import androidx.multidex.MultiDex;
 
 import com.china.bosh.demo.util.NotificationChannels;
 import com.china.bosh.mylibrary.application.BaseApplication;

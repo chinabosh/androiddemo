@@ -1,7 +1,5 @@
 package com.china.bosh.demo.ui.activity;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.china.bosh.demo.R;
 import com.china.bosh.demo.ui.adapter.MyAdapter;
@@ -9,6 +7,8 @@ import com.china.bosh.demo.ui.adapter.MyAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
 /**

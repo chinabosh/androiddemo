@@ -9,15 +9,13 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Icon;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 import android.view.View;
 import android.widget.TextView;
 
 import com.china.bosh.demo.R;
 import com.china.bosh.demo.receive.NotificationReceiver;
 import com.china.bosh.demo.util.NotificationChannels;
-
-import java.sql.BatchUpdateException;
 
 import butterknife.BindView;
 import butterknife.OnClick;

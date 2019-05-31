@@ -1,7 +1,6 @@
 package com.china.bosh.mylibrary.application;
 
-import android.app.Application;
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDexApplication;
 
 import com.china.bosh.mylibrary.utils.CrashHandler;
 import com.china.bosh.mylibrary.utils.LogUtils;
