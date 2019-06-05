@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Build;
 import androidx.multidex.MultiDex;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.china.bosh.demo.BuildConfig;
 import com.china.bosh.demo.util.NotificationChannels;
 import com.china.bosh.mylibrary.application.BaseApplication;
 import com.china.bosh.mylibrary.db.DaoManager;
@@ -23,6 +25,11 @@ public class MyApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         DaoManager.getInstance().init(this);
+        if(BuildConfig.DEBUG) {
+            ARouter.openLog();
+            ARouter.openDebug();
+        }
+        ARouter.init(this);
 
         if(Build.VERSION.SDK_INT == Build.VERSION_CODES.P) {
             closeAndroidPDialog();

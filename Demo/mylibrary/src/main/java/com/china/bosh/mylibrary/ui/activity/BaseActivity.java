@@ -1,19 +1,29 @@
 package com.china.bosh.mylibrary.ui.activity;
 
 import android.app.Activity;
+import android.app.Application;
+import android.content.ComponentCallbacks;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.FragmentActivity;
+import butterknife.ButterKnife;
 
 
 import com.china.bosh.mylibrary.annotation.BindEventBus;
+import com.china.bosh.mylibrary.application.BaseApplication;
 import com.china.bosh.mylibrary.entity.DataEvent;
+import com.china.bosh.mylibrary.utils.PermissionsManager;
+import com.china.bosh.mylibrary.utils.PermissionsResultAction;
 import com.china.bosh.mylibrary.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -30,6 +40,22 @@ import java.lang.reflect.Method;
 
 public abstract class BaseActivity extends FragmentActivity {
 
+    /**
+     * get resource id
+     * @return return resource id.
+     */
+    @LayoutRes
+    protected abstract int attachLayoutRes();
+
+    /**
+     * 初始化view
+     */
+    protected abstract void initView();
+
+    /**
+     * 获取数据
+     */
+    protected abstract void initData();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +67,25 @@ public abstract class BaseActivity extends FragmentActivity {
         if(this.getClass().isAnnotationPresent(BindEventBus.class)){
             EventBus.getDefault().register(this);
         }
+
+        setContentView(attachLayoutRes());
+        ButterKnife.bind(this);
+
+        PermissionsManager.getInstance().requestAllManifestPermissionsIfNecessary(this, new PermissionsResultAction() {
+            @Override
+            public void onGranted() {
+//				Toast.makeText(MainActivity.this, "All permissions have been granted", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDenied(String permission) {
+                //Toast.makeText(MainActivity.this, "Permission " + permission + " has been denied", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        initView();
+        initData();
+        setCustomDensity(this, BaseApplication.instance);
     }
 
     @Override
@@ -115,6 +160,48 @@ public abstract class BaseActivity extends FragmentActivity {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * 来自今日头条技术团队 https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA
+     * 屏幕适配方案
+     */
+    private static float mNoncompatDensity;
+    private static float mNoncompatScaledDensity;
+
+    private static void setCustomDensity(@NonNull Activity activity, @NonNull final Application application){
+        final DisplayMetrics appDisplayMetrics = application.getResources().getDisplayMetrics();
+
+        if(mNoncompatDensity == 0){
+            mNoncompatDensity = appDisplayMetrics.density;
+            mNoncompatScaledDensity = appDisplayMetrics.scaledDensity;
+            application.registerComponentCallbacks(new ComponentCallbacks() {
+                @Override
+                public void onConfigurationChanged(Configuration newConfig) {
+                    if(newConfig != null && newConfig.fontScale> 0){
+                        mNoncompatScaledDensity = application.getResources().getDisplayMetrics().scaledDensity;
+                    }
+                }
+
+                @Override
+                public void onLowMemory() {
+
+                }
+            });
+        }
+
+        final float targetDensity = appDisplayMetrics.widthPixels / 360;
+        final float targetScaledDensity = targetDensity * (mNoncompatScaledDensity / mNoncompatDensity);
+        final int targetDensityDpi = (int) (targetScaledDensity * 160);
+
+        appDisplayMetrics.density = targetDensity;
+        appDisplayMetrics.scaledDensity = targetScaledDensity;
+        appDisplayMetrics.densityDpi = targetDensityDpi;
+
+        final DisplayMetrics activityDisplayMetrics = activity.getResources().getDisplayMetrics();
+        activityDisplayMetrics.density = targetDensity;
+        activityDisplayMetrics.scaledDensity = targetScaledDensity;
+        activityDisplayMetrics.densityDpi = targetDensityDpi;
     }
 
 }

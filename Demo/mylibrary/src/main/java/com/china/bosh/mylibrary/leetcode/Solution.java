@@ -308,44 +308,7 @@ public class Solution {
      * @return
      */
     public boolean isMatch(String s, String p) {
-        int i = 0,j = 0, len = s.length(), len1 = p.length();
-        char after;
-        int index;
-        do {
-            index = p.indexOf("*", j);
-            if(index < 0) {
-                for(;j < len1;){
-                    if(i == len) {
-                        return false;
-                    }
-                    if(p.charAt(j) == '.') {
-                        i++;
-                        j++;
-                    } else if(p.charAt(j) == s.charAt(i)) {
-                        i++;
-                        j++;
-                    } else {
-                        return false;
-                    }
-                }
-                if(i != len){
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-            for(;j < index - 1;){
-                if(p.charAt(j) == '.') {
-                    i++;
-                    j++;
-                } else if(p.charAt(j) == s.charAt(i)) {
-                    i++;
-                    j++;
-                } else {
-                    return false;
-                }
-            }
-        }while (i < len && j < len1);
+
         return false;
     }
 }

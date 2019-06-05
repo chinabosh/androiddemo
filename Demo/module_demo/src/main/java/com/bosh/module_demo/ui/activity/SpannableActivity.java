@@ -1,4 +1,4 @@
-package com.china.bosh.demo.ui.activity;
+package com.bosh.module_demo.ui.activity;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -20,9 +20,12 @@ import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.TextView;
 
-import com.china.bosh.demo.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.china.bosh.mylibrary.ui.activity.BaseActivity;
 
 import butterknife.BindView;
+import com.bosh.module_demo.R;
+import com.bosh.module_demo.R2;
 
 /**
  * 前景色 {@link #setForegroundColor()}
@@ -39,34 +42,35 @@ import butterknife.BindView;
  * @author chinabosh
  * @Description SpannableString demo
  */
+@Route(path = "/demo/spannableActivity")
 public class SpannableActivity extends BaseActivity {
 
-    @BindView(R.id.tv_foreground_color)
+    @BindView(R2.id.tv_foreground_color)
     TextView mTvForegroundColor;
-    @BindView(R.id.tv_background_color)
+    @BindView(R2.id.tv_background_color)
     TextView mTvBackgroundColor;
-    @BindView(R.id.tv_relative)
+    @BindView(R2.id.tv_relative)
     TextView mTvRelative;
-    @BindView(R.id.tv_strike_through)
+    @BindView(R2.id.tv_strike_through)
     TextView mTvStrikeThrough;
-    @BindView(R.id.tv_underline)
+    @BindView(R2.id.tv_underline)
     TextView mTvUnderline;
-    @BindView(R.id.tv_superscript)
+    @BindView(R2.id.tv_superscript)
     TextView mTvSuperscript;
-    @BindView(R.id.tv_subscript)
+    @BindView(R2.id.tv_subscript)
     TextView mTvSubscript;
-    @BindView(R.id.tv_click)
+    @BindView(R2.id.tv_click)
     TextView mTvClick;
-    @BindView(R.id.tv_image)
+    @BindView(R2.id.tv_image)
     TextView mTvImage;
-    @BindView(R.id.tv_style)
+    @BindView(R2.id.tv_style)
     TextView mTvStyle;
-    @BindView(R.id.tv_url)
+    @BindView(R2.id.tv_url)
     TextView mTvUrl;
 
     @Override
     protected int attachLayoutRes() {
-        return R.layout.activity_spannable;
+        return R.layout.demo_activity_spannable;
     }
 
     @Override
@@ -161,7 +165,7 @@ public class SpannableActivity extends BaseActivity {
 
     private SpannableString getHuaji(){
         SpannableString ss = new SpannableString("手动滑稽xx");
-        Drawable drawable = getResources().getDrawable(R.drawable.huaji);
+        Drawable drawable = getResources().getDrawable(R.drawable.demo_huaji);
         int drawableHeight = drawable.getMinimumHeight();
         drawable.setBounds(0, 0, drawableHeight, drawableHeight);
         ImageSpan span = new ImageSpan(drawable);

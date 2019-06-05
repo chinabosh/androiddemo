@@ -14,7 +14,13 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+//        int[] a = new int[] {3, 5, 7, 11, 13, 17, 19, 23, 29};
+//        for(int i = 0; i < a.length; i++) {
+//            for(int j = i + 1; j < a.length; j++) {
+//                System.out.print(a[i] + a[j] + " ");
+//            }
+//            System.out.println();
+//        }
     }
 
     @Test

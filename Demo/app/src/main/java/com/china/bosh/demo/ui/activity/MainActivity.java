@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.china.bosh.demo.R;
 import com.china.bosh.demo.ui.flutter.FlutterActivity;
@@ -45,14 +46,13 @@ public class MainActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_span:
-                startActivity(SpannableActivity.class);
 //                DataEvent event = null;
 //                try {
 //                    event.getErrorCode();
 //                } catch (Exception e) {
 //                    writeException(e);
 //                }
-
+                ARouter.getInstance().build("/demo/spannableActivity").navigation();
                 break;
             case R.id.tv_sms:
                 startActivity(SmsActivity.class);
