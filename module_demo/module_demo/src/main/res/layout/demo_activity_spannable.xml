@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.china.bosh.demo.ui.activity.SpannableActivity">
+    tools:context=".ui.activity.SpannableActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,49 +14,49 @@
 
         <TextView
             android:id="@+id/tv_foreground_color"
-            style="@style/spannable_item"/>
+            style="@style/demo_spannable_item"/>
 
         <TextView
             android:id="@+id/tv_background_color"
-            style="@style/spannable_item"/>
+            style="@style/demo_spannable_item"/>
 
         <TextView
             android:id="@+id/tv_relative"
-            style="@style/spannable_item"/>
+            style="@style/demo_spannable_item"/>
 
         <TextView
             android:id="@+id/tv_strike_through"
-            style="@style/spannable_item"/>
+            style="@style/demo_spannable_item"/>
 
         <TextView
             android:id="@+id/tv_underline"
-            style="@style/spannable_item"/>
+            style="@style/demo_spannable_item"/>
 
         <TextView
             android:id="@+id/tv_superscript"
             android:paddingTop="10dp"
-            style="@style/spannable_item"/>
+            style="@style/demo_spannable_item"/>
 
         <TextView
             android:id="@+id/tv_subscript"
             android:paddingBottom="10dp"
-            style="@style/spannable_item"/>
+            style="@style/demo_spannable_item"/>
 
         <TextView
             android:id="@+id/tv_click"
-            style="@style/spannable_item"/>
+            style="@style/demo_spannable_item"/>
 
         <TextView
             android:id="@+id/tv_image"
-            style="@style/spannable_item"/>
+            style="@style/demo_spannable_item"/>
 
         <TextView
             android:id="@+id/tv_style"
-            style="@style/spannable_item"/>
+            style="@style/demo_spannable_item"/>
 
         <TextView
             android:id="@+id/tv_url"
-            style="@style/spannable_item"/>
+            style="@style/demo_spannable_item"/>
     </LinearLayout>
 
 </ScrollView>

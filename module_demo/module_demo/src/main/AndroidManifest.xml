@@ -1,0 +1,26 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bosh.module_demo">
+    <application android:theme="@style/AppTheme">
+        <activity android:name="com.bosh.module_demo.ui.activity.SpannableActivity" />
+        <activity android:name="com.bosh.module_demo.ui.activity.GaussActivity" />
+        <!--<activity android:name=".ui.flutter.FlutterActivity" />-->
+
+        <receiver
+            android:name="com.bosh.module_demo.receiver.NotificationReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name="com.bosh.module_demo.ui.activity.NotificationActivity" />
+        <activity android:name="com.bosh.module_demo.ui.activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.bosh.module_demo.ui.activity.SmsActivity" />
+        <activity
+            android:name="com.bosh.module_demo.ui.activity.RecyclerViewActivity" />
+        <activity android:name="com.bosh.module_demo.ui.flutter.FlutterActivity"/>
+    </application>
+</manifest>
