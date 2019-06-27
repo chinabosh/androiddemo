@@ -1,8 +1,4 @@
-if(isModule.toBoolean()) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
-}
+apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'maven'
 
@@ -21,31 +17,11 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
-            }
-        }
-
-        multiDexEnabled isModule.toBoolean()
-        resourcePrefix "demo_"
-
-        javaCompileOptions {
-            annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
-    }
 
-    sourceSets {
-        main {
-            if(isModule.toBoolean()) {
-                manifest.srcFile 'src/main/module/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-                java {
-                    exclude 'debug/**'
-                }
-            }
-        }
+        resourcePrefix "demo_"
     }
 
     buildTypes {
@@ -87,11 +63,11 @@ uploadArchives { //新增 ，因为Android Studio gradle 支持maven插件，所
             }
 
             pom.project {
-                version '0.0.5' //版本名称 上传是不能和之前的一样，否则上传失败
+                version '0.0.6' //版本名称 上传是不能和之前的一样，否则上传失败
                 artifactId 'moduledemo'  //和前面网站上填写的一样
                 groupId GROUP  //和前面网站上填写的一样
                 packaging TYPE //填写aar
-                description 'AndroidManifest添加flutterActivity' //更新描述
+                description '去掉module_demo中的launcher，以防有两个应用图标' //更新描述
             }
         }
     }

@@ -12,11 +12,6 @@
 
         <activity android:name="com.bosh.module_demo.ui.activity.NotificationActivity" />
         <activity android:name="com.bosh.module_demo.ui.activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="com.bosh.module_demo.ui.activity.SmsActivity" />
         <activity
