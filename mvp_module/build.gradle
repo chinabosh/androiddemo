@@ -39,4 +39,6 @@ ext {
 
     butterknifeVersion = "10.1.0"
     routerVersion = "1.2.2"
+
+    dragger = "2.23.2"
 }
