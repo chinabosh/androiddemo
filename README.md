@@ -4,7 +4,7 @@ android组件化
 ARoute 阿里开源路由框架  
 nexus maven私服  
 
-主要分四模块：  
+主要分五模块：  
 1. flutter模块  
 2. java模块  
 3. kotlin模块  
