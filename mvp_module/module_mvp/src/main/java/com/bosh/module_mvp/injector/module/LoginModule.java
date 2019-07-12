@@ -29,6 +29,11 @@ public class LoginModule {
     }
 
     @Provides
+    public LifecycleOwner provideLifecycleOwner(){
+        return lifecycleOwner;
+    }
+
+    @Provides
     public LoginContract.Model provideModel(){
         return new LoginModel();
     }

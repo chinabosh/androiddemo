@@ -5,6 +5,8 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
 
+import javax.inject.Inject;
+
 /**
  * 处理生命周期问题
  * @author bosh
@@ -12,11 +14,11 @@ import androidx.lifecycle.OnLifecycleEvent;
  */
 public abstract class BasePresenter implements LifecycleObserver{
 
-    private LifecycleOwner mLifecycleOwner;
+    @Inject
+    LifecycleOwner mLifecycleOwner;
 
-    public void setLifecycleOwner(LifecycleOwner owner){
-        mLifecycleOwner = owner;
-        owner.getLifecycle().addObserver(this);
+    public void addLifecycleObserver(){
+        mLifecycleOwner.getLifecycle().addObserver(this);
     }
 
     public LifecycleOwner getLifecycleOwner(){

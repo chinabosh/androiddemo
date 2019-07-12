@@ -15,13 +15,21 @@ public class LoginPresenter extends BasePresenter implements LoginContract.Prese
     @Inject LoginContract.Model mLoginModel;
 
     @Inject
-    public LoginPresenter(LoginContract.View loginView, LifecycleOwner owner) {
+    public LoginPresenter(LoginContract.View loginView) {
         mLoginView = loginView;
-        setLifecycleOwner(owner);
+        //关联view的生命周期
+        addLifecycleObserver();
     }
 
     @Override
     public void onDestroy() {
+
+    }
+
+    @Override
+    public void login() {
+        String account = mLoginView.getAccount();
+        String pwd = mLoginView.getPassword();
 
     }
 }

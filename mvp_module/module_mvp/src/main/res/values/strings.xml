@@ -1,3 +1,7 @@
 <resources>
     <string name="mvp_app_name">module_mvp</string>
+
+    <!-- login -->
+    <string name="mvp_text_account_hint">请输入账号</string>
+    <string name="mvp_text_pwd_hint">请输入密码</string>
 </resources>

@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/et_account"
+            style="@style/mvp_login_exitText"
+            android:hint="@string/mvp_text_account_hint"
+            android:drawableLeft="@drawable/mvp_ic_account_box_black_24dp"
+            />
+
+        <EditText
+            android:id="@+id/et_pwd"
+            style="@style/mvp_login_exitText"
+            android:hint="@string/mvp_text_account_hint"
+            android:drawableLeft="@drawable/mvp_ic_lock_black_24dp"
+            android:inputType="textPassword"/>
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:padding="@dimen/dp_10"
+            android:gravity="center"
+            android:text="登录"/>
+    </LinearLayout>
+
+</RelativeLayout>
