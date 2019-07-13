@@ -6,9 +6,10 @@ import android.util.Log;
 import com.bosh.module_mvp.BuildConfig;
 
 import java.io.IOException;
-import java.util.Observable;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -24,6 +25,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  * @author lzq
  * @date 2019-07-12
  */
+@SuppressWarnings("unchecked")
 public class RetrofitUtil {
     private ApiService mApiService;
     private Retrofit retrofit;
@@ -83,5 +85,12 @@ public class RetrofitUtil {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         mApiService = retrofit.create(ApiService.class);
+    }
+
+    public Observable<ResponseData> login(String account, String pwd) {
+        HashMap map = new HashMap(4);
+        map.put("account", account);
+        map.put("pwd", pwd);
+        return mApiService.login(map);
     }
 }

@@ -1,10 +1,15 @@
 package com.bosh.module_mvp.ui.login;
 
-import com.china.bosh.mylibrary.retrofit.RetrofitUtil;
+import com.bosh.module_mvp.network.NetPreFunction;
+import com.bosh.module_mvp.network.ResponseData;
+import com.bosh.module_mvp.network.RetrofitUtil;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.Scheduler;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author lzq
@@ -19,7 +24,10 @@ public class LoginModel implements LoginContract.Model{
     }
 
     @Override
-    public Observable login(String account, String pwd) {
-        return null;
+    public <R> Observable<R> login(String account, String pwd) {
+        return RetrofitUtil.getInstance()
+                .login(account, pwd)
+                .observeOn(Schedulers.io())
+                .map(new NetPreFunction<>());
     }
 }

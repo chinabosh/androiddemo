@@ -1,5 +1,7 @@
 package com.bosh.module_mvp.ui.login;
 
+import com.bosh.module_mvp.network.ResponseData;
+
 import io.reactivex.Observable;
 
 /**
@@ -17,6 +19,6 @@ public interface LoginContract {
     }
 
     interface Model{
-        Observable login(String account, String pwd);
+        <R> Observable<R> login(String account, String pwd);
     }
 }

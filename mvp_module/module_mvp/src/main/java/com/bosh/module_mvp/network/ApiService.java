@@ -1,5 +1,9 @@
 package com.bosh.module_mvp.network;
 
+import java.util.Map;
+
+import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 /**
@@ -8,5 +12,6 @@ import retrofit2.http.POST;
  */
 public interface ApiService {
 
-
+    @POST(Url.LOGIN)
+    Observable<ResponseData> login(@Body Map map);
 }
