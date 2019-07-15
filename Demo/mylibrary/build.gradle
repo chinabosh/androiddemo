@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'org.greenrobot.greendao'
-
+apply plugin: 'maven'
 android {
     compileSdkVersion 28
 
@@ -59,15 +59,19 @@ dependencies {
     api "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
 
-    api 'com.squareup.retrofit2:retrofit:2.1.0'//网络加载库
+    api 'com.squareup.retrofit2:retrofit:2.4.0'//网络加载库
     api 'com.squareup.retrofit2:converter-jackson:2.1.0'
-    api 'com.squareup.retrofit2:converter-gson:2.1.0'
+    api 'com.squareup.retrofit2:converter-gson:2.3.0'
     api 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.4.2'//输出log
     api 'com.github.bumptech.glide:glide:3.8.0'//图片加载
     implementation 'com.google.zxing:core:3.3.2'//二维码
-    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    api 'io.reactivex.rxjava2:rxjava:2.1.14'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api 'io.reactivex.rxjava2:rxjava:2.2.8'
+    api 'com.trello.rxlifecycle2:rxlifecycle:2.2.1'
+    api 'com.trello.rxlifecycle2:rxlifecycle-android:2.2.1'
+    api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
     implementation 'androidx.recyclerview:recyclerview:1.0.0-beta01'
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v1.9.7'//封装adapter
     api 'com.github.Aspsine:SwipeToLoadLayout:1.0.4'//下拉刷新、上拉加载库
@@ -76,4 +80,28 @@ dependencies {
     //apt技术
 
     api 'com.alibaba:arouter-api:1.5.0'
+}
+
+uploadArchives { //新增 ，因为Android Studio gradle 支持maven插件，所以可以添加此task
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+
+            snapshotRepository(url: MAVEN_REPO_SNAPSHOT_URL) {
+                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+            }
+
+            repository(url: MAVEN_REPO_RELEASE_URL) {
+                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+            }
+
+            pom.project {
+                version '0.0.2' //版本名称 上传是不能和之前的一样，否则上传失败
+                artifactId 'library'  //和前面网站上填写的一样
+                groupId GROUP  //和前面网站上填写的一样
+                packaging TYPE //填写aar
+                description DESCRIPTION //更新描述
+            }
+        }
+    }
 }

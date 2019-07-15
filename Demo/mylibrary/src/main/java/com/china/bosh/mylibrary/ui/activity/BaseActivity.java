@@ -25,6 +25,8 @@ import com.china.bosh.mylibrary.entity.DataEvent;
 import com.china.bosh.mylibrary.utils.PermissionsManager;
 import com.china.bosh.mylibrary.utils.PermissionsResultAction;
 import com.china.bosh.mylibrary.utils.ToastUtil;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle2.components.support.RxFragmentActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -38,7 +40,7 @@ import java.lang.reflect.Method;
  * @date 2018/7/4
  */
 
-public abstract class BaseActivity extends FragmentActivity {
+public abstract class BaseActivity extends RxFragmentActivity {
 
     /**
      * get resource id
@@ -46,6 +48,13 @@ public abstract class BaseActivity extends FragmentActivity {
      */
     @LayoutRes
     protected abstract int attachLayoutRes();
+
+    /**
+     * dagger依赖注入
+     */
+    protected void initInject(){
+
+    }
 
     /**
      * 初始化view
@@ -83,6 +92,7 @@ public abstract class BaseActivity extends FragmentActivity {
             }
         });
 
+        initInject();
         initView();
         initData();
         setCustomDensity(this, BaseApplication.instance);

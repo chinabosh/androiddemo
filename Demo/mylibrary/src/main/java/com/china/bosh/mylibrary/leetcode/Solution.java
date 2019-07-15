@@ -103,7 +103,7 @@ public class Solution {
         return Math.max(sum - min, max);
     }
 
-    public void testAddTwoNumbers(){
+    public void testAddTwoNumbers() {
         ListNode l1 = new ListNode(2);
         l1.next = new ListNode(4);
 //        l1.next.next = new ListNode(3);
@@ -111,18 +111,19 @@ public class Solution {
         l2.next = new ListNode(6);
         l2.next.next = new ListNode(4);
         ListNode res = addTwoNumbers(l1, l2);
-        do{
+        do {
             System.out.print(res.val);
             res = res.next;
-        }while (res != null);
+        } while (res != null);
     }
 
     /**
      * 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
-     *
+     * <p>
      * 如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。
-     *
+     * <p>
      * 您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
+     *
      * @param l1
      * @param l2
      * @return
@@ -132,30 +133,30 @@ public class Solution {
         ListNode result = new ListNode(0);
         ListNode tmpResult = result;
         int up = 0;
-        do{
-            if(l1 != null && l2 != null) {
+        do {
+            if (l1 != null && l2 != null) {
                 tmpResult.val = (l1.val + l2.val + up) % 10;
                 up = (l1.val + l2.val + up) / 10;
-            } else if(l1 == null) {
+            } else if (l1 == null) {
                 tmpResult.val = (l2.val + up) % 10;
                 up = (l2.val + up) / 10;
             } else {
                 tmpResult.val = (l1.val + up) % 10;
                 up = (l1.val + up) / 10;
             }
-            if(l1 != null) {
+            if (l1 != null) {
                 l1 = l1.next;
             }
-            if(l2 != null) {
+            if (l2 != null) {
                 l2 = l2.next;
             }
-            if(l1 == null && l2 == null) {
+            if (l1 == null && l2 == null) {
                 break;
             }
             tmpResult.next = new ListNode(0);
             tmpResult = tmpResult.next;
-        }while (true);
-        if(up != 0){
+        } while (true);
+        if (up != 0) {
             tmpResult.next = new ListNode(up);
         }
         return result;
@@ -172,51 +173,51 @@ public class Solution {
 
     /**
      * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+     *
      * @param s
-     * @return
-     * 遇到重复的start跳到重复字符后面位置
+     * @return 遇到重复的start跳到重复字符后面位置
      */
     public int lengthOfLongestSubstring(String s) {
         int max = 0;
         int start = 0;
         int end = 0;
         int length = s.length();
-        if(length == 0) {
+        if (length == 0) {
             return 0;
         }
-        do{
-            int index = s.substring(start, end).indexOf(s.substring(end , end + 1));
-            if(index != -1) {
+        do {
+            int index = s.substring(start, end).indexOf(s.substring(end, end + 1));
+            if (index != -1) {
                 start += index + 1;
             } else {
-                if(max < end - start + 1) {
+                if (max < end - start + 1) {
                     max = end - start + 1;
                 }
             }
-            end ++;
-        }while(end < length);
+            end++;
+        } while (end < length);
         return max;
     }
 
     /**
      * 给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
-     *
+     * <p>
      * 请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。
-     *
+     * <p>
      * 你可以假设 nums1 和 nums2 不会同时为空。
+     *
      * @param nums1
      * @param nums2
-     * @return
-     * 用index标记最大最小，每次首尾各移动一次，最后剩一个或两个即可求的中位数
+     * @return 用index标记最大最小，每次首尾各移动一次，最后剩一个或两个即可求的中位数
      */
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int start1, start2, end1, end2;
         double res = 0;
-        if(nums1 != null) {
-            if(nums1.length == 0){
+        if (nums1 != null) {
+            if (nums1.length == 0) {
                 start1 = 1;
                 end1 = 0;
-            } else if (nums1.length == 1){
+            } else if (nums1.length == 1) {
                 start1 = 0;
                 end1 = 0;
             } else {
@@ -232,14 +233,14 @@ public class Solution {
             start1 = 1;
             end1 = 0;
         }
-        if(nums2 != null) {
-            if(nums2.length == 0){
+        if (nums2 != null) {
+            if (nums2.length == 0) {
                 start2 = 1;
                 end2 = 0;
-            } else if (nums2.length == 1){
+            } else if (nums2.length == 1) {
                 start2 = 0;
                 end2 = 0;
-            }else {
+            } else {
                 if (nums2[0] <= nums2[nums2.length - 1]) {
                     start2 = 0;
                     end2 = nums2.length - 1;
@@ -253,56 +254,57 @@ public class Solution {
             end2 = 0;
         }
         do {
-            if(start1 > end1 && start2 > end2){
+            if (start1 > end1 && start2 > end2) {
                 break;
             }
-            if(start1 > end1) {
-                if(start2 - end2 == 0 || start2 - end2 == -1){
-                    res = (double)(nums2[start2] + nums2[end2]) / 2;
+            if (start1 > end1) {
+                if (start2 - end2 == 0 || start2 - end2 == -1) {
+                    res = (double) (nums2[start2] + nums2[end2]) / 2;
                     break;
                 }
-            } else if(start1 == end1) {
-                if(start2 == end2){
+            } else if (start1 == end1) {
+                if (start2 == end2) {
                     res = (double) (nums1[start1] + nums2[start2]) / 2;
                     break;
-                } else if(start2 > end2) {
+                } else if (start2 > end2) {
                     res = nums1[start1];
                     break;
                 }
             } else {
-                if(start1 + 1 == end1 && start2 > end2) {
+                if (start1 + 1 == end1 && start2 > end2) {
                     res = (double) (nums1[start1] + nums1[end1]) / 2;
                     break;
                 }
             }
-            if(start1 <= end1 && start2 <= end2) {
-                if(nums1[start1] < nums2[start2]) {
-                    start1 ++ ;
+            if (start1 <= end1 && start2 <= end2) {
+                if (nums1[start1] < nums2[start2]) {
+                    start1++;
                 } else {
                     start2++;
                 }
-                if(nums1[end1] > nums2[end2]) {
-                    end1 --;
+                if (nums1[end1] > nums2[end2]) {
+                    end1--;
                 } else {
-                    end2 --;
+                    end2--;
                 }
-            } else if(start1 > end1) {
+            } else if (start1 > end1) {
                 start2++;
                 end2--;
             } else {
                 start1++;
                 end1--;
             }
-        }while (true);
+        } while (true);
         return res;
     }
 
     /**
      * 给定一个字符串 (s) 和一个字符模式 (p)。实现支持 '.' 和 '*' 的正则表达式匹配。
-     *
+     * <p>
      * '.' 匹配任意单个字符。
      * '*' 匹配零个或多个前面的元素。
      * 匹配应该覆盖整个字符串 (s) ，而不是部分字符串。
+     *
      * @param s
      * @param p
      * @return
@@ -310,5 +312,53 @@ public class Solution {
     public boolean isMatch(String s, String p) {
 
         return false;
+    }
+
+    /**
+     * 将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。
+     * 例：
+     * 输入: s = "LEETCODEISHIRING", numRows = 4
+     * 输出: "LDREOEIIECIHNTSG"
+     * 解释:
+     * <p>
+     * L     D     R
+     * E   O E   I I
+     * E C   I H   N
+     * T     S     G
+     * <p>
+     * 来源：力扣（LeetCode）
+     * 链接：https://leetcode-cn.com/problems/zigzag-conversion
+     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     *
+     * @param s
+     * @param numRows
+     * @return
+     */
+    public String convert(String s, int numRows) {
+        StringBuilder ans = new StringBuilder();
+        int length = s.length();
+        int mov, index;
+        boolean one;
+        for (int i = 0; i < numRows; i++) {
+            index = i;
+            one = false;
+            while (index < length) {
+                ans.append(s.charAt(index));
+                if (one) {
+                    mov = i * 2;
+                } else {
+                    mov = (numRows - 1 - i) * 2;
+                }
+                one = !one;
+                if(mov == 0) {
+                    mov = (numRows - 1) * 2;
+                }
+                if (mov == 0) {
+                    mov = 1;
+                }
+                index += mov;
+            }
+        }
+        return ans.toString();
     }
 }

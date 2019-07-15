@@ -14,19 +14,21 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-//        int[] a = new int[] {3, 5, 7, 11, 13, 17, 19, 23, 29};
+//        int[] a = new int[] {3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73,
+//                             79, 83, 89, 97, 101};
 //        for(int i = 0; i < a.length; i++) {
 //            for(int j = i + 1; j < a.length; j++) {
 //                System.out.print(a[i] + a[j] + " ");
 //            }
 //            System.out.println();
 //        }
+        //12,18,24,28,30
     }
 
     @Test
     public void test() throws Exception{
         Solution solution = new Solution();
-        int which = 7;
+        int which = 8;
         switch (which) {
             case 1: {
                 boolean res = solution.isRobotBounded("GGLLGG");
@@ -67,6 +69,10 @@ public class ExampleUnitTest {
                 System.out.println(value);
             }
             break;
+            case 8: {
+//                String ans = solution.convert("PAYPALISHIRING", 3);
+//                System.out.println(ans);
+            }
             default:
         }
     }

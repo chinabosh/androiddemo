@@ -22,6 +22,10 @@ public class BaseApplication  extends MultiDexApplication{
         instance = this;
     }
 
+    public static BaseApplication getInstance(){
+        return instance;
+    }
+
     /**
      * 初始化日志
      */
