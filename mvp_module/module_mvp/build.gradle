@@ -55,17 +55,24 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     api 'com.bosh.demo:library:0.0.3'
+
     api "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
+
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.ext.routerVersion"
 
     api "com.google.dagger:dagger:$rootProject.ext.dragger"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dragger"
 
-    //autodispose
+    //AutoDispose https://github.com/uber/AutoDispose
     api "com.uber.autodispose:autodispose:$rootProject.ext.autoDispose"
     api "com.uber.autodispose:autodispose-android:$rootProject.ext.autoDispose"
     api "com.uber.autodispose:autodispose-android-archcomponents:$rootProject.ext.autoDispose"
+
+    //https://github.com/afollestad/material-dialogs
+    implementation "com.afollestad.material-dialogs:core:$rootProject.ext.materialDialog"
+    api 'com.afollestad.material-dialogs:commons:0.9.4.1'
+
 }
 
 uploadArchives { //新增 ，因为Android Studio gradle 支持maven插件，所以可以添加此task

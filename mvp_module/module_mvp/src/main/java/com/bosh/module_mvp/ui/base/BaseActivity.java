@@ -16,6 +16,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.fragment.app.FragmentActivity;
 
 import com.bosh.module_mvp.injector.BaseModule;
 import com.bosh.module_mvp.injector.BasePresenter;
@@ -27,6 +28,9 @@ import com.china.bosh.mylibrary.utils.PermissionsManager;
 import com.china.bosh.mylibrary.utils.PermissionsResultAction;
 import com.china.bosh.mylibrary.utils.ToastUtil;
 import com.trello.rxlifecycle2.components.support.RxFragmentActivity;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.AutoDisposeConverter;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -35,15 +39,13 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import javax.inject.Inject;
-
 import butterknife.ButterKnife;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2019-07-15
  */
-public abstract class BaseActivity extends RxFragmentActivity {
+public abstract class BaseActivity extends FragmentActivity {
 
     private static float mNoncompatDensity;
     private static float mNoncompatScaledDensity;
@@ -108,7 +110,10 @@ public abstract class BaseActivity extends RxFragmentActivity {
         if (this.getClass().isAnnotationPresent(BindEventBus.class)) {
             EventBus.getDefault().unregister(this);
         }
+    }
 
+    protected <T> AutoDisposeConverter<T> bindLifecycle(){
+        return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this));
     }
 
     public void startActivity(Class targetClass) {
@@ -139,6 +144,10 @@ public abstract class BaseActivity extends RxFragmentActivity {
         this.onEvent(event);
     }
 
+    /**
+     * 如果收不到event，请检查是否用了{@link BindEventBus}
+     * @param event
+     */
     public void onEvent(DataEvent event) {
     }
 
