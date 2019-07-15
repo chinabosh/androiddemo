@@ -29,7 +29,7 @@ android {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", '"47.111.166.134:8080/"')
+            buildConfigField("String", "BASE_URL", '"http://47.111.166.134:8080/"')
         }
 
         release {
@@ -54,9 +54,10 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    api 'com.bosh.demo:library:0.0.2'
+    api 'com.bosh.demo:library:0.0.3'
     api "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.ext.routerVersion"
 
     api "com.google.dagger:dagger:$rootProject.ext.dragger"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dragger"

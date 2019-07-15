@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bosh.module_mvp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application android:theme="@style/mvp_AppTheme">
-        <activity android:name=".ui.login.LoginActivity"></activity>
+        <activity android:name=".ui.login.LoginActivity"/>
         <activity android:name=".MainActivity" />
     </application>
 

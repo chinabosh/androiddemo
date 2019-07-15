@@ -19,6 +19,7 @@ import okhttp3.ResponseBody;
 import okio.Buffer;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
@@ -82,7 +83,7 @@ public class RetrofitUtil {
                 .baseUrl(TextUtils.isEmpty(url) ? Url.BASE_URL : url)
                 .client(builder.build())
                 .addConverterFactory(JacksonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         mApiService = retrofit.create(ApiService.class);
     }

@@ -16,7 +16,6 @@ import io.reactivex.schedulers.Schedulers;
  * @date 2019-07-10
  */
 public class LoginModel implements LoginContract.Model{
-    @Inject LoginPresenter loginPresenter;
 
     @Inject
     public LoginModel() {
@@ -27,7 +26,7 @@ public class LoginModel implements LoginContract.Model{
     public <R> Observable<R> login(String account, String pwd) {
         return RetrofitUtil.getInstance()
                 .login(account, pwd)
-                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .map(new NetPreFunction<>());
     }
 }

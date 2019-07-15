@@ -9,7 +9,7 @@ import io.reactivex.functions.Function;
  * @author lzq
  * @date 2019-07-12
  */
-public class NetPreFunction<T extends ResponseData<R>, R extends Object> implements Function<T, R> {
+public class NetPreFunction<T extends ResponseData<R>, R> implements Function<T, R> {
     @Override
     public R apply(T t) throws Exception {
         if("800".equals(t.getCode())) {

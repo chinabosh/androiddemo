@@ -4,10 +4,10 @@ package com.bosh.module_mvp.network;
  * @author lzq
  * @date 2019-07-12
  */
-public class ResponseData<V extends Object> {
+public class ResponseData<T extends Object> {
     private String code;
     private String msg;
-    private V data;
+    private T data;
 
     public String getCode() {
         return code;
@@ -25,11 +25,11 @@ public class ResponseData<V extends Object> {
         this.msg = msg;
     }
 
-    public V getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(V data) {
+    public void setData(T data) {
         this.data = data;
     }
 }

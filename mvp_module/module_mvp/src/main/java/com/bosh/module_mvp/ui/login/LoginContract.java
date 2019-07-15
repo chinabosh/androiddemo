@@ -12,6 +12,7 @@ public interface LoginContract {
     interface View {
         String getAccount();
         String getPassword();
+        void showLoginFail(String msg);
     }
 
     interface Presenter{
