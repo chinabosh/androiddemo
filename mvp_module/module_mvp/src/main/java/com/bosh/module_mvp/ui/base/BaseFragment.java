@@ -33,7 +33,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2019-07-15
  */
 public abstract class BaseFragment extends Fragment {

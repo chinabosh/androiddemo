@@ -3,10 +3,7 @@ package com.bosh.module_mvp.injector.module;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.bosh.module_mvp.injector.ActivityScope;
-import com.bosh.module_mvp.injector.BaseComponent;
-import com.bosh.module_mvp.injector.BaseModule;
 import com.bosh.module_mvp.ui.login.LoginContract;
-import com.bosh.module_mvp.ui.login.LoginModel;
 import com.bosh.module_mvp.ui.login.LoginPresenter;
 
 import dagger.Module;
@@ -29,10 +26,5 @@ public class LoginModule {
     @ActivityScope
     public LoginContract.View provideView(){
         return loginView;
-    }
-
-    @Provides
-    public LoginPresenter providePresenter(){
-        return new LoginPresenter(loginView, owner);
     }
 }

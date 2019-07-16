@@ -7,6 +7,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.bosh.module_mvp.BuildConfig;
 import com.bosh.module_mvp.interfaces.IPresenter;
+import com.bosh.module_mvp.interfaces.IView;
 import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.AutoDisposeConverter;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
@@ -18,12 +19,21 @@ import javax.inject.Inject;
  * @author bosh
  * @date 2019-07-10
  */
-public class BasePresenter implements IPresenter {
+public class BasePresenter<V extends IView> implements IPresenter {
 
     private LifecycleOwner owner;
+    protected V mView;
 
-    public BasePresenter(LifecycleOwner owner){
+    public BasePresenter(){
+
+    }
+
+    public void setLifecycleOwner(LifecycleOwner owner){
         this.owner = owner;
+    }
+
+    public void attachView(V view) {
+        mView = view;
     }
 
     @Override

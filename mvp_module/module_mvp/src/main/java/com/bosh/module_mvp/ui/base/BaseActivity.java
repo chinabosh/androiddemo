@@ -10,7 +10,6 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -18,16 +17,17 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.FragmentActivity;
 
-import com.bosh.module_mvp.injector.BaseModule;
+import com.bosh.module_mvp.injector.ActivityComponent;
+import com.bosh.module_mvp.injector.ActivityModule;
 import com.bosh.module_mvp.injector.BasePresenter;
-import com.bosh.module_mvp.injector.DaggerBaseComponent;
+import com.bosh.module_mvp.injector.DaggerActivityComponent;
+import com.bosh.module_mvp.interfaces.IView;
 import com.china.bosh.mylibrary.annotation.BindEventBus;
 import com.china.bosh.mylibrary.application.BaseApplication;
 import com.china.bosh.mylibrary.entity.DataEvent;
 import com.china.bosh.mylibrary.utils.PermissionsManager;
 import com.china.bosh.mylibrary.utils.PermissionsResultAction;
 import com.china.bosh.mylibrary.utils.ToastUtil;
-import com.trello.rxlifecycle2.components.support.RxFragmentActivity;
 import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.AutoDisposeConverter;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
@@ -39,16 +39,21 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 
 /**
  * @author bosh
  * @date 2019-07-15
  */
-public abstract class BaseActivity extends FragmentActivity {
+public abstract class BaseActivity<P extends BasePresenter> extends FragmentActivity implements IView {
 
     private static float mNoncompatDensity;
     private static float mNoncompatScaledDensity;
+
+    @Inject
+    protected P mPresenter;
 
     public BaseActivity() {
     }
@@ -63,7 +68,7 @@ public abstract class BaseActivity extends FragmentActivity {
     /**
      * dagger依赖注入
      */
-    protected void initInject() {
+    protected void initInject(ActivityComponent component) {
     }
 
     /**
@@ -98,9 +103,14 @@ public abstract class BaseActivity extends FragmentActivity {
             public void onDenied(String permission) {
             }
         });
-        this.initInject();
-        this.initView();
-        this.initData();
+        initInject(DaggerActivityComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .build());
+        mPresenter.setLifecycleOwner(this);
+        mPresenter.attachView(this);
+        getLifecycle().addObserver(mPresenter);
+        initView();
+        initData();
         setCustomDensity(this, BaseApplication.instance);
     }
 

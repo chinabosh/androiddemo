@@ -1,13 +1,20 @@
 package com.bosh.module_mvp.ui.login;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.bosh.module_mvp.BuildConfig;
+import com.bosh.module_mvp.constant.Constants;
 import com.bosh.module_mvp.injector.BasePresenter;
+import com.bosh.module_mvp.interfaces.IView;
+import com.bosh.module_mvp.ui.base.BaseActivity;
+import com.china.bosh.mylibrary.utils.SpUtils;
 
+
+import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
@@ -15,15 +22,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * @author bosh
  * @date 2019-07-10
  */
-public class LoginPresenter extends BasePresenter implements LoginContract.Presenter{
+public class LoginPresenter extends BasePresenter<LoginContract.View> implements LoginContract.Presenter{
 
     private final String TAG = getClass().getName();
-    private LoginContract.View mLoginView;
     private LoginContract.Model mLoginModel;
 
-    public LoginPresenter(LoginContract.View view, LifecycleOwner owner) {
-        super(owner);
-        mLoginView = view;
+    @Inject
+    public LoginPresenter(BaseActivity activity) {
         mLoginModel = new LoginModel();
     }
 
@@ -50,16 +55,24 @@ public class LoginPresenter extends BasePresenter implements LoginContract.Prese
     @Override
     public void login() {
         Log.i(TAG, "login");
-        String account = mLoginView.getAccount();
-        String pwd = mLoginView.getPassword();
+        String account = mView.getAccount();
+        String pwd = mView.getPassword();
         mLoginModel.login(account, pwd)
                 .observeOn(AndroidSchedulers.mainThread())
                 .as(bindLifecycle())//与view生命周期关联
                 .subscribe(o -> {
-
+                    SpUtils.getInstance().putString(Constants.SP_ACCOUNT, account);
                 }, throwable -> {
                     throwable.printStackTrace();
-                    mLoginView.showLoginFail(throwable.getMessage());
+                    mView.showLoginFail(throwable.getMessage());
                 });
+    }
+
+    @Override
+    public void initAccount() {
+        String account = SpUtils.getInstance().getString(Constants.SP_ACCOUNT, "");
+        if(!TextUtils.isEmpty(account)) {
+            mView.setAccount(account);
+        }
     }
 }
