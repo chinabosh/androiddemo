@@ -96,7 +96,7 @@ uploadArchives { //新增 ，因为Android Studio gradle 支持maven插件，所
             }
 
             pom.project {
-                version '0.0.2' //版本名称 上传是不能和之前的一样，否则上传失败
+                version '0.0.3' //版本名称 上传是不能和之前的一样，否则上传失败
                 artifactId 'library'  //和前面网站上填写的一样
                 groupId GROUP  //和前面网站上填写的一样
                 packaging TYPE //填写aar

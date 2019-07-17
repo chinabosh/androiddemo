@@ -21,6 +21,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -41,8 +42,4 @@ dependencies {
 
     implementation project(':module_mvp')
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.ext.routerVersion"
-
-    //autodispose
-    api 'com.uber.autodispose:autodispose:1.3.0'
-    api 'com.uber.autodispose:autodispose-android-archcomponents:1.3.0'
 }

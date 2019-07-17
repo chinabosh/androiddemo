@@ -41,4 +41,6 @@ ext {
     routerVersion = "1.2.2"
 
     dragger = "2.23.2"
+    autoDispose = "1.3.0"
+    materialDialog = "0.9.6.0"
 }

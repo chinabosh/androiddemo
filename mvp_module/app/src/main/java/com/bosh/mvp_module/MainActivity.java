@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.mvp_activity_main);
-        ARouter.getInstance().build("/mvp/main").navigation();
+        ARouter.getInstance().build("/mvp/login").navigation();
         finish();
     }
 }
