@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 //        tv_test_main.setText("123")
-        ARouter.getInstance().build("/kotlin/test").navigation()
+        ARouter.getInstance().build("/kotlin/main").navigation()
         finish()
     }
 }
