@@ -1,7 +1,7 @@
 # androiddemo
 android组件化  
 采用：  
-ARoute 阿里开源路由框架  
+[ARoute](https://github.com/alibaba/ARouter) 阿里开源路由框架  
 nexus maven私服  
 
 主要分以下几个模块： 
