@@ -17,9 +17,11 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+
+        resConfigs 'zh', 'en'
     }
 
     compileOptions {
@@ -41,7 +43,6 @@ android {
 }
 
 dependencies {
-    implementation project(':flutter')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
@@ -49,8 +50,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0-beta01'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
-    implementation project(':mylibrary')
-    implementation project(':module_demo')
+    if (isModule.toBoolean()) {
+        implementation project(':mylibrary')
+    } else {
+        api 'com.bosh.demo:library:0.0.1'
+//        implementation project(':module_demo')
+        api 'com.bosh.demo:moduledemo:0.0.5'
+    }
 
     api "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"

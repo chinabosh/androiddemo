@@ -1,4 +1,4 @@
-package com.china.bosh.demo.application;
+package com.china.bosh.demo;
 
 import android.content.Context;
 import android.os.Build;
@@ -6,9 +6,9 @@ import androidx.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.china.bosh.demo.BuildConfig;
-import com.china.bosh.demo.util.NotificationChannels;
 import com.china.bosh.mylibrary.application.BaseApplication;
 import com.china.bosh.mylibrary.db.DaoManager;
+import com.china.bosh.mylibrary.utils.NotificationChannels;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
