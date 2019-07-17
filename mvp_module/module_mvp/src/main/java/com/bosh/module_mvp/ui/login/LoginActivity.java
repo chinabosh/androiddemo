@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.bosh.module_mvp.MainActivity;
+import com.bosh.module_mvp.ui.main.MainActivity;
 import com.bosh.module_mvp.R;
 import com.bosh.module_mvp.R2;
 import com.bosh.module_mvp.injector.components.ActivityComponent;

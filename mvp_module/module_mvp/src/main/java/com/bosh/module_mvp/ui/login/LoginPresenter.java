@@ -8,17 +8,14 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.bosh.module_mvp.BuildConfig;
 import com.bosh.module_mvp.constant.Constants;
-import com.bosh.module_mvp.entity.LoginUser;
 import com.bosh.module_mvp.ui.base.BasePresenter;
 import com.bosh.module_mvp.ui.base.BaseActivity;
 import com.china.bosh.mylibrary.utils.SpUtils;
-import com.google.gson.Gson;
 
 
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Function;
 
 /**
  * @author bosh
@@ -27,11 +24,11 @@ import io.reactivex.functions.Function;
 public class LoginPresenter extends BasePresenter<LoginContract.View> implements LoginContract.Presenter{
 
     private final String TAG = getClass().getName();
-    private LoginContract.Model mLoginModel;
+    private LoginContract.Model mModel;
 
     @Inject
     public LoginPresenter(BaseActivity activity) {
-        mLoginModel = new LoginModel();
+        mModel = new LoginModel();
     }
 
     @Override
@@ -60,16 +57,17 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
         mView.showLoading();
         String account = mView.getAccount();
         String pwd = mView.getPassword();
-        mLoginModel.login(account, pwd)
+        mModel.login(account, pwd)
                 .observeOn(AndroidSchedulers.mainThread())
                 .as(bindLifecycle())//与view生命周期关联
                 .subscribe(user -> {
                     SpUtils.getInstance().putString(Constants.SP_ACCOUNT, account);
-                    mLoginModel.setUser(user);
+                    mModel.setUser(user);
                     mView.goMain();
                 }, throwable -> {
                     throwable.printStackTrace();
                     mView.showLoginFail(throwable.getMessage());
+                    mView.hideLoading();
                 }, () -> mView.hideLoading());
     }
 

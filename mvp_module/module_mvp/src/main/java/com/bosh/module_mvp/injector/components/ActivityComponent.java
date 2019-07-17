@@ -2,6 +2,7 @@ package com.bosh.module_mvp.injector.components;
 
 import com.bosh.module_mvp.injector.module.ActivityModule;
 import com.bosh.module_mvp.ui.login.LoginActivity;
+import com.bosh.module_mvp.ui.main.MainActivity;
 
 import dagger.Component;
 
@@ -12,4 +13,5 @@ import dagger.Component;
 @Component(modules = {ActivityModule.class})
 public interface ActivityComponent {
     void inject(LoginActivity activity);
+    void inject(MainActivity activity);
 }

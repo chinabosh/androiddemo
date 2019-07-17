@@ -8,13 +8,9 @@ import com.bosh.module_mvp.interfaces.IModel;
  * @date 2019-07-17
  */
 public class BaseModel implements IModel {
-    private static LoginUser mUser;
+    protected static LoginUser mUser;
 
 
-    @Override
-    public void setUser(LoginUser user) {
-        mUser = user;
-    }
 
     @Override
     public LoginUser getUser() {

@@ -6,7 +6,7 @@
 
     <application android:theme="@style/mvp_AppTheme">
         <activity android:name=".ui.login.LoginActivity"/>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.main.MainActivity" />
     </application>
 
 </manifest>

@@ -27,5 +27,6 @@ public interface LoginContract {
 
     interface Model extends IModel {
         Observable<LoginUser> login(String account, String pwd);
+        void setUser(LoginUser user);
     }
 }

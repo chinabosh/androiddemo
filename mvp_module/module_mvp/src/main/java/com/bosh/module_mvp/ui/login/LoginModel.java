@@ -22,7 +22,6 @@ public class LoginModel extends BaseModel implements LoginContract.Model{
 
     @Inject
     public LoginModel() {
-
     }
 
     @Override
@@ -36,5 +35,10 @@ public class LoginModel extends BaseModel implements LoginContract.Model{
                     String json = gson.toJson(o);
                     return gson.fromJson(json, LoginUser.class);
                 });
+    }
+
+    @Override
+    public void setUser(LoginUser user) {
+        mUser = user;
     }
 }

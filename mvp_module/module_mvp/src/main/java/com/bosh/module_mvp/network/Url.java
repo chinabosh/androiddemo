@@ -9,5 +9,5 @@ import com.bosh.module_mvp.BuildConfig;
 public class Url {
     public static final String BASE_URL = BuildConfig.BASE_URL;
 
-    public static final String LOGIN = "act=login";
+    public static final String LOGIN = "hello";
 }
