@@ -8,7 +8,7 @@ import androidx.lifecycle.OnLifecycleEvent;
 import org.greenrobot.greendao.annotation.NotNull;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2019-07-15
  */
 public interface IPresenter extends LifecycleObserver {

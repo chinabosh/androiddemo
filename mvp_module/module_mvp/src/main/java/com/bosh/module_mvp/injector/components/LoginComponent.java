@@ -7,7 +7,7 @@ import com.bosh.module_mvp.ui.login.LoginActivity;
 import dagger.Component;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2019-07-10
  */
 @ActivityScope

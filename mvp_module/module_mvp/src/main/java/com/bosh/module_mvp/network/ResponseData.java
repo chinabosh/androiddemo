@@ -1,7 +1,7 @@
 package com.bosh.module_mvp.network;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2019-07-12
  */
 public class ResponseData<T extends Object> {

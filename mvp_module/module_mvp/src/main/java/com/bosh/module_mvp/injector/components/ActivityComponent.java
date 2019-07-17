@@ -1,12 +1,12 @@
-package com.bosh.module_mvp.injector;
+package com.bosh.module_mvp.injector.components;
 
-import com.bosh.module_mvp.ui.base.BaseActivity;
+import com.bosh.module_mvp.injector.module.ActivityModule;
 import com.bosh.module_mvp.ui.login.LoginActivity;
 
 import dagger.Component;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2019-07-15
  */
 @Component(modules = {ActivityModule.class})

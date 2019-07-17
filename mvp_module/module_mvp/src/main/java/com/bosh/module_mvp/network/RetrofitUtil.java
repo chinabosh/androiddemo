@@ -23,7 +23,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2019-07-12
  */
 @SuppressWarnings("unchecked")

@@ -17,10 +17,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.FragmentActivity;
 
-import com.bosh.module_mvp.injector.ActivityComponent;
-import com.bosh.module_mvp.injector.ActivityModule;
-import com.bosh.module_mvp.injector.BasePresenter;
-import com.bosh.module_mvp.injector.DaggerActivityComponent;
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.bosh.module_mvp.injector.components.ActivityComponent;
+import com.bosh.module_mvp.injector.components.DaggerActivityComponent;
+import com.bosh.module_mvp.injector.module.ActivityModule;
 import com.bosh.module_mvp.interfaces.IView;
 import com.china.bosh.mylibrary.annotation.BindEventBus;
 import com.china.bosh.mylibrary.application.BaseApplication;
@@ -42,6 +43,8 @@ import java.lang.reflect.Method;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * @author bosh
@@ -51,6 +54,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends FragmentActi
 
     private static float mNoncompatDensity;
     private static float mNoncompatScaledDensity;
+    private MaterialDialog progressDialog;
 
     @Inject
     protected P mPresenter;
@@ -67,9 +71,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends FragmentActi
 
     /**
      * dagger依赖注入
+     * @param component
      */
-    protected void initInject(ActivityComponent component) {
-    }
+    protected abstract void initInject(ActivityComponent component);
 
     /**
      * 初始化view
@@ -131,18 +135,58 @@ public abstract class BaseActivity<P extends BasePresenter> extends FragmentActi
         this.startActivity(intent);
     }
 
+    @Override
+    public void showLoading() {
+        showLoading("请稍候...");
+    }
+
+    @Override
+    public void showLoading(final String content) {
+        Observable.just("")
+                .observeOn(AndroidSchedulers.mainThread())
+                .as(bindLifecycle())
+                .subscribe(s -> {
+                    if (progressDialog == null || !progressDialog.isShowing()) {
+                        progressDialog = new MaterialDialog.Builder(this)
+                                .content(content)
+                                .contentGravity(GravityEnum.CENTER)
+                                .cancelable(false)
+                                .canceledOnTouchOutside(false)
+                                .progressIndeterminateStyle(false)
+                                .progress(true, 0)
+                                .show();
+                    }
+                });
+    }
+
+    @Override
+    public void hideLoading() {
+        Observable.just("")
+                .observeOn(AndroidSchedulers.mainThread())
+                .as(bindLifecycle())
+                .subscribe(s -> {
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
+                });
+    }
+
+    @Override
     public void toast(@StringRes int id) {
         ToastUtil.showShort(id);
     }
 
+    @Override
     public void toast(String msg) {
         ToastUtil.showShort(msg);
     }
 
+    @Override
     public void toastLong(@StringRes int id) {
         ToastUtil.showLong(id);
     }
 
+    @Override
     public void toastLong(String msg) {
         ToastUtil.showLong(msg);
     }

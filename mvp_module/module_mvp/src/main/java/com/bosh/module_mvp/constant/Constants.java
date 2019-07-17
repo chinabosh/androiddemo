@@ -1,7 +1,7 @@
 package com.bosh.module_mvp.constant;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2019-07-16
  */
 public class Constants {

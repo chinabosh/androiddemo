@@ -4,12 +4,11 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bosh.module_mvp.MainActivity;
 import com.bosh.module_mvp.R;
 import com.bosh.module_mvp.R2;
-import com.bosh.module_mvp.injector.ActivityComponent;
+import com.bosh.module_mvp.injector.components.ActivityComponent;
 import com.bosh.module_mvp.ui.base.BaseActivity;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -63,6 +62,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     public void setAccount(String account) {
         mEtAccount.setText(account);
+    }
+
+    @Override
+    public void goMain() {
+        startActivity(MainActivity.class);
+        finish();
     }
 
     @OnClick({R2.id.tv_login})

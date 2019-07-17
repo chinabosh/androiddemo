@@ -1,12 +1,14 @@
 package com.bosh.module_mvp.ui.login;
 
+import com.bosh.module_mvp.entity.LoginUser;
+import com.bosh.module_mvp.interfaces.IModel;
 import com.bosh.module_mvp.interfaces.IView;
 import com.bosh.module_mvp.network.ResponseData;
 
 import io.reactivex.Observable;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2019-07-10
  */
 public interface LoginContract {
@@ -15,6 +17,7 @@ public interface LoginContract {
         String getPassword();
         void showLoginFail(String msg);
         void setAccount(String account);
+        void goMain();
     }
 
     interface Presenter{
@@ -22,7 +25,7 @@ public interface LoginContract {
         void initAccount();
     }
 
-    interface Model{
-        <R> Observable<R> login(String account, String pwd);
+    interface Model extends IModel {
+        Observable<LoginUser> login(String account, String pwd);
     }
 }

@@ -7,7 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2019-07-12
  */
 public interface ApiService {

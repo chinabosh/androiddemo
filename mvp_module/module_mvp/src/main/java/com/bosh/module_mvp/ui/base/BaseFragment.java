@@ -11,11 +11,16 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bosh.module_mvp.R;
+import com.bosh.module_mvp.injector.components.DaggerFragmentComponent;
+import com.bosh.module_mvp.injector.components.FragmentComponent;
+import com.bosh.module_mvp.injector.module.FragmentModule;
+import com.bosh.module_mvp.interfaces.IView;
 import com.china.bosh.mylibrary.annotation.BindEventBus;
 import com.china.bosh.mylibrary.entity.DataEvent;
 import com.china.bosh.mylibrary.utils.ToastUtil;
@@ -36,11 +41,13 @@ import io.reactivex.functions.Consumer;
  * @author bosh
  * @date 2019-07-15
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment<P extends BasePresenter> extends Fragment implements IView {
 
     protected View mRootView;
     public Activity mActivity;
     private MaterialDialog progressDialog;
+
+    protected P mPresenter;
     /**
      * 设置布局文件
      * @return 布局文件id
@@ -50,9 +57,9 @@ public abstract class BaseFragment extends Fragment {
 
     /**
      * dagger依赖注入
+     * @param component 库
      */
-    protected void initInject() {
-    }
+    protected abstract void initInject(FragmentComponent component);
 
     /**
      * 初始化view
@@ -72,7 +79,14 @@ public abstract class BaseFragment extends Fragment {
             EventBus.getDefault().register(this);
         }
         ButterKnife.bind(mRootView);
-        initInject();
+        initInject(DaggerFragmentComponent.builder().fragmentModule(new FragmentModule(this)).build());
+        //给presenter传入view
+        mPresenter.attachView(this);
+
+        //presenter绑定fragment生命周期
+        mPresenter.setLifecycleOwner(this);
+        getLifecycle().addObserver(mPresenter);
+
         initView();
         initData();
         return mRootView;
@@ -96,9 +110,12 @@ public abstract class BaseFragment extends Fragment {
         return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this));
     }
 
+    @Override
     public void showLoading() {
         showLoading("请稍候...");
     }
+
+    @Override
     public void showLoading(final String content) {
         Observable.just("")
                 .observeOn(AndroidSchedulers.mainThread())
@@ -117,6 +134,7 @@ public abstract class BaseFragment extends Fragment {
                 });
     }
 
+    @Override
     public void hideLoading() {
         Observable.just("")
                 .observeOn(AndroidSchedulers.mainThread())
@@ -128,17 +146,23 @@ public abstract class BaseFragment extends Fragment {
                 });
     }
 
+    @Override
     public void toast(String msg) {
         ToastUtil.showShort(msg);
     }
-    public void toast(int msgId){
+
+    @Override
+    public void toast(@StringRes int msgId){
         ToastUtil.showShort(msgId);
     }
 
+    @Override
     public void toastLong(String msg) {
         ToastUtil.showLong(msg);
     }
-    public void toastLong(int msgId){
+
+    @Override
+    public void toastLong(@StringRes int msgId){
         ToastUtil.showLong(msgId);
     }
 

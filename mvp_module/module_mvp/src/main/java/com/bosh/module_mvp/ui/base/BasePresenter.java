@@ -1,4 +1,4 @@
-package com.bosh.module_mvp.injector;
+package com.bosh.module_mvp.ui.base;
 
 import android.util.Log;
 

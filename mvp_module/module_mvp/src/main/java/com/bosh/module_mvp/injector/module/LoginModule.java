@@ -10,7 +10,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2019-07-10
  */
 @Module()

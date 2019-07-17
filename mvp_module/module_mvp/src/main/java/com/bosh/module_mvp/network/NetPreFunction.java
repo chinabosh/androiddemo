@@ -6,7 +6,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2019-07-12
  */
 public class NetPreFunction<T extends ResponseData<R>, R> implements Function<T, R> {
