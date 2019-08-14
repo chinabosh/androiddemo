@@ -14,7 +14,7 @@ import java.util.List;
  * @date 2019/1/3
  */
 
-public class MyAdapter extends BaseQuickAdapter<String> {
+public class MyAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     public MyAdapter(List<String> data) {
         super(R.layout.demo_item_recycler_view, data);

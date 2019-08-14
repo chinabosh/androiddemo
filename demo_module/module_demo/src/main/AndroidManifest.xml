@@ -2,13 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bosh.module_demo">
 
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.recyclerview.stickyheader.StickyHeaderActivity"></activity>
+
         <service
             android:name=".ui.activity.MusicService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity android:name=".ui.activity.SpannableActivity" />
         <activity android:name=".ui.activity.GaussActivity" /> <!-- <activity android:name=".ui.flutter.FlutterActivity" /> -->
@@ -18,7 +20,7 @@
             android:exported="true" />
 
         <activity android:name=".ui.activity.NotificationActivity" />
-        <activity android:name=".ui.activity.MainActivity"></activity>
+        <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.SmsActivity" />
         <activity android:name=".ui.activity.recyclerview.RecyclerViewActivity" />
         <activity android:name=".ui.flutter.FlutterActivity" />

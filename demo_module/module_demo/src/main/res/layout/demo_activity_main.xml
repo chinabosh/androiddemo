@@ -9,13 +9,8 @@
 
     <TextView
         android:id="@+id/tv_span"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="Spannable String"
-        android:background="@drawable/bg_button"
-        android:textColor="#ffffff"
-        android:padding="@dimen/dp_10"
+        style="@style/demo_main_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,39 +26,24 @@
 
     <TextView
         android:id="@+id/tv_sms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="sms"
-        android:background="@drawable/bg_button"
-        android:textColor="#ffffff"
-        android:padding="@dimen/dp_10"
-        android:layout_marginTop="10dp"
+        style="@style/demo_main_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_image"/>
 
     <TextView
         android:id="@+id/tv_recycler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="recycler view"
-        android:background="@drawable/bg_button"
-        android:textColor="#ffffff"
-        android:padding="@dimen/dp_10"
-        android:layout_marginTop="10dp"
+        style="@style/demo_main_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_sms"/>
 
     <TextView
         android:id="@+id/tv_notify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="notification"
-        android:background="@drawable/bg_button"
-        android:textColor="#ffffff"
-        android:padding="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_10"
+        style="@style/demo_main_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_recycler"
@@ -81,41 +61,34 @@
 
     <TextView
         android:id="@+id/tv_flutter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="flutter entrance"
-        android:background="@drawable/bg_button"
-        android:textColor="#ffffff"
-        android:padding="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_10"
+        style="@style/demo_main_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_test"/>
 
     <TextView
         android:id="@+id/tv_gauss"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="高斯模糊"
-        android:background="@drawable/bg_button"
-        android:textColor="#ffffff"
-        android:padding="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_10"
+        style="@style/demo_main_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_flutter"/>
 
     <TextView
         android:id="@+id/tv_music"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="无声音乐"
-        android:background="@drawable/bg_button"
-        android:textColor="#ffffff"
-        android:padding="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_10"
+        style="@style/demo_main_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_gauss"/>
+
+    <TextView
+        android:id="@+id/tv_sticky_header"
+        android:text="粘性头部"
+        style="@style/demo_main_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_music"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

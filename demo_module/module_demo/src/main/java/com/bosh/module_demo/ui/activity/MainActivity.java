@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bosh.module_demo.R;
 import com.bosh.module_demo.R2;
 import com.bosh.module_demo.ui.activity.recyclerview.RecyclerViewActivity;
+import com.bosh.module_demo.ui.activity.recyclerview.stickyheader.StickyHeaderActivity;
 import com.bosh.module_demo.ui.flutter.FlutterActivity;
 import com.china.bosh.mylibrary.ui.activity.BaseActivity;
 
@@ -47,7 +48,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnClick({R2.id.tv_span, R2.id.tv_sms, R2.id.tv_recycler, R2.id.tv_notify, R2.id.tv_flutter,
-            R2.id.tv_gauss, R2.id.tv_music})
+            R2.id.tv_gauss, R2.id.tv_music, R2.id.tv_sticky_header})
     public void onClick(View view) {
         int id = view.getId();
         if(id == R.id.tv_span) {
@@ -67,6 +68,8 @@ public class MainActivity extends BaseActivity {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 startForegroundService(new Intent(this, MusicService.class));
             }
+        } else if(id == R.id.tv_sticky_header){
+            startActivity(StickyHeaderActivity.class);
         } else {
 
         }

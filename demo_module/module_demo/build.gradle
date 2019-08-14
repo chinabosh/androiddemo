@@ -6,7 +6,6 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
 
-
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -40,7 +39,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api 'com.bosh.demo:library:0.0.1'
+    api "com.bosh.demo:library:$rootProject.ext.libraryVersion"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     annotationProcessor "com.alibaba:arouter-compiler:$rootProject.ext.routerVersion"
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     api 'com.bosh.demo:flutter:0.0.2@aar'
