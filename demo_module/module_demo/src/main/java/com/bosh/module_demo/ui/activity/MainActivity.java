@@ -1,6 +1,8 @@
 package com.bosh.module_demo.ui.activity;
 
 
+import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,6 +10,7 @@ import android.widget.ImageView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bosh.module_demo.R;
 import com.bosh.module_demo.R2;
+import com.bosh.module_demo.ui.activity.recyclerview.RecyclerViewActivity;
 import com.bosh.module_demo.ui.flutter.FlutterActivity;
 import com.china.bosh.mylibrary.ui.activity.BaseActivity;
 
@@ -43,7 +46,8 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    @OnClick({R2.id.tv_span, R2.id.tv_sms, R2.id.tv_recycler, R2.id.tv_notify, R2.id.tv_flutter, R2.id.tv_gauss})
+    @OnClick({R2.id.tv_span, R2.id.tv_sms, R2.id.tv_recycler, R2.id.tv_notify, R2.id.tv_flutter,
+            R2.id.tv_gauss, R2.id.tv_music})
     public void onClick(View view) {
         int id = view.getId();
         if(id == R.id.tv_span) {
@@ -58,6 +62,11 @@ public class MainActivity extends BaseActivity {
             startActivity(FlutterActivity.class);
         } else if(id == R.id.tv_gauss) {
             startActivity(GaussActivity.class);
+        } else if(id == R.id.tv_music){
+//            startService(new Intent(this, MusicService.class));
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                startForegroundService(new Intent(this, MusicService.class));
+            }
         } else {
 
         }

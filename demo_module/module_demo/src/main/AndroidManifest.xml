@@ -1,21 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bosh.module_demo">
-    <application android:theme="@style/AppTheme">
-        <activity android:name="com.bosh.module_demo.ui.activity.SpannableActivity" />
-        <activity android:name="com.bosh.module_demo.ui.activity.GaussActivity" />
-        <!--<activity android:name=".ui.flutter.FlutterActivity" />-->
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <application android:theme="@style/AppTheme">
+        <service
+            android:name=".ui.activity.MusicService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".ui.activity.SpannableActivity" />
+        <activity android:name=".ui.activity.GaussActivity" /> <!-- <activity android:name=".ui.flutter.FlutterActivity" /> -->
         <receiver
-            android:name="com.bosh.module_demo.receiver.NotificationReceiver"
+            android:name=".receiver.NotificationReceiver"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name="com.bosh.module_demo.ui.activity.NotificationActivity" />
-        <activity android:name="com.bosh.module_demo.ui.activity.MainActivity">
-        </activity>
-        <activity android:name="com.bosh.module_demo.ui.activity.SmsActivity" />
-        <activity
-            android:name="com.bosh.module_demo.ui.activity.RecyclerViewActivity" />
-        <activity android:name="com.bosh.module_demo.ui.flutter.FlutterActivity"/>
+        <activity android:name=".ui.activity.NotificationActivity" />
+        <activity android:name=".ui.activity.MainActivity"></activity>
+        <activity android:name=".ui.activity.SmsActivity" />
+        <activity android:name=".ui.activity.recyclerview.RecyclerViewActivity" />
+        <activity android:name=".ui.flutter.FlutterActivity" />
     </application>
+
 </manifest>

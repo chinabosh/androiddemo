@@ -1,4 +1,4 @@
-package com.bosh.module_demo.ui.activity;
+package com.bosh.module_demo.ui.activity.recyclerview;
 
 
 import com.bosh.module_demo.R;

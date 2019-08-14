@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.china.bosh.mylibrary.application.BaseApplication;
+import com.china.bosh.mylibrary.utils.NotificationChannels;
 
 import androidx.multidex.MultiDex;
 
@@ -30,5 +31,7 @@ public class MyApplication extends BaseApplication {
             ARouter.openDebug();
         }
         ARouter.init(this);
+
+        NotificationChannels.createAllNotificationChannels(this);
     }
 }
