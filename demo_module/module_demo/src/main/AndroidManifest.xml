@@ -3,9 +3,12 @@
     package="com.bosh.module_demo">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
 
     <application android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.recyclerview.stickyheader.StickyHeaderActivity"></activity>
+        <activity android:name=".ui.activity.sms.VerificationActivity"></activity>
+        <activity android:name=".ui.activity.recyclerview.stickyheader.StickyHeaderActivity" />
 
         <service
             android:name=".ui.activity.MusicService"

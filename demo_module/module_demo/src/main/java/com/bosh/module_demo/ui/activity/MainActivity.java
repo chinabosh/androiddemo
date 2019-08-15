@@ -12,8 +12,10 @@ import com.bosh.module_demo.R;
 import com.bosh.module_demo.R2;
 import com.bosh.module_demo.ui.activity.recyclerview.RecyclerViewActivity;
 import com.bosh.module_demo.ui.activity.recyclerview.stickyheader.StickyHeaderActivity;
+import com.bosh.module_demo.ui.activity.sms.VerificationActivity;
 import com.bosh.module_demo.ui.flutter.FlutterActivity;
 import com.china.bosh.mylibrary.ui.activity.BaseActivity;
+import com.china.bosh.mylibrary.utils.PermissionUtil;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -44,11 +46,22 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        PermissionUtil.requestPermission(this, new String[]{}, new PermissionUtil.PermissionAction() {
+            @Override
+            public void onGranted() {
+
+            }
+
+            @Override
+            public void onDenied() {
+
+            }
+        });
 
     }
 
     @OnClick({R2.id.tv_span, R2.id.tv_sms, R2.id.tv_recycler, R2.id.tv_notify, R2.id.tv_flutter,
-            R2.id.tv_gauss, R2.id.tv_music, R2.id.tv_sticky_header})
+            R2.id.tv_gauss, R2.id.tv_music, R2.id.tv_sticky_header, R2.id.tv_verification_code})
     public void onClick(View view) {
         int id = view.getId();
         if(id == R.id.tv_span) {
@@ -70,8 +83,8 @@ public class MainActivity extends BaseActivity {
             }
         } else if(id == R.id.tv_sticky_header){
             startActivity(StickyHeaderActivity.class);
-        } else {
-
+        } else if(id == R.id.tv_verification_code){
+            startActivity(VerificationActivity.class);
         }
     }
 

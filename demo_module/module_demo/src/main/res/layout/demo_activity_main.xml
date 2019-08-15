@@ -91,4 +91,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_music"/>
 
+    <TextView
+        android:id="@+id/tv_verification_code"
+        android:text="短信验证码"
+        style="@style/demo_main_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_sticky_header"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
