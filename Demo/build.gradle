@@ -47,4 +47,5 @@ ext {
 
     butterknifeVersion = "10.1.0"
     routerVersion = "1.2.2"
+    stickyLayoutManagerVersion = "1.0.1"
 }

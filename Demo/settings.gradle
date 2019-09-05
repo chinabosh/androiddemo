@@ -1,7 +1,7 @@
 include ':app', ':mylibrary', ':lib', ':libs'
 setBinding(new Binding([gradle: this]))
 evaluate(new File(
-  settingsDir.parentFile,
+  settingsDir,
   'flutter_module/.android/include_flutter.groovy'
 ))
 
@@ -18,3 +18,8 @@ plugins.each { name, path ->
     include ":$name"
     project(":$name").projectDir = pluginDirectory
 }
+
+//project(':module_demo').projectDir = new File('../demo_module/module_demo')
+//if(!isModule.toBoolean()) {
+//    include ':module_demo'
+//}
