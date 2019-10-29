@@ -1,5 +1,6 @@
 package com.bosh.module_kotlin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -15,20 +16,9 @@ class MainActivity : AppCompatActivity() {
         ARouter.getInstance().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.kotlin_activity_main)
-        tv_test.setText("123")
+        tv_test.setText("对话框例子列表")
         tv_test.setOnClickListener {
-            MaterialDialog(this@MainActivity).show {
-                title(text = "对话框")
-                message(text = "这是一个对话框")
-            }
-        }
-        tv_show_dialog.setOnClickListener {
-            MaterialDialog(this).show {
-                title(text = "对话框")
-                message(text = "警告！")
-                positiveButton(text = "知道了")
-                negativeButton(text = "关闭")
-            }
+            startActivity(Intent(this, MaterialDialogListActivity::class.java))
         }
     }
 
