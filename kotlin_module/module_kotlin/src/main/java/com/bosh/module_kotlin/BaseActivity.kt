@@ -2,7 +2,9 @@ package com.bosh.module_kotlin
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 
@@ -12,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
  */
 abstract class BaseActivity : AppCompatActivity() {
 
+    val TAG = javaClass.simpleName
+
 
     protected abstract fun getLayoutRes() :  Int
 
@@ -19,11 +23,15 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected abstract fun initView()
 
-
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.e(TAG, "onCreate")
         setContentView(getLayoutRes())
         initData()
         initView()
+    }
+
+    fun toast(msg: String?) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 }
