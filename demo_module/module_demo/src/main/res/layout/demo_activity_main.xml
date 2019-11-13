@@ -99,4 +99,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_sticky_header"/>
 
+    <TextView
+        android:id="@+id/tv_hook"
+        android:text="hook测试"
+        style="@style/demo_main_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_verification_code"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

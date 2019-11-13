@@ -37,6 +37,7 @@ public class SmsBroadcastReceive extends BroadcastReceiver {
                 String time = simpleDateFormat.format(tiemDate);
                 Log.e("test", "sender:"+ sender + "\r\ncontent:" + content + "\r\ntime:" + time);
                 String verificationCode = StringUtils.getNumFromString(content);
+                //复制到剪贴板
                 ClipboardManager manager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData data = new ClipData(new ClipDescription("验证码",new String[]{ClipDescription.MIMETYPE_TEXT_PLAIN}), new ClipData.Item(verificationCode));
                 manager.setPrimaryClip(data);

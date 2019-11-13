@@ -61,7 +61,8 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnClick({R2.id.tv_span, R2.id.tv_sms, R2.id.tv_recycler, R2.id.tv_notify, R2.id.tv_flutter,
-            R2.id.tv_gauss, R2.id.tv_music, R2.id.tv_sticky_header, R2.id.tv_verification_code})
+            R2.id.tv_gauss, R2.id.tv_music, R2.id.tv_sticky_header, R2.id.tv_verification_code,
+            R2.id.tv_hook})
     public void onClick(View view) {
         int id = view.getId();
         if(id == R.id.tv_span) {
@@ -85,6 +86,8 @@ public class MainActivity extends BaseActivity {
             startActivity(StickyHeaderActivity.class);
         } else if(id == R.id.tv_verification_code){
             startActivity(VerificationActivity.class);
+        } else if(id == R.id.tv_hook) {
+            startActivity(HookClickActivity.class);
         }
     }
 

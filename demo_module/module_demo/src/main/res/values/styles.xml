@@ -17,4 +17,10 @@
         <item name="android:padding">@dimen/dp_10</item>
         <item name="android:layout_marginTop">@dimen/dp_10</item>
     </style>
+
+    <style name="demo_text_button">
+        <item name="android:background">@drawable/bg_button</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:padding">@dimen/dp_10</item>
+    </style>
 </resources>
