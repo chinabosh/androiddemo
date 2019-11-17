@@ -1,34 +1,36 @@
-package com.bosh.module_kotlin
+package com.bosh.module_kotlin.ui
 
-import android.nfc.Tag
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.callbacks.onCancel
 import com.afollestad.materialdialogs.callbacks.onDismiss
 import com.afollestad.materialdialogs.callbacks.onPreShow
 import com.afollestad.materialdialogs.callbacks.onShow
+import com.afollestad.materialdialogs.checkbox.checkBoxPrompt
+import com.afollestad.materialdialogs.checkbox.isCheckPromptChecked
+import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.list.listItems
 import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
+import com.bosh.module_kotlin.R
+import com.bosh.module_kotlin.base.BaseActivity
+import com.bosh.module_kotlin.databinding.KotlinActivityMaterialDialogListBinding
 import com.bosh.module_kotlin.widget.SpacesItemDecoration
 import com.chad.library.adapter.base.BaseQuickAdapter
-import kotlinx.android.synthetic.main.activity_material_dialog_list.*
+import kotlinx.android.synthetic.main.kotlin_activity_material_dialog_list.*
+import java.lang.IllegalArgumentException
 
-class MaterialDialogListActivity : BaseActivity() , BaseQuickAdapter.OnItemClickListener {
+class MaterialDialogListActivity : BaseActivity<KotlinActivityMaterialDialogListBinding>(), BaseQuickAdapter.OnItemClickListener {
 
-    var mData: ArrayList<String> = ArrayList()
-    lateinit var adapter: MaterialDialogAdapter
+    private var mData: ArrayList<String> = ArrayList()
+    private val adapter: MaterialDialogAdapter by lazy {
+        MaterialDialogAdapter(mData)
+    }
 
     override fun getLayoutRes(): Int {
-        return R.layout.activity_material_dialog_list
+        return R.layout.kotlin_activity_material_dialog_list
     }
 
     override fun initData() {
@@ -39,10 +41,12 @@ class MaterialDialogListActivity : BaseActivity() , BaseQuickAdapter.OnItemClick
         mData.add("列表单选")
         mData.add("列表单选，初始选中、不可选中")
         mData.add("列表多选，和单选类似")
+        mData.add("可勾选选项，如\"已同意协议\"")
+        mData.add("自定义布局")
+        mData.add("无法单一修改主题")
     }
 
     override fun initView() {
-        adapter = MaterialDialogAdapter(mData)
         rv_main.adapter = adapter
         rv_main.layoutManager = LinearLayoutManager(this)
         adapter.onItemClickListener = this
@@ -66,7 +70,7 @@ class MaterialDialogListActivity : BaseActivity() , BaseQuickAdapter.OnItemClick
             1 -> MaterialDialog(this).show {
                 title(text = "对话框")
                 message(text = "警告！")
-                positiveButton(text = "知道了"){
+                positiveButton(text = "知道了") {
                     //do positive action
                 }
                 negativeButton(text = "关闭")
@@ -76,22 +80,24 @@ class MaterialDialogListActivity : BaseActivity() , BaseQuickAdapter.OnItemClick
                 message(text = "看打印信息")
                 negativeButton(text = "取消")
                 onPreShow {
-                    Log.i(TAG, "显示前回调！")
+                    Log.i(tag, "显示前回调！")
                 }
                 onShow {
-                    Log.i(TAG, "显示时回调！")
+                    Log.i(tag, "显示时回调！")
                 }
                 onDismiss {
-                    Log.i(TAG, "消失时回调！")
+                    Log.i(tag, "消失时回调！")
                 }
                 onCancel {
-                    Log.i(TAG, "取消时回调！")
+                    Log.i(tag, "取消时回调！")
                 }
             }
             3 -> MaterialDialog(this).show {
                 listItems(items = mData) { dialog, index, text ->
                     toast(text)
                 }
+                positiveButton(text = "确认")
+                noAutoDismiss()//点击选项不关闭对话框
             }
             4 -> MaterialDialog(this).show {
                 listItemsSingleChoice(items = mData) { dialog, index, text ->
@@ -101,22 +107,57 @@ class MaterialDialogListActivity : BaseActivity() , BaseQuickAdapter.OnItemClick
                 positiveButton(text = "确认")
             }
             5 -> MaterialDialog(this).show {
-                listItemsSingleChoice(items = mData, initialSelection = 2, disabledIndices = intArrayOf(0,1))
+                listItemsSingleChoice(items = mData, initialSelection = 2, disabledIndices = intArrayOf(0, 1))
             }
             //dialog.checkItem(index)
             //dialog.uncheckItem(index)
             //dialog.toggleItemChecked(index)
             //val checked : Boolean = dialog.isItemChecked(index)
             6 -> MaterialDialog(this).show {
-                listItemsMultiChoice(items = mData, initialSelection = intArrayOf(2), disabledIndices = intArrayOf(0,1)) { dialog, indices, items ->
+                listItemsMultiChoice(items = mData, initialSelection = intArrayOf(2), disabledIndices = intArrayOf(0, 1)) { dialog, indices, items ->
                     var str = "选中了"
-                    for(item in items) {
+                    for (item in items) {
                         str = str.plus(item).plus(",")
                     }
                     toast(str)
                 }
                 positiveButton(text = "确认")
             }
+            7 -> MaterialDialog(this).show {
+                title(text = "开通会员")
+                message(text = "开通会员，100元/月")
+                checkBoxPrompt(text = "我已阅读并且同意用户协议") {
+
+                }
+                positiveButton(text = "确定") { dialog ->
+                    val checked = dialog.isCheckPromptChecked()
+                    if (checked) {
+                        toast("用户阅读了协议并同意开通")
+                    } else {
+                        toast("用户同意开通，但是没有阅读协议")
+                    }
+                }
+                negativeButton(text = "取消") {
+                    val checked = it.isCheckPromptChecked()
+                    if (checked) {
+                        toast("用户阅读了协议，但取消了开通")
+                    } else {
+                        toast("用户没阅读协议就取消了开通")
+                    }
+                }
+            }
+            8 -> MaterialDialog(this).show {
+                customView(R.layout.kotlin_dialog_custom_view, scrollable = false)
+                positiveButton(text = "确认")
+            }
+            9 -> MaterialDialog(this).show {
+                title(text = "标题")
+                message(text = "内容")
+                setTheme(R.style.kotlin_MaterialDialogCustomTheme)
+                positiveButton(text = "确认")
+                negativeButton(text = "取消")
+            }
+            else -> throw IllegalArgumentException("not type code yet!")
         }
 
     }
