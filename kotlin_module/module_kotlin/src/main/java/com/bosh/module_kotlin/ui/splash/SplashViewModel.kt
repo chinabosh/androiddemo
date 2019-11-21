@@ -1,6 +1,7 @@
 package com.bosh.module_kotlin.ui.splash
 
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.databinding.BaseObservable
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import com.bosh.module_kotlin.base.BaseViewModel
 import com.uber.autodispose.autoDisposable
 import io.reactivex.Observable
 import io.reactivex.functions.Consumer
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import java.util.concurrent.TimeUnit
 
@@ -20,15 +22,21 @@ class SplashViewModel : BaseViewModel() {
     private val countTimeSubject = BehaviorSubject.create<Int>()
 
     fun startCountTime() {
+        val count = 6L
         Observable.interval(1, TimeUnit.SECONDS)
-                .take(3)
+                .subscribeOn(Schedulers.io())
+                .take(count)
                 .autoDisposable(this)
-                .subscribe {
-                    countTimeSubject.onNext(it.toInt())
-                }
+                .subscribe ({
+                    countTimeSubject.onNext((count - 1 - it).toInt())
+                }, {
+                    countTimeSubject.onError(it)
+                }, {
+                    countTimeSubject.onComplete()
+                })
     }
 
     fun observeCountTime() : Observable<Int> {
-        return countTimeSubject.hide().distinctUntilChanged()
+        return countTimeSubject
     }
 }

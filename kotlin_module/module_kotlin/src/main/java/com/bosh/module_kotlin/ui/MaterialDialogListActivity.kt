@@ -22,7 +22,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.kotlin_activity_material_dialog_list.*
 import java.lang.IllegalArgumentException
 
-class MaterialDialogListActivity : BaseActivity<KotlinActivityMaterialDialogListBinding>(), BaseQuickAdapter.OnItemClickListener {
+class MaterialDialogListActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
 
     private var mData: ArrayList<String> = ArrayList()
     private val adapter: MaterialDialogAdapter by lazy {
@@ -31,6 +31,10 @@ class MaterialDialogListActivity : BaseActivity<KotlinActivityMaterialDialogList
 
     override fun getLayoutRes(): Int {
         return R.layout.kotlin_activity_material_dialog_list
+    }
+
+    override fun bindView() {
+
     }
 
     override fun initData() {
@@ -93,14 +97,14 @@ class MaterialDialogListActivity : BaseActivity<KotlinActivityMaterialDialogList
                 }
             }
             3 -> MaterialDialog(this).show {
-                listItems(items = mData) { dialog, index, text ->
+                listItems(items = mData) { _, _, text ->
                     toast(text)
                 }
                 positiveButton(text = "确认")
                 noAutoDismiss()//点击选项不关闭对话框
             }
             4 -> MaterialDialog(this).show {
-                listItemsSingleChoice(items = mData) { dialog, index, text ->
+                listItemsSingleChoice(items = mData) { _, _, text ->
                     //有positiveButton，这个会等按下positionButton后回调，否则会在选中后就回调
                     toast("选中了" + text)
                 }
@@ -114,7 +118,7 @@ class MaterialDialogListActivity : BaseActivity<KotlinActivityMaterialDialogList
             //dialog.toggleItemChecked(index)
             //val checked : Boolean = dialog.isItemChecked(index)
             6 -> MaterialDialog(this).show {
-                listItemsMultiChoice(items = mData, initialSelection = intArrayOf(2), disabledIndices = intArrayOf(0, 1)) { dialog, indices, items ->
+                listItemsMultiChoice(items = mData, initialSelection = intArrayOf(2), disabledIndices = intArrayOf(0, 1)) { _, _, items ->
                     var str = "选中了"
                     for (item in items) {
                         str = str.plus(item).plus(",")

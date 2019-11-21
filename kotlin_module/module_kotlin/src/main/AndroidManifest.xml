@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/kotlin_AppTheme">
-        <activity android:name=".ui.splash.SplashActivity"></activity>
+        <activity android:name=".ui.splash.SplashActivity"/>
         <activity android:name=".ui.MaterialDialogListActivity" />
         <activity android:name=".ui.MainActivity" />
     </application>

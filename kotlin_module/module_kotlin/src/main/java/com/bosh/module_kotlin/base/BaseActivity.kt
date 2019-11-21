@@ -18,13 +18,11 @@ import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
  * @author lzq
  * @date  2019-10-28
  */
-abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     val tag: String = javaClass.simpleName
 
     lateinit var loadingDialog: MaterialDialog
-
-    lateinit var dataBinding: T
 
     protected val scopeProvider : AndroidLifecycleScopeProvider by lazy {
         AndroidLifecycleScopeProvider.from(this, Lifecycle.Event.ON_DESTROY)
@@ -32,6 +30,8 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
 
     protected abstract fun getLayoutRes(): Int
+
+    protected abstract fun bindView()
 
     protected abstract fun initData()
 
@@ -41,7 +41,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.e(tag, "onCreate")
         setContentView(getLayoutRes())
-        dataBinding = DataBindingUtil.setContentView(this, getLayoutRes())
+        bindView()
         initData()
         initView()
     }
