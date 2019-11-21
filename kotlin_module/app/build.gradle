@@ -29,6 +29,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    //慎用，要改很多warning！！！不过倒是可以提高代码质量
+    kotlinOptions {
+        allWarningsAsErrors = true
+    }
 }
 
 kapt {

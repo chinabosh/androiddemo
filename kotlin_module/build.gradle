@@ -40,4 +40,11 @@ ext {
 
     materialDialog = "3.1.0"
     RecyclerViewAdapterHelper = "2.9.48-androidx"
+
+    retrofit2 = "2.4.0"
+    converter_gson = "2.3.0"
+    adapter_rxjava2 = "2.3.0"
+    rxandroid = "2.1.1"
+    rxjava = "2.2.8"
+    autodispose = "1.2.0"
 }
