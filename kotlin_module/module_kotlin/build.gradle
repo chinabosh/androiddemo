@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'io.objectbox'
 android {
     compileSdkVersion 28
 
@@ -84,8 +84,8 @@ dependencies {
     api "com.uber.autodispose:autodispose-android-archcomponents-ktx:$rootProject.ext.autodispose"
 
     // 基础组件
-    implementation 'org.kodein.di:kodein-di-generic-jvm:6.0.1'
+    api 'org.kodein.di:kodein-di-generic-jvm:6.0.1'
 // Android扩展组件
-    implementation 'org.kodein.di:kodein-di-framework-android-x:6.0.1'
+    api 'org.kodein.di:kodein-di-framework-android-x:6.0.1'
 
 }
