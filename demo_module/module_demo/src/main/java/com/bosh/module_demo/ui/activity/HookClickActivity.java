@@ -36,7 +36,6 @@ public class HookClickActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
     }
 
     @Override

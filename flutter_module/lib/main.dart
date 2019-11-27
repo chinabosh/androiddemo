@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_module/tts.dart';
 
 void main() => runApp(
-//    MyApp()
+    MyApp()
 //_widgetForRoute(window.defaultRouteName)
-_widgetForRoute("voice")
+//_widgetForRoute("voice")
 );
 
 Widget _widgetForRoute(String route) {

@@ -43,5 +43,5 @@ ext {
     butterknifeVersion = "10.1.0"
     routerVersion = "1.2.2"
 
-    libraryVersion = "0.0.5"
+    libraryVersion = "0.0.7"
 }
