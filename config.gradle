@@ -1,0 +1,35 @@
+ext {
+    build_version = [
+            compileSdkVersion: 28,
+            minSdkVersion    : 19,
+            targetSdkVersion : 28,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
+    androidx = [
+            appcompat    : [group: "androidx.appcompat", name: "appcompat", version: "1.0.0-beta01"],
+            runner       : [group: "androidx.test", name: "runner", version: "1.3.0-alpha03"],
+            espresso_core: [group: "androidx.test.espresso", name: "espresso-core", version: "3.3.0-alpha03"]
+    ]
+
+    libs = [
+            material                  : [group: "com.google.android.material", name: "material", version: "1.2.0-alpha02"],
+            butterknife               : [group: "com.jakewharton", name: "butterknife", version: "10.1.0"],
+            butterknife_compiler      : [group: "com.jakewharton", name: "butterknife-compiler", version: "10.1.0"],
+            arouter_compiler          : [group: "com.alibaba", name: "arouter-compiler", version: "1.2.2"],
+            stickyLayoutManagerVersion: "1.0.1",
+
+            eventbus                  : [group: "org.greenrobot", name: "eventbus", version: "3.1.1"],
+            greendao                  : [group: "org.greenrobot", name: "greendao", version: "3.2.2"],
+            greendao_generator        : [group: "org.greenrobot", name: "greendao-generator", version: "3.2.2"],
+    ]
+
+    maven = [
+            MAVEN_REPO_RELEASE_URL : "http://192.168.1.108:8081/repository/maven-releases/",
+            MAVEN_REPO_SNAPSHOT_URL: "http://192.168.1.108:8081/repository/maven-snapshots/",
+            GROUP                  : "com.bosh.demo",
+            NEXUS_USERNAME         : "admin",
+            NEXUS_PASSWORD         : "admin123"
+    ]
+}

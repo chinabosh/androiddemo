@@ -38,14 +38,3 @@ allprojects {
 //    delete rootProject.buildDir
 //}
 
-ext {
-    compileSdkVersion = 28
-    minSdkVersion = 19
-    targetSdkVersion = 28
-    versionCode = 1
-    versionName = "1.0"
-
-    butterknifeVersion = "10.1.0"
-    routerVersion = "1.2.2"
-    stickyLayoutManagerVersion = "1.0.1"
-}
