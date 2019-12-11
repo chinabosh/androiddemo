@@ -1,1 +1,2 @@
 include ':app',':mylibrary'
+project(':mylibrary').projectDir = file('../Demo/mylibrary')

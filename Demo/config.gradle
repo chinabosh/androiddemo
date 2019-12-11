@@ -1,0 +1,63 @@
+ext {
+    build_version = [
+            compileSdkVersion: 28,
+            minSdkVersion    : 19,
+            targetSdkVersion : 28,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
+    androidx = [
+            constraintlayout: [group: "androidx.constraintlayout", name: "constraintlayout", version: "1.1.3"],
+            appcompat       : [group: "androidx.appcompat", name: "appcompat", version: "1.0.0-beta01"],
+            runner          : [group: "androidx.test", name: "runner", version: "1.3.0-alpha03"],
+            espresso_core   : [group: "androidx.test.espresso", name: "espresso-core", version: "3.3.0-alpha03"],
+            recyclerview    : [group: "androidx.recyclerview", name: "recyclerview", version: "1.1.0"],
+            multidex        : [group: "androidx.multidex", name: "multidex", version: "2.0.1"],
+    ]
+
+
+    libs = [
+            butterknife                  : [group: "com.jakewharton", name: "butterknife", version: "10.1.0"],
+            butterknife_compiler         : [group: "com.jakewharton", name: "butterknife-compiler", version: "10.1.0"],
+
+            zxing                        : [group: "com.google.zxing", name: "core", version: "3.3.2"],
+            material                     : [group: "com.google.android.material", name: "material", version: "1.2.0-alpha02"],
+
+            arouter_compiler             : [group: "com.alibaba", name: "arouter-compiler", version: "1.2.2"],
+            arouter_api                  : [group: "com.alibaba", name: "arouter-api", version: "1.5.0"],
+
+            eventbus                     : [group: "org.greenrobot", name: "eventbus", version: "3.1.1"],
+            greendao                     : [group: "org.greenrobot", name: "greendao", version: "3.2.2"],
+            greendao_generator           : [group: "org.greenrobot", name: "greendao-generator", version: "3.2.2"],
+
+            retrofit                     : [group: "com.squareup.retrofit2", name: "retrofit", version: "2.5.0"],
+            converter_jackson            : [group: "com.squareup.retrofit2", name: "converter-jackson", version: "2.1.0"],
+            converter_gson               : [group: "com.squareup.retrofit2", name: "converter-gson", version: "2.4.0"],
+            adapter_rxjava2              : [group: "com.squareup.retrofit2", name: "adapter-rxjava2", version: "2.4.0"],
+            adapter_rxjava               : [group: "com.squareup.retrofit2", name: "adapter-rxjava", version: "2.1.0"],
+
+            rxandroid                    : [group: "io.reactivex.rxjava2", name: "rxandroid", version: "2.1.1"],
+            rxjava                       : [group: "io.reactivex.rxjava2", name: "rxjava", version: "2.2.8"],
+
+            rxlifecycle                  : [group: "com.trello.rxlifecycle2", name: "rxlifecycle", version: "2.2.1"],
+            rxlifecycle_android          : [group: "com.trello.rxlifecycle2", name: "rxlifecycle-android", version: "2.2.1"],
+            rxlifecycle_components       : [group: "com.trello.rxlifecycle2", name: "rxlifecycle-components", version: "2.2.1"],
+
+            logging_interceptor          : [group: "com.squareup.okhttp3", name: "logging-interceptor", version: "3.11.0"],
+
+            glide                        : [group: "com.github.bumptech.glide", name: "glide", version: "4.8.0"],
+            BaseRecyclerViewAdapterHelper: [group: "com.github.CymChad", name: "BaseRecyclerViewAdapterHelper", version: "2.9.47"],
+            sticky_layoutmanager         : [group: "com.github.qiujayen", name: "sticky-layoutmanager", version: "1.0.1"],
+            SwipeToLoadLayout            : [group: "com.github.Aspsine", name: "SwipeToLoadLayout", version: "1.0.4"],
+
+            blurry                       : [group: "jp.wasabeef", name: "blurry", version: "3.0.0"],
+    ]
+    maven = [
+            MAVEN_REPO_RELEASE_URL : "http://192.168.0.103:8081/repository/maven-releases/",
+            MAVEN_REPO_SNAPSHOT_URL: "http://192.168.0.103:8081/repository/maven-snapshots/",
+            GROUP                  : "com.bosh.demo",
+            NEXUS_USERNAME         : "admin",
+            NEXUS_PASSWORD         : "admin123"
+    ]
+}

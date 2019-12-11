@@ -1,6 +1,6 @@
 include ':app', ':lib', ':libs'
 
-//if(!isModule.toBoolean()) {
-//    include ':module_demo'
-//    project(':module_demo').projectDir = new File('../demo_module/module_demo')
-//}
+if(!isModule.toBoolean()) {
+    include ':mylibrary'
+    project(':mylibrary').projectDir = new File('./mylibrary')
+}

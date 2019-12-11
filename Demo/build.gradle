@@ -2,7 +2,7 @@
 apply plugin: 'com.alibaba.arouter'
 
 buildscript {
-    
+    apply from:'config.gradle'
     repositories {
         google()
         jcenter()
@@ -25,7 +25,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url MAVEN_REPO_RELEASE_URL}
+        maven { url maven.MAVEN_REPO_RELEASE_URL}
         maven { url "https://jitpack.io" }
         //支持aar包
         flatDir {

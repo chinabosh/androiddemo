@@ -1,0 +1,140 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'maven'
+android {
+    compileSdkVersion build_version.compileSdkVersion
+
+
+    defaultConfig {
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "boolean", "isDebug", 'false'
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "isDebug", 'true'
+        }
+    }
+
+    libraryVariants.all {
+        variant ->
+            variant.outputs.all {
+                def versionName = defaultConfig.versionName
+                def versionCode = defaultConfig.versionCode
+                //android studio3.0之前的写法
+                //  output->output.outputFile=new File(output.outputFile.parent,output.outputFile.name.replace(".apk","-"+defaultConfig.versionName+".apk"))
+                //android studio3.0的写法
+                //项目名-版本名-版本号-release/debug.apk
+                if (variant.buildType.name.equals('release')) {
+//                    variant.getPackageLibraryProvider().get().outputDirectory = new File("../../Demo/libs")
+                    outputFileName = "${project.archivesBaseName}-v${versionName}-c${versionCode}-release.aar"
+//                    copy {
+//                        from outputFile
+//                        into "../libs/"
+//                    }
+                } else {
+                    outputFileName = "${project.archivesBaseName}-v${versionName}-c${versionCode}-debug.aar"
+                }
+            }
+    }
+
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.china.bosh.mylibrary.db'
+        targetGenDir 'src/main/java'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation androidx.appcompat
+    implementation androidx.constraintlayout
+    implementation libs.material
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation androidx.runner
+    androidTestImplementation androidx.espresso_core
+//test可以调用android api
+    api libs.eventbus
+    api libs.greendao//数据库
+    api libs.greendao_generator
+
+    api libs.butterknife
+    annotationProcessor libs.butterknife_compiler
+
+    api libs.retrofit//网络加载库
+    api libs.converter_jackson
+    api libs.converter_gson
+    api libs.adapter_rxjava
+    api libs.adapter_rxjava2
+    api libs.logging_interceptor//输出log
+    api libs.glide//图片加载
+    implementation libs.zxing//二维码
+    api libs.rxandroid
+    api libs.rxjava
+    api libs.rxlifecycle
+    api libs.rxlifecycle_android
+    api libs.rxlifecycle_components
+    implementation androidx.recyclerview
+    api libs.BaseRecyclerViewAdapterHelper//封装adapter
+    api libs.sticky_layoutmanager
+    api libs.SwipeToLoadLayout//下拉刷新、上拉加载库
+    api androidx.multidex
+    api libs.blurry//高斯模糊
+
+    api libs.arouter_api
+
+    api files('libs/commons-codec-1.9.jar')
+}
+
+uploadArchives { //新增 ，因为Android Studio gradle 支持maven插件，所以可以添加此task
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+
+            snapshotRepository(url: maven.MAVEN_REPO_SNAPSHOT_URL) {
+                authentication(userName: maven.NEXUS_USERNAME, password: maven.NEXUS_PASSWORD)
+            }
+
+            repository(url: maven.MAVEN_REPO_RELEASE_URL) {
+                authentication(userName: maven.NEXUS_USERNAME, password: maven.NEXUS_PASSWORD)
+            }
+
+            pom.project {
+                version '0.0.7' //版本名称 上传是不能和之前的一样，否则上传失败
+                artifactId 'library'  //和前面网站上填写的一样
+                groupId maven.GROUP  //和前面网站上填写的一样
+                packaging 'aar' //填写aar
+                description "base library" //更新描述
+            }
+        }
+    }
+}
