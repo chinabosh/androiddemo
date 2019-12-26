@@ -54,7 +54,8 @@ public class RetrofitUtil {
                     Log.i("http请求"+"["+t1+"]",String.format("Sending request %s  %s",
                             request.url(), request.headers()));
                     String method=request.method();
-                    if("POST".equals(method)){
+                    String methodPost =  "POST";
+                    if(methodPost.equals(method)){
                         if (request != null)
                         { Buffer buffer = new Buffer();
                             request.body().writeTo(buffer);

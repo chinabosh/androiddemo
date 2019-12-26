@@ -1,4 +1,5 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">BoshDemo</string>
-    <string name="title_activity_recycler_view">RecyclerViewActivity</string>
+    <string name="app_title_activity_recycler_view"
+        tools:ignore="UnusedResources">RecyclerViewActivity</string>
 </resources>

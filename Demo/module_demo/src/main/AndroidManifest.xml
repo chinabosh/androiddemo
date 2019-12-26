@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bosh.module_demo">
+
+    <permission android:name="com.bosh.module_demo.send_notification"/>
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="com.bosh.module_demo.send_notificaition"/>
+
+    <application android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.HookClickActivity"></activity>
+        <activity android:name=".ui.activity.sms.VerificationActivity" />
+        <activity android:name=".ui.activity.recyclerview.stickyheader.StickyHeaderActivity" />
+
+        <service
+            android:name=".ui.activity.MusicService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity android:name=".ui.activity.SpannableActivity" />
+        <activity android:name=".ui.activity.GaussActivity" /> <!-- <activity android:name=".ui.flutter.FlutterActivity" /> -->
+        <receiver
+            android:name=".receiver.NotificationReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.bosh.module_demo.send_notification" />
+
+        <activity android:name=".ui.activity.NotificationActivity" />
+        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.SmsActivity" />
+        <activity android:name=".ui.activity.recyclerview.RecyclerViewActivity" />
+        <activity android:name=".ui.flutter.FlutterActivity" />
+    </application>
+
+</manifest>

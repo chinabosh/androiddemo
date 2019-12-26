@@ -4,60 +4,105 @@ ext {
             minSdkVersion    : 19,
             targetSdkVersion : 28,
             versionCode      : 1,
-            versionName      : "1.0"
+            versionName      : "1.0",
+            kotlin_version   : "1.3.40"
+    ]
+
+    version = [
+            material_dialogs: "3.1.0",
+            autodispose     : "1.2.0",
+            kodein          : "6.0.1"
     ]
 
     androidx = [
-            constraintlayout: [group: "androidx.constraintlayout", name: "constraintlayout", version: "1.1.3"],
-            appcompat       : [group: "androidx.appcompat", name: "appcompat", version: "1.0.0-beta01"],
-            runner          : [group: "androidx.test", name: "runner", version: "1.3.0-alpha03"],
-            espresso_core   : [group: "androidx.test.espresso", name: "espresso-core", version: "3.3.0-alpha03"],
-            recyclerview    : [group: "androidx.recyclerview", name: "recyclerview", version: "1.1.0"],
-            multidex        : [group: "androidx.multidex", name: "multidex", version: "2.0.1"],
+            constraintlayout             : [group: "androidx.constraintlayout", name: "constraintlayout", version: "1.1.3"],
+            appcompat                    : [group: "androidx.appcompat", name: "appcompat", version: "1.0.0-beta01"],
+            runner                       : [group: "androidx.test", name: "runner", version: "1.3.0-alpha03"],
+            espresso_core                : [group: "androidx.test.espresso", name: "espresso-core", version: "3.3.0-alpha03"],
+            recyclerview                 : [group: "androidx.recyclerview", name: "recyclerview", version: "1.1.0"],
+            multidex                     : [group: "androidx.multidex", name: "multidex", version: "2.0.1"],
+            lifecycle_extensions         : [group: "androidx.lifecycle", name: "lifecycle-extensions", version: "2.1.0"],
+            BaseRecyclerViewAdapterHelper: [group: "com.github.CymChad", name: "BaseRecyclerViewAdapterHelper", version: "2.9.48-androidx"],
     ]
 
 
     libs = [
-            butterknife                  : [group: "com.jakewharton", name: "butterknife", version: "10.1.0"],
-            butterknife_compiler         : [group: "com.jakewharton", name: "butterknife-compiler", version: "10.1.0"],
+            butterknife                           : [group: "com.jakewharton", name: "butterknife", version: "10.1.0"],
+            butterknife_compiler                  : [group: "com.jakewharton", name: "butterknife-compiler", version: "10.1.0"],
 
-            zxing                        : [group: "com.google.zxing", name: "core", version: "3.3.2"],
-            material                     : [group: "com.google.android.material", name: "material", version: "1.2.0-alpha02"],
+            zxing                                 : [group: "com.google.zxing", name: "core", version: "3.3.2"],
+            material                              : [group: "com.google.android.material", name: "material", version: "1.2.0-alpha02"],
 
-            arouter_compiler             : [group: "com.alibaba", name: "arouter-compiler", version: "1.2.2"],
-            arouter_api                  : [group: "com.alibaba", name: "arouter-api", version: "1.5.0"],
+            arouter_compiler                      : [group: "com.alibaba", name: "arouter-compiler", version: "1.2.2"],
+            arouter_api                           : [group: "com.alibaba", name: "arouter-api", version: "1.5.0"],
+            arouter_annotation                    : [group: "com.alibaba", name: "arouter-annotation", version: "1.0.6"],
 
-            eventbus                     : [group: "org.greenrobot", name: "eventbus", version: "3.1.1"],
-            greendao                     : [group: "org.greenrobot", name: "greendao", version: "3.2.2"],
-            greendao_generator           : [group: "org.greenrobot", name: "greendao-generator", version: "3.2.2"],
+            eventbus                              : [group: "org.greenrobot", name: "eventbus", version: "3.1.1"],
+            greendao                              : [group: "org.greenrobot", name: "greendao", version: "3.2.2"],
+            greendao_generator                    : [group: "org.greenrobot", name: "greendao-generator", version: "3.2.2"],
 
-            retrofit                     : [group: "com.squareup.retrofit2", name: "retrofit", version: "2.5.0"],
-            converter_jackson            : [group: "com.squareup.retrofit2", name: "converter-jackson", version: "2.1.0"],
-            converter_gson               : [group: "com.squareup.retrofit2", name: "converter-gson", version: "2.4.0"],
-            adapter_rxjava2              : [group: "com.squareup.retrofit2", name: "adapter-rxjava2", version: "2.4.0"],
-            adapter_rxjava               : [group: "com.squareup.retrofit2", name: "adapter-rxjava", version: "2.1.0"],
+            retrofit                              : [group: "com.squareup.retrofit2", name: "retrofit", version: "2.5.0"],
+            converter_jackson                     : [group: "com.squareup.retrofit2", name: "converter-jackson", version: "2.1.0"],
+            converter_gson                        : [group: "com.squareup.retrofit2", name: "converter-gson", version: "2.4.0"],
+            adapter_rxjava2                       : [group: "com.squareup.retrofit2", name: "adapter-rxjava2", version: "2.4.0"],
+            adapter_rxjava                        : [group: "com.squareup.retrofit2", name: "adapter-rxjava", version: "2.1.0"],
 
-            rxandroid                    : [group: "io.reactivex.rxjava2", name: "rxandroid", version: "2.1.1"],
-            rxjava                       : [group: "io.reactivex.rxjava2", name: "rxjava", version: "2.2.8"],
+            rxandroid                             : [group: "io.reactivex.rxjava2", name: "rxandroid", version: "2.1.1"],
+            rxjava                                : [group: "io.reactivex.rxjava2", name: "rxjava", version: "2.2.8"],
 
-            rxlifecycle                  : [group: "com.trello.rxlifecycle2", name: "rxlifecycle", version: "2.2.1"],
-            rxlifecycle_android          : [group: "com.trello.rxlifecycle2", name: "rxlifecycle-android", version: "2.2.1"],
-            rxlifecycle_components       : [group: "com.trello.rxlifecycle2", name: "rxlifecycle-components", version: "2.2.1"],
+            rxlifecycle                           : [group: "com.trello.rxlifecycle2", name: "rxlifecycle", version: "2.2.1"],
+            rxlifecycle_android                   : [group: "com.trello.rxlifecycle2", name: "rxlifecycle-android", version: "2.2.1"],
+            rxlifecycle_components                : [group: "com.trello.rxlifecycle2", name: "rxlifecycle-components", version: "2.2.1"],
 
-            logging_interceptor          : [group: "com.squareup.okhttp3", name: "logging-interceptor", version: "3.11.0"],
+            logging_interceptor                   : [group: "com.squareup.okhttp3", name: "logging-interceptor", version: "3.11.0"],
 
-            glide                        : [group: "com.github.bumptech.glide", name: "glide", version: "4.8.0"],
-            BaseRecyclerViewAdapterHelper: [group: "com.github.CymChad", name: "BaseRecyclerViewAdapterHelper", version: "2.9.47"],
-            sticky_layoutmanager         : [group: "com.github.qiujayen", name: "sticky-layoutmanager", version: "1.0.1"],
-            SwipeToLoadLayout            : [group: "com.github.Aspsine", name: "SwipeToLoadLayout", version: "1.0.4"],
+            glide                                 : [group: "com.github.bumptech.glide", name: "glide", version: "4.8.0"],
+            BaseRecyclerViewAdapterHelper         : [group: "com.github.CymChad", name: "BaseRecyclerViewAdapterHelper", version: "2.9.47"],
+            sticky_layoutmanager                  : [group: "com.github.qiujayen", name: "sticky-layoutmanager", version: "1.0.1"],
+            SwipeToLoadLayout                     : [group: "com.github.Aspsine", name: "SwipeToLoadLayout", version: "1.0.4"],
 
-            blurry                       : [group: "jp.wasabeef", name: "blurry", version: "3.0.0"],
+            blurry                                : [group: "jp.wasabeef", name: "blurry", version: "3.0.0"],
+
+            autodispose_android                   : [group: "com.uber.autodispose", name: "autodispose-android", version: version.autodispose],
+            autodispose_ktx                       : [group: "com.uber.autodispose", name: "autodispose-ktx", version: version.autodispose],
+            autodispose_android_ktx               : [group: "com.uber.autodispose", name: "autodispose-android-ktx", version: version.autodispose],
+            autodispose_android_archcomponents_ktx: [group: "com.uber.autodispose", name: "autodispose-android-archcomponents-ktx", version: version.autodispose],
+    ]
+
+    maven_url = [
+            url: "http://192.168.1.107:8081"
     ]
     maven = [
-            MAVEN_REPO_RELEASE_URL : "http://192.168.0.103:8081/repository/maven-releases/",
-            MAVEN_REPO_SNAPSHOT_URL: "http://192.168.0.103:8081/repository/maven-snapshots/",
+            MAVEN_REPO_RELEASE_URL : maven_url.url + "/repository/maven-releases/",
+            MAVEN_REPO_SNAPSHOT_URL: maven_url.url + "/repository/maven-snapshots/",
             GROUP                  : "com.bosh.demo",
             NEXUS_USERNAME         : "admin",
             NEXUS_PASSWORD         : "admin123"
     ]
+
+    kotlin_libs = [
+            kotlin_stdlib_jdk7           : [group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk7", version: build_version.kotlin_version],
+
+            dialog_core                  : [group: "com.afollestad.material-dialogs", name: "core", version: version.material_dialogs],
+            dialog_input                 : [group: "com.afollestad.material-dialogs", name: "input", version: version.material_dialogs],
+            dialog_files                 : [group: "com.afollestad.material-dialogs", name: "files", version: version.material_dialogs],
+            dialog_color                 : [group: "com.afollestad.material-dialogs", name: "color", version: version.material_dialogs],
+            dialog_datetime              : [group: "com.afollestad.material-dialogs", name: "datetime", version: version.material_dialogs],
+            dialog_bottomsheets          : [group: "com.afollestad.material-dialogs", name: "bottomsheets", version: version.material_dialogs],
+            dialog_lifecycle             : [group: "com.afollestad.material-dialogs", name: "lifecycle", version: version.material_dialogs],
+
+            kodein_di_generic_jvm        : [group: "org.kodein.di", name: "kodein-di-generic-jvm", version: version.kodein],
+            kodein_di_framework_android_x: [group: "org.kodein.di", name: "kodein-di-framework-android-x", version: version.kodein],
+    ]
+}
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.40"
+    }
 }

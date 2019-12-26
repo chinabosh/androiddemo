@@ -55,6 +55,7 @@ public class MyApplication extends BaseApplication {
     /**
      * 解决android P出现Detected problems with API compatibility 弹窗问题
      */
+    @SuppressWarnings({"unchecked", "PrivateApi"})
     private void closeAndroidPDialog(){
         try {
             Class aClass = Class.forName("android.content.pm.PackageParser$Package");

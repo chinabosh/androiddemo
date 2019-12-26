@@ -21,12 +21,10 @@ public class DataEvent<T> {
         this.eventCode = eventCode;
     }
 
-    @SuppressWarnings("unchecked")
     public T getResult() {
         return result;
     }
 
-    @SuppressWarnings("unchecked")
     public void setResult(T result) {
         this.result = result;
     }

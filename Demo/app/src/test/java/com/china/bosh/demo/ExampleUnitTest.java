@@ -16,16 +16,16 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
 
-    int[] prime = new int[100000000];
-    int[] a = new int[100000000];
+    int[] prime = new int[10000];
+    int[] a = new int[10000];
     private void init(){
         int i,j,len;
         len = 0;
-        for(i = 2 ; i < 100000000; i++) {
+        for(i = 2 ; i < 10000; i++) {
             if(prime[i] == 0) {
                 a[len++] = i;
             }
-            for(j = 0; j < len && (a[j] * i < 100000000); j++){
+            for(j = 0; j < len && (a[j] * i < 10000); j++){
                 prime[a[j] * i] = 1;
                 if(i % a[j] == 0) {
                     break;

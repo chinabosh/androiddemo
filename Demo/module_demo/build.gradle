@@ -1,0 +1,82 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'maven'
+apply plugin: 'com.bosh.component.library'
+android {
+    compileSdkVersion build_version.compileSdkVersion
+
+
+    defaultConfig {
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
+        versionCode build_version.versionCode
+        versionName build_version.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [AROUTER_MODULE_NAME: project.getName()]
+//            }
+//        }
+
+        resourcePrefix "demo_"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+//    productFlavors.all {
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [AROUTER_MODULE_NAME: project.getName()]
+//            }
+//        }
+//    }
+
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api "com.bosh.demo:library:0.0.7"
+    implementation androidx.constraintlayout
+    annotationProcessor libs.arouter_compiler
+    implementation androidx.appcompat
+    api 'com.bosh.demo:flutter:0.0.2@aar'
+
+    api libs.butterknife
+    annotationProcessor libs.butterknife_compiler
+}
+
+uploadArchives { //新增 ，因为Android Studio gradle 支持maven插件，所以可以添加此task
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+
+            snapshotRepository(url: maven.MAVEN_REPO_SNAPSHOT_URL) {
+                authentication(userName: maven.NEXUS_USERNAME, password: maven.NEXUS_PASSWORD)
+            }
+
+            repository(url: maven.MAVEN_REPO_RELEASE_URL) {
+                authentication(userName: maven.NEXUS_USERNAME, password: maven.NEXUS_PASSWORD)
+            }
+
+            pom.project {
+                version '0.0.6' //版本名称 上传是不能和之前的一样，否则上传失败
+                artifactId 'moduledemo'  //和前面网站上填写的一样
+                groupId maven.GROUP  //和前面网站上填写的一样
+                packaging 'aar' //填写aar
+                description 'module_demo\'s dependencies' //更新描述
+            }
+        }
+    }
+}

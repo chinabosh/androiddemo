@@ -6,6 +6,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url maven.MAVEN_REPO_RELEASE_URL
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.1'
@@ -14,6 +17,7 @@ buildscript {
         classpath "com.jakewharton:butterknife-gradle-plugin:10.1.0"
         classpath 'com.alibaba:arouter-register:1.0.2'
         classpath 'com.kezong:fat-aar:1.0.3'
+        classpath 'com.bosh.demo:gradleplugin:0.3.11'
         
 
         // NOTE: Do not place your application dependencies here; they belong

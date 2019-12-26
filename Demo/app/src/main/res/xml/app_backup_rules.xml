@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <include domain="sharedpref" path="."/>
+    <!--<include domain=["file" | "database" | "sharedpref" | "external" | "root"]
+    path="string"
+    requiredFlags=["clientSideEncryption" | "deviceToDeviceTransfer"] />
+    <exclude domain=["file" | "database" | "sharedpref" | "external" | "root"]
+    path="string" />
+    文档：
+    https://developer.android.google.cn/guide/topics/data/autobackup
+    -->
+</full-backup-content>

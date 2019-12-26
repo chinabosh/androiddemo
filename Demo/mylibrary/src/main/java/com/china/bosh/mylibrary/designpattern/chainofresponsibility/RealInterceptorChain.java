@@ -36,8 +36,7 @@ public class RealInterceptorChain implements Interceptor.Chain {
         }
         RealInterceptorChain next = new RealInterceptorChain(interceptors, index + 1, request);
         Interceptor interceptor = interceptors.get(index);
-        Response response = interceptor.intercept(next);
-        return response;
+        return interceptor.intercept(next);
     }
 
     @Override

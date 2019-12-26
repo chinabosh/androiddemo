@@ -22,6 +22,12 @@ import okio.BufferedSink;
  * @date 2019-09-05
  */
 public class RequestEncryptInterceptor implements Interceptor {
+
+    private final String METHOD_GET = "get";
+    private final String METHOD_POST = "post";
+    private final String METHOD_PUT = "put";
+    private final String METHOD_DELETE = "delete";
+    private final String METHOD_MULTIPART = "multipart";
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
@@ -33,7 +39,7 @@ public class RequestEncryptInterceptor implements Interceptor {
         if(!serverPath.startsWith(Url.BASE_URL)) {
             return chain.proceed(request);
         }
-        if("get".equals(method) || "delete".equals(method)) {
+        if(METHOD_GET.equals(method) || METHOD_DELETE.equals(method)) {
             if(url.encodedQuery() != null) {
                 try {
                     String queryparamNames = url.encodedQuery();
@@ -50,7 +56,7 @@ public class RequestEncryptInterceptor implements Interceptor {
                 MediaType contentType = requestBody.contentType();
                 if(contentType != null) {
                     charset = contentType.charset(charset);
-                    if("multipart".equals(contentType.type().toLowerCase())) {
+                    if(METHOD_MULTIPART.equals(contentType.type().toLowerCase())) {
                         return chain.proceed(request);
                     }
                 }
@@ -62,9 +68,9 @@ public class RequestEncryptInterceptor implements Interceptor {
                     String encryptData = Base64Util.encode(requestData);
                     RequestBody newRequestBody = RequestBody.create(contentType, encryptData);
                     Request.Builder builder = request.newBuilder();
-                    if("post".equals(method)) {
+                    if(METHOD_POST.equals(method)) {
                         builder.post(newRequestBody);
-                    } else if("put".equals(method)) {
+                    } else if(METHOD_PUT.equals(method)) {
                         builder.put(newRequestBody);
                     }
                     request = builder.build();

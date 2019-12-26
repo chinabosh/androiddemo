@@ -4,6 +4,9 @@ import com.china.bosh.mylibrary.leetcode.Solution;
 
 import org.junit.Test;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static org.junit.Assert.*;
 
 /**
@@ -23,7 +26,14 @@ public class ExampleUnitTest {
 //            System.out.println();
 //        }
         //12,18,24,28,30
+         Pattern pattern = Pattern.compile("\\{(" + "[a-zA-Z][a-zA-Z0-9_-]*" + ")\\}");
+        Matcher matcher = pattern.matcher("appCommon.action?act=getSystemUpdate/a2/{id}/");
+        while (matcher.find()) {
+            System.out.println(matcher.group(1));
+        }
     }
+
+
 
     @Test
     public void test() throws Exception{

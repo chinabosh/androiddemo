@@ -26,5 +26,6 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    api project(':mylibrary')
+//    api project(':mylibrary')
+    api 'com.bosh.demo:library:0.0.6'
 }

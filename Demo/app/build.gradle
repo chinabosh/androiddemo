@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.bosh.component.library'
 
 android {
     compileSdkVersion build_version.compileSdkVersion
@@ -22,6 +23,7 @@ android {
         }
 
         resConfigs 'zh', 'en'
+        resourcePrefix 'app_'
     }
 
     compileOptions {
@@ -42,7 +44,8 @@ android {
     }
 
     lintOptions {
-        abortOnError false
+        abortOnError true
+        warningsAsErrors true
     }
 }
 

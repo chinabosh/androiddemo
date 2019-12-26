@@ -41,5 +41,5 @@ dependencies {
     implementation project(':module_demo')
 
 
-    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.ext.routerVersion"
+    annotationProcessor libs.arouter_compiler
 }

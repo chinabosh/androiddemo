@@ -5,8 +5,8 @@ package com.china.bosh.mylibrary.designpattern.flyweight;
  * @date 2019/5/16
  */
 public class FlyweightPatternDemo {
-    private static final String colors[] =
-            { "Red", "Green", "Blue", "White", "Black" };
+    private static final String[] COLORS =
+            {"Red", "Green", "Blue", "White", "Black"};
     public static void main(String[] args) {
 
         for(int i=0; i < 20; ++i) {
@@ -19,7 +19,7 @@ public class FlyweightPatternDemo {
         }
     }
     private static String getRandomColor() {
-        return colors[(int)(Math.random()*colors.length)];
+        return COLORS[(int)(Math.random()* COLORS.length)];
     }
     private static int getRandomX() {
         return (int)(Math.random()*100 );

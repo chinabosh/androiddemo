@@ -1,0 +1,27 @@
+<resources>
+    <string name="demo_app_name">MyDemo</string>
+    <string name="demo_text_test">测试</string>
+    <string name="demo_text_huaji">huaji</string>
+    <string name="demo_text_common_click">普通点击</string>
+    <string name="demo_text_do_hook">hook一下</string>
+    <string name="demo_text_spannable_string">Spannable String</string>
+    <string name="demo_text_image">image</string>
+    <string name="demo_text_sms">sms</string>
+    <string name="demo_text_recycler_view">recycler view</string>
+    <string name="demo_text_notification">notification</string>
+    <string name="demo_text_flutter_entrance">flutter entrance</string>
+    <string name="demo_text_gauss">高斯模糊</string>
+    <string name="demo_text_no_sound_music">无声音乐</string>
+    <string name="demo_text_sticky_header">粘性头部</string>
+    <string name="demo_text_short_code">短信验证码</string>
+    <string name="demo_text_hook_test">hook测试</string>
+    <string name="demo_text_show_normal_notify">显示普通通知</string>
+    <string name="demo_text_close_normal_notify">关闭普通通知</string>
+    <string name="demo_text_show_notify_action">显示可处理通知</string>
+    <string name="demo_text_close_notify_action">关闭可处理通知</string>
+    <string name="demo_text_show_critical_notify">显示顶部通知</string>
+    <string name="demo_text_close_critical_notify">关闭顶部通知</string>
+    <string name="demo_text_test_data_1">测试底部数据1</string>
+    <string name="demo_text_test_short_code">验证码测试</string>
+    <string name="demo_hint_input_short_code">输入验证码</string>
+</resources>

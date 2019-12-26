@@ -1,1 +1,2 @@
 include ':app', ':module_demo'
+project(':module_demo').projectDir = file('../Demo/module_demo')

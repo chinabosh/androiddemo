@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Base64;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author lzq
@@ -17,11 +18,7 @@ public class Base64Util {
         if(TextUtils.isEmpty(str)) {
             return s;
         }
-        try {
-            b = str.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        b = str.getBytes(StandardCharsets.UTF_8);
         if(b != null) {
             s = Base64.encodeToString(b, Base64.NO_WRAP);
         }
@@ -34,11 +31,7 @@ public class Base64Util {
         if(TextUtils.isEmpty(str)) {
             return s;
         }
-        try {
-            b = str.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        b = str.getBytes(StandardCharsets.UTF_8);
         if(b != null) {
             s = new String(Base64.decode(b, Base64.DEFAULT));
         }

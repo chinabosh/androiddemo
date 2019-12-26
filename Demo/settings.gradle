@@ -3,4 +3,5 @@ include ':app', ':lib', ':libs'
 if(!isModule.toBoolean()) {
     include ':mylibrary'
     project(':mylibrary').projectDir = new File('./mylibrary')
+    include ':module_demo'
 }

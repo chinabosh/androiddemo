@@ -14,7 +14,7 @@ public class ToMd5Util {
     public ToMd5Util() {
     }
 
-    public static final String md5(String string) {
+    public static String md5(String string) {
         if (TextUtils.isEmpty(string)) {
             return "";
         }
