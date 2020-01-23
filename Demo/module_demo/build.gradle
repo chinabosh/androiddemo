@@ -47,7 +47,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api "com.bosh.demo:library:0.0.7"
+    api "com.bosh.demo:library:0.0.10"
     implementation androidx.constraintlayout
     annotationProcessor libs.arouter_compiler
     implementation androidx.appcompat

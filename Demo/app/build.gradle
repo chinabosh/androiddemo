@@ -61,12 +61,16 @@ dependencies {
 //        implementation project(':mylibrary')
     } else {
         api 'com.bosh.demo:library:0.0.6'
-//        implementation project(':module_demo')
-        api 'com.bosh.demo:moduledemo:0.0.5'
+        implementation project(':module_demo')
+//        api 'com.bosh.demo:moduledemo:0.0.5'
     }
 
     api libs.butterknife
     annotationProcessor libs.butterknife_compiler
 
     annotationProcessor libs.arouter_compiler
+}
+
+config {
+    enableRestrictToTransform false
 }

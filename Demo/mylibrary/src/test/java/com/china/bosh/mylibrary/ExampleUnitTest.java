@@ -38,7 +38,7 @@ public class ExampleUnitTest {
     @Test
     public void test() throws Exception{
         Solution solution = new Solution();
-        int which = 8;
+        int which = 9;
         switch (which) {
             case 1: {
                 boolean res = solution.isRobotBounded("GGLLGG");
@@ -83,6 +83,24 @@ public class ExampleUnitTest {
 //                String ans = solution.convert("PAYPALISHIRING", 3);
 //                System.out.println(ans);
             }
+            break;
+            case 9:{
+                Solution.ListNode head = solution.new ListNode(1);
+                Solution.ListNode next = head;
+                for (int i = 0 ; i < 8; i ++) {
+                    next.next = solution.new ListNode(i + 2);
+                    next = next.next;
+                }
+                head = solution.reverseKGroup(head, 3);
+                StringBuilder builder = new StringBuilder();
+                while(head != null) {
+                    builder.append(head.val);
+                    builder.append("->");
+                    head = head.next;
+                }
+                System.out.println(builder);
+            }
+            break;
             default:
         }
     }

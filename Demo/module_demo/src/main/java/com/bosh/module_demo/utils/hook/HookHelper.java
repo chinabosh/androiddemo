@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.bosh.module_demo.utils.hook.hookclick.HookClickListenerProxy;
 import com.bosh.module_demo.utils.hook.hookclick.IHookClickListener;
+import com.china.bosh.mylibrary.annotation.Open;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -12,6 +13,7 @@ import java.lang.reflect.Method;
  * @author lzq
  * @date 2019-11-13
  */
+@Open
 public class HookHelper {
 
     @SuppressWarnings("PrivateApi")

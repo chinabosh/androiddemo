@@ -1,4 +1,4 @@
-include ':app', ':lib', ':libs'
+include ':app', ':lib', ':libs', ':buildSrc'
 
 if(!isModule.toBoolean()) {
     include ':mylibrary'

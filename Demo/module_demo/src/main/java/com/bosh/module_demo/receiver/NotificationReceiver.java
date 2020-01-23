@@ -6,14 +6,13 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
-import androidx.annotation.RestrictTo;
 
 import com.china.bosh.mylibrary.utils.ToastUtil;
 
 /**
  * @author bosh
  */
-@RestrictTo(RestrictTo.Scope.LIBRARY)
+@androidx.annotation.RestrictTo(androidx.annotation.RestrictTo.Scope.LIBRARY)
 public class NotificationReceiver extends BroadcastReceiver {
 
     @Override

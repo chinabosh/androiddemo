@@ -53,15 +53,16 @@ def getIp() {
     exec {
         workingDir '/Users/bosh/AndroidStudioProject/git/mine/android/shell'
         commandLine './getIp.sh'
+//        commandLine 'sh', '-c', 'ifconfig |grep 192.168|cut -d \' \' -f2'
         standardOutput = out
     }
-    return out.toString()
+    return out.toString().trim()
 }
 
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: uri("http://${getIp().trim()}:8081/repository/maven-releases/")) {
+            repository(url: uri("http://${getIp()}:8081/repository/maven-releases/")) {
                 authentication(userName: 'admin', password: 'admin123')
             }
             pom.project {

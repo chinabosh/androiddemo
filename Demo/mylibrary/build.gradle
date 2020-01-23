@@ -45,7 +45,7 @@ android {
                 //  output->output.outputFile=new File(output.outputFile.parent,output.outputFile.name.replace(".apk","-"+defaultConfig.versionName+".apk"))
                 //android studio3.0的写法
                 //项目名-版本名-版本号-release/debug.apk
-                if (variant.buildType.name.equals('release')) {
+                if (variant.buildType.name == 'release') {
 //                    variant.getPackageLibraryProvider().get().outputDirectory = new File("../../Demo/libs")
                     outputFileName = "${project.archivesBaseName}-v${versionName}-c${versionCode}-release.aar"
 //                    copy {
@@ -111,6 +111,7 @@ dependencies {
     api libs.blurry//高斯模糊
 
     api libs.arouter_api
+    api libs.arouter_annotation
 
     api files('libs/commons-codec-1.9.jar')
 }
@@ -129,7 +130,7 @@ uploadArchives { //新增 ，因为Android Studio gradle 支持maven插件，所
             }
 
             pom.project {
-                version '0.0.7' //版本名称 上传是不能和之前的一样，否则上传失败
+                version '0.0.10' //版本名称 上传是不能和之前的一样，否则上传失败
                 artifactId 'library'  //和前面网站上填写的一样
                 groupId maven.GROUP  //和前面网站上填写的一样
                 packaging 'aar' //填写aar

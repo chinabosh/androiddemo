@@ -32,6 +32,7 @@ ext {
 
             zxing                                 : [group: "com.google.zxing", name: "core", version: "3.3.2"],
             material                              : [group: "com.google.android.material", name: "material", version: "1.2.0-alpha02"],
+            guava                                 : [group: "com.google.guava", name: "guava", version: "28.2-android"],
 
             arouter_compiler                      : [group: "com.alibaba", name: "arouter-compiler", version: "1.2.2"],
             arouter_api                           : [group: "com.alibaba", name: "arouter-api", version: "1.5.0"],
@@ -50,9 +51,9 @@ ext {
             rxandroid                             : [group: "io.reactivex.rxjava2", name: "rxandroid", version: "2.1.1"],
             rxjava                                : [group: "io.reactivex.rxjava2", name: "rxjava", version: "2.2.8"],
 
-            rxlifecycle                           : [group: "com.trello.rxlifecycle2", name: "rxlifecycle", version: "2.2.1"],
-            rxlifecycle_android                   : [group: "com.trello.rxlifecycle2", name: "rxlifecycle-android", version: "2.2.1"],
-            rxlifecycle_components                : [group: "com.trello.rxlifecycle2", name: "rxlifecycle-components", version: "2.2.1"],
+            rxlifecycle                           : [group: "com.trello.rxlifecycle3", name: "rxlifecycle", version: "3.1.0"],
+            rxlifecycle_android                   : [group: "com.trello.rxlifecycle3", name: "rxlifecycle-android", version: "3.1.0"],
+            rxlifecycle_components                : [group: "com.trello.rxlifecycle3", name: "rxlifecycle-components", version: "3.1.0"],
 
             logging_interceptor                   : [group: "com.squareup.okhttp3", name: "logging-interceptor", version: "3.11.0"],
 

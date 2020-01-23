@@ -2,6 +2,8 @@ package com.china.bosh.demo;
 
 import android.content.Context;
 import android.os.Build;
+
+import androidx.annotation.RestrictTo;
 import androidx.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -18,7 +20,7 @@ import java.lang.reflect.Method;
  * @author lzq
  * @date 2018/9/6
  */
-
+@RestrictTo(RestrictTo.Scope.LIBRARY)
 public class MyApplication extends BaseApplication {
 
     @Override

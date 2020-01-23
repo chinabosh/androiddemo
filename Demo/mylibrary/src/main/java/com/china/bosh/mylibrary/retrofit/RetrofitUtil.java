@@ -94,6 +94,7 @@ public class RetrofitUtil {
         builder.hostnameVerifier(new HostnameVerifier() {
             @Override
             public boolean verify(String hostname, SSLSession session) {
+                //直接跳过ssl验证
                 return true;
             }
         });

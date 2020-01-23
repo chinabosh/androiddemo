@@ -12,9 +12,11 @@ import com.android.build.api.transform.TransformException
 import com.android.build.api.transform.TransformInput
 import com.android.build.api.transform.TransformInvocation
 import com.android.build.api.transform.TransformOutputProvider
+import com.android.build.gradle.AppExtension
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.android.ddmlib.Log
 import com.android.utils.FileUtils
+import com.bosh.ext.ConfigExtension
 import com.bosh.utils.Logger
 import javassist.ClassPool
 import javassist.CtClass
@@ -38,9 +40,7 @@ import java.util.jar.JarFile
 
 class RestrictToTransform extends Transform {
 
-    static ArrayList<String> restrictToList = new ArrayList<>()
-    static ArrayList<String> restrictPathList = new ArrayList<>()
-    static mProject
+    static Project mProject
 
     RestrictToTransform(Project project) {
         super()
@@ -70,6 +70,12 @@ class RestrictToTransform extends Transform {
     @Override
     void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
 //        super.transform(transformInvocation)
+        ConfigExtension configExtension = mProject.config
+        if (!configExtension.enableRestrictToTransform) {
+            Logger.i("do not transform restrict to")
+            super.transform(transformInvocation)
+            return
+        }
         def inputs = transformInvocation.inputs
         def outputProvider = transformInvocation.outputProvider
         def isIncremental = transformInvocation.incremental
@@ -86,48 +92,22 @@ class RestrictToTransform extends Transform {
                 File dest = outputProvider.getContentLocation(destName + "_" + hexName, jarInput.contentTypes, jarInput.scopes, Format.JAR)
 //                scanClass(jarInput.file)
                 def jarFile = jarInput.file
-                if (shouldProcessPreDexJar(jarFile.absolutePath)) {
-                    if (jarFile) {
-                        def file = new JarFile(jarFile)
-                        Enumeration enumeration = file.entries()
-                        while (enumeration.hasMoreElements()) {
-                            JarEntry jarEntry = (JarEntry) enumeration.nextElement()
-                            String entryName = jarEntry.getName()
-                            if (entryName.endsWith(".class")) {
-                                InputStream inputStream = file.getInputStream(jarEntry)
-                                scanClass(inputStream, jarFile.absolutePath)
-                                inputStream.close()
-                            }
-                        }
-                        file.close()
-                    }
-                }
-//                restrictPathList.each {path ->
-//                    GenerateRestrictTo.appendClassPath(path)
-//                }
-//                restrictToList.each { name ->
-//                    GenerateRestrictTo.generate(name)
-//                }
-                Logger.w("jarFile from:" + jarFile.absolutePath + ",to:" + dest.absolutePath)
+                Logger.i("jarFile from:" + jarFile.absolutePath + ",to:" + dest.absolutePath)
                 FileUtils.copyFile(jarFile, dest)
+                if (shouldProcessPreDexJar(jarFile.absolutePath)) {
+
+                    GenerateRestrictTo.insertRestrictCodeIntoJarFile(dest, mProject)
+
+                    //玩归玩，闹归闹，别拿原文件开玩笑，jarFile很多是在.gradle/caches/里面的文件，
+                    // 一旦出bug，貌似只能把caches删了重新下载，多搞两次，一天就过去了！！！
+                    //稳妥一点，先复制到dest里面再操作
+//                    GenerateRestrictTo.insertRestrictCodeIntoJarFile(jarFile, mProject)
+                }
             }
-            restrictPathList.clear()
-            restrictToList.clear()
             input.directoryInputs.each { directoryInput ->
                 File dest = outputProvider.getContentLocation(directoryInput.name, directoryInput.contentTypes, directoryInput.scopes, Format.DIRECTORY)
-//                directoryInput.file.eachFileRecurse { file ->
-//                    if (file.isFile() && file.absolutePath.contains('bosh')) {
-//                        scanClass(file)
-//                    }
-//                }
-//                restrictPathList.each {path ->
-//                    GenerateRestrictTo.appendClassPath(path)
-//                }
-//                restrictToList.each { name ->
-//                    GenerateRestrictTo.generate(name)
-//                }
                 GenerateRestrictTo.generate(directoryInput.file, mProject)
-                Logger.w("from :" + directoryInput.file.absolutePath + " ,dest:" + dest.absolutePath)
+                Logger.i("from :" + directoryInput.file.absolutePath + " ,dest:" + dest.absolutePath)
                 FileUtils.copyDirectory(directoryInput.file, dest)
             }
         }

@@ -25,8 +25,8 @@ import com.china.bosh.mylibrary.entity.DataEvent;
 import com.china.bosh.mylibrary.utils.PermissionsManager;
 import com.china.bosh.mylibrary.utils.PermissionsResultAction;
 import com.china.bosh.mylibrary.utils.ToastUtil;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-import com.trello.rxlifecycle2.components.support.RxFragmentActivity;
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle3.components.support.RxFragmentActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -80,18 +80,6 @@ public abstract class BaseActivity extends RxFragmentActivity {
         setContentView(attachLayoutRes());
         ButterKnife.bind(this);
 
-        PermissionsManager.getInstance().requestAllManifestPermissionsIfNecessary(this, new PermissionsResultAction() {
-            @Override
-            public void onGranted() {
-//				Toast.makeText(MainActivity.this, "All permissions have been granted", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onDenied(String permission) {
-                //Toast.makeText(MainActivity.this, "Permission " + permission + " has been denied", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         initInject();
         initView();
         initData();
@@ -104,6 +92,20 @@ public abstract class BaseActivity extends RxFragmentActivity {
         if(this.getClass().isAnnotationPresent(BindEventBus.class)){
             EventBus.getDefault().unregister(this);
         }
+    }
+
+    public void requestPermission(){
+        PermissionsManager.getInstance().requestAllManifestPermissionsIfNecessary(this, new PermissionsResultAction() {
+            @Override
+            public void onGranted() {
+//				Toast.makeText(MainActivity.this, "All permissions have been granted", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDenied(String permission) {
+                //Toast.makeText(MainActivity.this, "Permission " + permission + " has been denied", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void startActivity(Class targetClass) {
