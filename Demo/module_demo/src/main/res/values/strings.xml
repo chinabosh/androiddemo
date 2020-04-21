@@ -24,4 +24,7 @@
     <string name="demo_text_test_data_1">测试底部数据1</string>
     <string name="demo_text_test_short_code">验证码测试</string>
     <string name="demo_hint_input_short_code">输入验证码</string>
+    <string name="demo_accessibility_service_description">只能安装服务，无需用户点击</string>
+    <string name="demo_text_open_accessibility_service">打开智能安装服务</string>
+    <string name="demo_text_test_smart_install">测试智能安装</string>
 </resources>

@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bosh.module_demo.R;
 import com.bosh.module_demo.R2;
@@ -62,8 +64,8 @@ public class MainActivity extends BaseActivity {
 
     @OnClick({R2.id.tv_span, R2.id.tv_sms, R2.id.tv_recycler, R2.id.tv_notify, R2.id.tv_flutter,
             R2.id.tv_gauss, R2.id.tv_music, R2.id.tv_sticky_header, R2.id.tv_verification_code,
-            R2.id.tv_hook})
-    public void onClick(View view) {
+            R2.id.tv_hook, R2.id.tv_silent_install})
+    public void onClick(@NonNull  View view) {
         int id = view.getId();
         if(id == R.id.tv_span) {
             startActivity(SpannableActivity.class);
@@ -88,6 +90,8 @@ public class MainActivity extends BaseActivity {
             startActivity(VerificationActivity.class);
         } else if(id == R.id.tv_hook) {
             startActivity(HookClickActivity.class);
+        } else if (id == R.id.tv_silent_install) {
+            startActivity(SilentInstallActivity.class);
         }
     }
 

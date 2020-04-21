@@ -23,6 +23,7 @@ android {
         resourcePrefix "demo_"
     }
 
+
     buildTypes {
         release {
             minifyEnabled false
@@ -49,9 +50,12 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api "com.bosh.demo:library:0.0.10"
     implementation androidx.constraintlayout
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    api 'androidx.core:core:1.2.0'
     annotationProcessor libs.arouter_compiler
     implementation androidx.appcompat
-    api 'com.bosh.demo:flutter:0.0.2@aar'
+    api 'com.bosh.demo:flutter:0.0.4@aar'
 
     api libs.butterknife
     annotationProcessor libs.butterknife_compiler

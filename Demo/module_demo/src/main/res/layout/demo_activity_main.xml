@@ -109,4 +109,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_verification_code"/>
 
+    <TextView
+        android:id="@+id/tv_silent_install"
+        android:text="@string/demo_text_test_smart_install"
+        style="@style/demo_main_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_verification_code"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,9 @@
 package com.bosh.module_demo.utils.hook;
 
+import android.util.Log;
 import android.view.View;
 
+import com.bosh.module_demo.ui.activity.HookClickActivity;
 import com.bosh.module_demo.utils.hook.hookclick.HookClickListenerProxy;
 import com.bosh.module_demo.utils.hook.hookclick.IHookClickListener;
 import com.china.bosh.mylibrary.annotation.Open;
@@ -27,6 +29,10 @@ public class HookHelper {
         mOnClickListener.setAccessible(true);
         View.OnClickListener originOnClickListener = (View.OnClickListener) mOnClickListener.get(listenerInfo);
 
+        if(originOnClickListener instanceof HookClickListenerProxy) {
+            Log.i("test","has already hooked");
+            return;
+        }
         View.OnClickListener hookOnClickListener = new HookClickListenerProxy(originOnClickListener, listener);
         mOnClickListener.set(listenerInfo, hookOnClickListener);
     }
