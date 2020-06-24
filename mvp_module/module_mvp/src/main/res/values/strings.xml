@@ -4,4 +4,5 @@
     <!-- login -->
     <string name="mvp_text_account_hint">请输入账号</string>
     <string name="mvp_text_pwd_hint">请输入密码</string>
+    <string name="mvp_text_login">登录</string>
 </resources>

@@ -18,6 +18,7 @@ import okio.Buffer;
 import okio.BufferedSink;
 
 /**
+ * encrypt the request params
  * @author lzq
  * @date 2019-09-05
  */

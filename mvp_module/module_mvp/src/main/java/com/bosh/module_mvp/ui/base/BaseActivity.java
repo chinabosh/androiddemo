@@ -1,7 +1,9 @@
 package com.bosh.module_mvp.ui.base;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
+import android.app.Dialog;
 import android.content.ComponentCallbacks;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -17,8 +19,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.FragmentActivity;
 
-import com.afollestad.materialdialogs.GravityEnum;
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.bosh.module_mvp.injector.components.ActivityComponent;
 import com.bosh.module_mvp.injector.components.DaggerActivityComponent;
 import com.bosh.module_mvp.injector.module.ActivityModule;
@@ -54,7 +54,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends FragmentActi
 
     private static float mNoncompatDensity;
     private static float mNoncompatScaledDensity;
-    private MaterialDialog progressDialog;
+    private Dialog progressDialog;
 
     @Inject
     protected P mPresenter;
@@ -147,13 +147,8 @@ public abstract class BaseActivity<P extends BasePresenter> extends FragmentActi
                 .as(bindLifecycle())
                 .subscribe(s -> {
                     if (progressDialog == null || !progressDialog.isShowing()) {
-                        progressDialog = new MaterialDialog.Builder(this)
-                                .content(content)
-                                .contentGravity(GravityEnum.CENTER)
-                                .cancelable(false)
-                                .canceledOnTouchOutside(false)
-                                .progressIndeterminateStyle(false)
-                                .progress(true, 0)
+                        progressDialog = new AlertDialog.Builder(this)
+                                .setMessage(content)
                                 .show();
                     }
                 });
@@ -212,6 +207,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends FragmentActi
         }
     }
 
+    @SuppressWarnings("privateApi")
     private boolean isTranslucentOrFloating() {
         boolean isTranslucentOrFloating = false;
 

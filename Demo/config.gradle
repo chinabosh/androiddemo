@@ -16,7 +16,7 @@ ext {
 
     androidx = [
             constraintlayout             : [group: "androidx.constraintlayout", name: "constraintlayout", version: "1.1.3"],
-            appcompat                    : [group: "androidx.appcompat", name: "appcompat", version: "1.0.0-beta01"],
+            appcompat                    : [group: "androidx.appcompat", name: "appcompat", version: '1.3.0-alpha01'],
             runner                       : [group: "androidx.test", name: "runner", version: "1.3.0-alpha03"],
             espresso_core                : [group: "androidx.test.espresso", name: "espresso-core", version: "3.3.0-alpha03"],
             recyclerview                 : [group: "androidx.recyclerview", name: "recyclerview", version: "1.1.0"],
@@ -33,6 +33,8 @@ ext {
             zxing                                 : [group: "com.google.zxing", name: "core", version: "3.3.2"],
             material                              : [group: "com.google.android.material", name: "material", version: "1.2.0-alpha02"],
             guava                                 : [group: "com.google.guava", name: "guava", version: "28.2-android"],
+            dagger                                : [group: "com.google.dagger", name: "dagger", version: "2.23.2"],
+            dagger_compiler                       : [group: "com.google.dagger", name: "dagger-compiler", version: "2.23.2"],
 
             arouter_compiler                      : [group: "com.alibaba", name: "arouter-compiler", version: "1.2.2"],
             arouter_api                           : [group: "com.alibaba", name: "arouter-api", version: "1.5.0"],
@@ -64,6 +66,8 @@ ext {
 
             blurry                                : [group: "jp.wasabeef", name: "blurry", version: "3.0.0"],
 
+            autodispose                           : [group: "com.uber.autodispose", name: "autodispose", version: version.autodispose],
+            autodispose_android_archcomponents    : [group: "com.uber.autodispose", name: "autodispose-android-archcomponents", version: version.autodispose],
             autodispose_android                   : [group: "com.uber.autodispose", name: "autodispose-android", version: version.autodispose],
             autodispose_ktx                       : [group: "com.uber.autodispose", name: "autodispose-ktx", version: version.autodispose],
             autodispose_android_ktx               : [group: "com.uber.autodispose", name: "autodispose-android-ktx", version: version.autodispose],
@@ -71,7 +75,7 @@ ext {
     ]
 
     maven_url = [
-            url: "http://192.168.1.107:8081"
+            url: "http://192.168.1.106:8081"
     ]
     maven = [
             MAVEN_REPO_RELEASE_URL : maven_url.url + "/repository/maven-releases/",

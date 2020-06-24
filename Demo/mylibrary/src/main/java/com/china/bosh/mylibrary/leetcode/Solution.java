@@ -7,7 +7,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * @author lzq
@@ -176,6 +178,16 @@ public class Solution {
         public ListNode next;
 
         public ListNode(int x) {
+            val = x;
+        }
+    }
+
+    public class TreeNode {
+        public int val;
+        public TreeNode left;
+        public TreeNode right;
+
+        public  TreeNode(int x) {
             val = x;
         }
     }
@@ -1338,11 +1350,11 @@ public class Solution {
                 }
                 if (sumInt(i) + sumInt(j) <= k) {
                     count++;
-                    if (i+1<m) {
-                        tmp[i+1][j] = true;
+                    if (i + 1 < m) {
+                        tmp[i + 1][j] = true;
                     }
-                    if (j +1 < n) {
-                        tmp[i][j+1] = true;
+                    if (j + 1 < n) {
+                        tmp[i][j + 1] = true;
                     }
                 }
             }
@@ -1358,5 +1370,227 @@ public class Solution {
         }
         tmp += x;
         return tmp;
+    }
+
+    /**
+     * 给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
+     * <p>
+     * 岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。
+     * <p>
+     * 此外，你可以假设该网格的四条边均被水包围。
+     * <p>
+     * 示例 1:
+     * <p>
+     * 输入:
+     * 11110
+     * 11010
+     * 11000
+     * 00000
+     * 输出: 1
+     * 示例 2:
+     * <p>
+     * 输入:
+     * 11000
+     * 11000
+     * 00100
+     * 00011
+     * 输出: 3
+     * 解释: 每座岛屿只能由水平和/或竖直方向上相邻的陆地连接而成。
+     * <p>
+     * 来源：力扣（LeetCode）
+     * 链接：https://leetcode-cn.com/problems/number-of-islands
+     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     */
+    public int numIslands(char[][] grid) {
+        int count = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '1') {
+                    count++;
+                    setIsland(grid, i, j);
+                }
+            }
+        }
+        return count;
+    }
+
+    private void setIsland(char[][] grid, int i, int j) {
+        grid[i][j] = '0';
+        if (i > 0 && grid[i - 1][j] == '1') {
+            setIsland(grid, i - 1, j);
+        }
+        if (i < grid.length - 1 && grid[i + 1][j] == '1') {
+            setIsland(grid, i + 1, j);
+        }
+        if (j > 0 && grid[i][j - 1] == '1') {
+            setIsland(grid, i, j - 1);
+        }
+        if (j < grid[0].length - 1 && grid[i][j + 1] == '1') {
+            setIsland(grid, i, j + 1);
+        }
+    }
+
+    /**
+     * 给你一个整数数组 nums 和一个整数 k。
+     * <p>
+     * 如果某个 连续 子数组中恰好有 k 个奇数数字，我们就认为这个子数组是「优美子数组」。
+     * <p>
+     * 请返回这个数组中「优美子数组」的数目。
+     * <p>
+     *  
+     * <p>
+     * 示例 1：
+     * <p>
+     * 输入：nums = [1,1,2,1,1], k = 3
+     * 输出：2
+     * 解释：包含 3 个奇数的子数组是 [1,1,2,1] 和 [1,2,1,1] 。
+     * 示例 2：
+     * <p>
+     * 输入：nums = [2,4,6], k = 1
+     * 输出：0
+     * 解释：数列中不包含任何奇数，所以不存在优美子数组。
+     * 示例 3：
+     * <p>
+     * 输入：nums = [2,2,2,1,2,2,1,2,2,2], k = 2
+     * 输出：16
+     *  
+     * <p>
+     * 提示：
+     * <p>
+     * 1 <= nums.length <= 50000
+     * 1 <= nums[i] <= 10^5
+     * 1 <= k <= nums.length
+     * <p>
+     * 来源：力扣（LeetCode）
+     * 链接：https://leetcode-cn.com/problems/count-number-of-nice-subarrays
+     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     */
+    public int numberOfSubarrays(int[] nums, int k) {
+        int[] oddIndex = new int[nums.length + 3];
+        int num = 0;
+        int index = 0;
+        oddIndex[index++] = -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 == 1) {
+                oddIndex[index++] = i;
+            }
+        }
+        if (index < k + 1) {
+            return 0;
+        }
+        oddIndex[index++] = nums.length;
+        oddIndex[index] = -1;
+        index = 1;
+        while (oddIndex[index + k] >= 0) {
+            num += (oddIndex[index] - oddIndex[index - 1]) * (oddIndex[index + k] - oddIndex[index + k - 1]);
+            index++;
+        }
+        return num;
+    }
+
+    /**
+     * 合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。
+     * <p>
+     * 示例:
+     * <p>
+     * 输入:
+     * [
+     *   1->4->5,
+     *   1->3->4,
+     *   2->6
+     * ]
+     * 输出: 1->1->2->3->4->4->5->6
+     * <p>
+     * 来源：力扣（LeetCode）
+     * 链接：https://leetcode-cn.com/problems/merge-k-sorted-lists
+     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     *
+     * @param lists
+     * @return
+     */
+    public ListNode mergeKLists(ListNode[] lists) {
+        return lists[0];
+    }
+
+    /**
+     * 给定一棵二叉树，设计一个算法，创建含有某一深度上所有节点的链表（比如，若一棵树的深度为 D，则会创建出 D 个链表）。返回一个包含所有深度的链表的数组。
+     *
+     *  
+     *
+     * 示例：
+     *
+     * 输入：[1,2,3,4,5,null,7,8]
+     *
+     *         1
+     *        /  \
+     *       2    3
+     *      / \    \
+     *     4   5    7
+     *    /
+     *   8
+     *
+     * 输出：[[1],[2,3],[4,5,7],[8]]
+     *
+     * 来源：力扣（LeetCode）
+     * 链接：https://leetcode-cn.com/problems/list-of-depth-lcci
+     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     * @param tree
+     * @return
+     */
+    public ListNode[] listOfDepth(TreeNode tree) {
+        List<ListNode> listNodes = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(tree);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            ListNode head = new ListNode(0);
+            ListNode node = head;
+            for (int i = 0; i < size; i++) {
+                TreeNode treeNode = queue.poll();
+                node.next = new ListNode(treeNode.val);
+                node = node.next;
+                if (treeNode.left != null) {
+                    queue.add(treeNode.left);
+                }
+                if (treeNode.right != null) {
+                    queue.add(treeNode.right);
+                }
+            }
+            listNodes.add(head.next);
+        }
+        return listNodes.toArray(new ListNode[0]);
+    }
+
+    /**
+     * 根据一棵树的前序遍历与中序遍历构造二叉树。
+     *
+     * 注意:
+     * 你可以假设树中没有重复的元素。
+     *
+     * 例如，给出
+     *
+     * 前序遍历 preorder = [3,9,20,15,7]
+     * 中序遍历 inorder = [9,3,15,20,7]
+     * 返回如下的二叉树：
+     *
+     *     3
+     *    / \
+     *   9  20
+     *     /  \
+     *    15   7
+     *
+     *
+     * 来源：力扣（LeetCode）
+     * 链接：https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal
+     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+     * @param preorder
+     * @param inorder
+     * @return
+     */
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        int preIndex = 0;
+        int inIndex = 0;
+        TreeNode node = new TreeNode(preorder[preIndex]);
+        return node;
     }
 }

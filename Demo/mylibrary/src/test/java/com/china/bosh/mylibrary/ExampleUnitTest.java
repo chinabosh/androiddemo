@@ -212,7 +212,7 @@ public class ExampleUnitTest {
     @Test
     public void testThreeNum() throws Exception {
         Solution solution = new Solution();
-        int[] nums = new int[]{-1,0, 1,2,-1,-4};
+        int[] nums = new int[]{-1, 0, 1, 2, -1, -4};
 //        int[] nums = new int[]{3,0,-2,-1,1,2};
         List<List<Integer>> list = solution.threeSum(nums);
         System.out.print(list);
@@ -221,14 +221,14 @@ public class ExampleUnitTest {
     @Test
     public void testMinIncrementForUnique() throws Exception {
         Solution solution = new Solution();
-        assertEquals(6, solution.minIncrementForUnique(new int[]{3,2,1,2,1,7}));
-        assertEquals(1, solution.minIncrementForUnique(new int[]{0,2,0}));
-        assertEquals(1, solution.minIncrementForUnique(new int[]{1,2,2}));
-        assertEquals(5, solution.minIncrementForUnique(new int[]{7,7,8,9,9}));
-        assertEquals(5, solution.minIncrementForUnique(new int[]{2,1,1,1}));
-        assertEquals(3, solution.minIncrementForUnique(new int[]{2,2,2,1}));
-        assertEquals(393, solution.minIncrementForUnique(new int[]{87,46,87,13,56,1,93,0,38,80,99,1,82,51,3,77,11,61,77,67,37,2,43,91,33,24,13,51,53,7,40,65,96,43,43,47,22,39,64,39,58,83,99,88,37,2,61,47,23,4,32,79,96,10,87,4,71,2,42,87,39,92,71,60,16,34,41,59,99,28,50,93,34,62,76,63,75,19,95,17,58,29,63,29,43,68,26,72,34,13,61,16,43,39,7,71,68,77,54,55}));
-        assertEquals(1838, solution.minIncrementForUnique(new int[]{25,62,36,17,15,7,9,53,9,57,54,9,36,0,56,36,49,32,45,61,36,57,22,6,0,14,55,20,14,32,62,33,22,5,37,14,24,25,50,15,61,48,31,58,23,25,8,51,26,33,31,43,24,60,28,23,26,50,65,57,31,19,29,22,16,12,63,32,7,25,25,33,64,64,37,40,44,33,32,20,45,6,20,58,15,63,64,37,2,6,13,21,7,52,24,15,2,25,0,7}));
+        assertEquals(6, solution.minIncrementForUnique(new int[]{3, 2, 1, 2, 1, 7}));
+        assertEquals(1, solution.minIncrementForUnique(new int[]{0, 2, 0}));
+        assertEquals(1, solution.minIncrementForUnique(new int[]{1, 2, 2}));
+        assertEquals(5, solution.minIncrementForUnique(new int[]{7, 7, 8, 9, 9}));
+        assertEquals(5, solution.minIncrementForUnique(new int[]{2, 1, 1, 1}));
+        assertEquals(3, solution.minIncrementForUnique(new int[]{2, 2, 2, 1}));
+        assertEquals(393, solution.minIncrementForUnique(new int[]{87, 46, 87, 13, 56, 1, 93, 0, 38, 80, 99, 1, 82, 51, 3, 77, 11, 61, 77, 67, 37, 2, 43, 91, 33, 24, 13, 51, 53, 7, 40, 65, 96, 43, 43, 47, 22, 39, 64, 39, 58, 83, 99, 88, 37, 2, 61, 47, 23, 4, 32, 79, 96, 10, 87, 4, 71, 2, 42, 87, 39, 92, 71, 60, 16, 34, 41, 59, 99, 28, 50, 93, 34, 62, 76, 63, 75, 19, 95, 17, 58, 29, 63, 29, 43, 68, 26, 72, 34, 13, 61, 16, 43, 39, 7, 71, 68, 77, 54, 55}));
+        assertEquals(1838, solution.minIncrementForUnique(new int[]{25, 62, 36, 17, 15, 7, 9, 53, 9, 57, 54, 9, 36, 0, 56, 36, 49, 32, 45, 61, 36, 57, 22, 6, 0, 14, 55, 20, 14, 32, 62, 33, 22, 5, 37, 14, 24, 25, 50, 15, 61, 48, 31, 58, 23, 25, 8, 51, 26, 33, 31, 43, 24, 60, 28, 23, 26, 50, 65, 57, 31, 19, 29, 22, 16, 12, 63, 32, 7, 25, 25, 33, 64, 64, 37, 40, 44, 33, 32, 20, 45, 6, 20, 58, 15, 63, 64, 37, 2, 6, 13, 21, 7, 52, 24, 15, 2, 25, 0, 7}));
     }
 
     @Test
@@ -246,37 +246,37 @@ public class ExampleUnitTest {
     @Test
     public void testMessage() throws Exception {
         Solution solution = new Solution();
-        assertEquals(4, solution.message(new int[]{1,2,3,1}));
-        assertEquals(12, solution.message(new int[]{2,7,9,3,1}));
-        assertEquals(12, solution.message(new int[]{2,1,4,5,3,1,1,3}));
+        assertEquals(4, solution.message(new int[]{1, 2, 3, 1}));
+        assertEquals(12, solution.message(new int[]{2, 7, 9, 3, 1}));
+        assertEquals(12, solution.message(new int[]{2, 1, 4, 5, 3, 1, 1, 3}));
     }
 
     @Test
     public void testSurfaceArea() throws Exception {
         Solution solution = new Solution();
         assertEquals(10, solution.surfaceArea(new int[][]{{2}}));
-        assertEquals(34, solution.surfaceArea(new int[][]{{1,2},{3,4}}));
-        assertEquals(16, solution.surfaceArea(new int[][]{{1,0},{0,2}}));
-        assertEquals(32, solution.surfaceArea(new int[][]{{1,1,1},{1,0,1},{1,1,1}}));
-        assertEquals(46, solution.surfaceArea(new int[][]{{2,2,2},{2,1,2},{2,2,2}}));
+        assertEquals(34, solution.surfaceArea(new int[][]{{1, 2}, {3, 4}}));
+        assertEquals(16, solution.surfaceArea(new int[][]{{1, 0}, {0, 2}}));
+        assertEquals(32, solution.surfaceArea(new int[][]{{1, 1, 1}, {1, 0, 1}, {1, 1, 1}}));
+        assertEquals(46, solution.surfaceArea(new int[][]{{2, 2, 2}, {2, 1, 2}, {2, 2, 2}}));
     }
 
     @Test
     public void testNumRookCaptures() throws Exception {
         Solution solution = new Solution();
-        assertEquals(3, solution.numRookCaptures(new char[][]{{'.','.','.','.','.','.','.','.'},{'.','.','.','p','.','.','.','.'},{'.','.','.','R','.','.','.','p'},{'.','.','.','.','.','.','.','.'},{'.','.','.','.','.','.','.','.'},{'.','.','.','p','.','.','.','.'},{'.','.','.','.','.','.','.','.'},{'.','.','.','.','.','.','.','.'}}));
-        assertEquals(0, solution.numRookCaptures(new char[][]{{'.','.','.','.','.','.','.','.'},{'.','p','p','p','p','p','.','.'},{'.','p','p','B','p','p','.','.'},{'.','p','B','R','B','p','.','.'},{'.','p','p','B','p','p','.','.'},{'.','p','p','p','p','p','.','.'},{'.','.','.','.','.','.','.','.'},{'.','.','.','.','.','.','.','.'}}));
-        assertEquals(3, solution.numRookCaptures(new char[][]{{'.','.','.','.','.','.','.','.'},{'.','.','.','p','.','.','.','.'},{'.','.','.','p','.','.','.','.'},{'p','p','.','R','.','p','B','.'},{'.','.','.','.','.','.','.','.'},{'.','.','.','B','.','.','.','.'},{'.','.','.','p','.','.','.','.'},{'.','.','.','.','.','.','.','.'}}));
+        assertEquals(3, solution.numRookCaptures(new char[][]{{'.', '.', '.', '.', '.', '.', '.', '.'}, {'.', '.', '.', 'p', '.', '.', '.', '.'}, {'.', '.', '.', 'R', '.', '.', '.', 'p'}, {'.', '.', '.', '.', '.', '.', '.', '.'}, {'.', '.', '.', '.', '.', '.', '.', '.'}, {'.', '.', '.', 'p', '.', '.', '.', '.'}, {'.', '.', '.', '.', '.', '.', '.', '.'}, {'.', '.', '.', '.', '.', '.', '.', '.'}}));
+        assertEquals(0, solution.numRookCaptures(new char[][]{{'.', '.', '.', '.', '.', '.', '.', '.'}, {'.', 'p', 'p', 'p', 'p', 'p', '.', '.'}, {'.', 'p', 'p', 'B', 'p', 'p', '.', '.'}, {'.', 'p', 'B', 'R', 'B', 'p', '.', '.'}, {'.', 'p', 'p', 'B', 'p', 'p', '.', '.'}, {'.', 'p', 'p', 'p', 'p', 'p', '.', '.'}, {'.', '.', '.', '.', '.', '.', '.', '.'}, {'.', '.', '.', '.', '.', '.', '.', '.'}}));
+        assertEquals(3, solution.numRookCaptures(new char[][]{{'.', '.', '.', '.', '.', '.', '.', '.'}, {'.', '.', '.', 'p', '.', '.', '.', '.'}, {'.', '.', '.', 'p', '.', '.', '.', '.'}, {'p', 'p', '.', 'R', '.', 'p', 'B', '.'}, {'.', '.', '.', '.', '.', '.', '.', '.'}, {'.', '.', '.', 'B', '.', '.', '.', '.'}, {'.', '.', '.', 'p', '.', '.', '.', '.'}, {'.', '.', '.', '.', '.', '.', '.', '.'}}));
     }
 
     @Test
     public void testHasGroupsSizeX() throws Exception {
         Solution solution = new Solution();
-        assertTrue(solution.hasGroupsSizeX(new int[]{1,2,3,4,4,3,2,1}));
-        assertFalse(solution.hasGroupsSizeX(new int[]{1,1,1,2,2,2,3,3}));
+        assertTrue(solution.hasGroupsSizeX(new int[]{1, 2, 3, 4, 4, 3, 2, 1}));
+        assertFalse(solution.hasGroupsSizeX(new int[]{1, 1, 1, 2, 2, 2, 3, 3}));
         assertFalse(solution.hasGroupsSizeX(new int[]{1}));
-        assertTrue(solution.hasGroupsSizeX(new int[]{1,1}));
-        assertTrue(solution.hasGroupsSizeX(new int[]{1,1, 2,2,2,2}));
+        assertTrue(solution.hasGroupsSizeX(new int[]{1, 1}));
+        assertTrue(solution.hasGroupsSizeX(new int[]{1, 1, 2, 2, 2, 2}));
     }
 
     @Test
@@ -289,18 +289,18 @@ public class ExampleUnitTest {
     @Test
     public void testTrap() {
         Solution solution = new Solution();
-        assertEquals(6, solution.trap(new int[]{0,1,0,2,1,0,1,3,2,1,2,1}));
+        assertEquals(6, solution.trap(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));
     }
 
     @Test
     public void testRotate() {
         Solution solution = new Solution();
-        int[][] matrix = new int[][]{{1,2,3}, {4,5,6}, {7,8,9}};
+        int[][] matrix = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         solution.rotate(matrix);
-        int[][] resMatrix = new int[][]{{7,4,1}, {8,5,2}, {9,6,3}};
+        int[][] resMatrix = new int[][]{{7, 4, 1}, {8, 5, 2}, {9, 6, 3}};
         assertArrayEquals(matrix, resMatrix);
-        matrix = new int[][]{{5,1,9,11}, {2,4,8,10}, {13,3,6,7}, {15,14,12,16}};
-        resMatrix = new int[][]{{15,13,2,5},{14,3,4,1},{12,6,8,9},{16,7,10,11}};
+        matrix = new int[][]{{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
+        resMatrix = new int[][]{{15, 13, 2, 5}, {14, 3, 4, 1}, {12, 6, 8, 9}, {16, 7, 10, 11}};
         solution.rotate(matrix);
         assertArrayEquals(matrix, resMatrix);
     }
@@ -308,9 +308,80 @@ public class ExampleUnitTest {
     @Test
     public void testMovingCount() {
         Solution solution = new Solution();
-        assertEquals(3, solution.movingCount(2,3,1));
-        assertEquals(1, solution.movingCount(3,1,0));
-        assertEquals(88, solution.movingCount(11,8,16));
-        assertEquals(135, solution.movingCount(38,15,9));
+        assertEquals(3, solution.movingCount(2, 3, 1));
+        assertEquals(1, solution.movingCount(3, 1, 0));
+        assertEquals(88, solution.movingCount(11, 8, 16));
+        assertEquals(135, solution.movingCount(38, 15, 9));
+    }
+
+    @Test
+    public void testNumIslands() {
+        Solution solution = new Solution();
+        char[][] grid = new char[][]{{'1', '1', '1', '1', '0'},
+                {'1', '1', '0', '1', '0'},
+                {'1', '1', '0', '0', '0'},
+                {'0', '0', '0', '0', '0'}};
+        assertEquals(1, solution.numIslands(grid));
+        grid = new char[][]{{'1', '1', '0', '0', '0'},
+                {'1', '1', '0', '0', '0'},
+                {'0', '0', '1', '0', '0'},
+                {'0', '0', '0', '1', '1'}};
+        assertEquals(3, solution.numIslands(grid));
+    }
+
+    @Test
+    public void testNumberOfSubarrays() {
+        Solution solution = new Solution();
+        int[] nums = new int[]{1, 1, 2, 1, 1};
+        assertEquals(2, solution.numberOfSubarrays(nums, 3));
+        nums = new int[]{2, 4, 6};
+        assertEquals(0, solution.numberOfSubarrays(nums, 1));
+        nums = new int[]{2, 2, 2, 1, 2, 2, 1, 2, 2, 2};
+        assertEquals(16, solution.numberOfSubarrays(nums, 2));
+        nums = new int[]{1, 1, 1, 1, 1};
+        assertEquals(5, solution.numberOfSubarrays(nums, 1));
+    }
+
+    @Test
+    public void testMergeKLists() {
+        Solution solution = new Solution();
+        Solution.ListNode[] lists = new Solution.ListNode[3];
+        Solution.ListNode node1 = solution.new ListNode(1);
+        node1.next = solution.new ListNode(4);
+        node1.next.next = solution.new ListNode(5);
+        lists[0] = node1;
+        Solution.ListNode node2 = solution.new ListNode(1);
+        node2.next = solution.new ListNode(3);
+        node2.next.next = solution.new ListNode(4);
+        lists[1] = node2;
+        Solution.ListNode node3 = solution.new ListNode(2);
+        node3.next = solution.new ListNode(6);
+        lists[2] = node3;
+        Solution.ListNode node = solution.mergeKLists(lists);
+        while (node != null) {
+            System.out.print(node.val + " ");
+            node = node.next;
+        }
+    }
+
+    @Test
+    public void testListOfDepth() {
+        Solution solution = new Solution();
+        Solution.TreeNode treeNode = solution.new TreeNode(1);
+        treeNode.left = solution.new TreeNode(2);
+        treeNode.right = solution.new TreeNode(3);
+        treeNode.left.left = solution.new TreeNode(4);
+        treeNode.left.right = solution.new TreeNode(5);
+        treeNode.right.right = solution.new TreeNode(7);
+        treeNode.left.left.left = solution.new TreeNode(8);
+        Solution.ListNode[] listNodes = solution.listOfDepth(treeNode);
+        for (Solution.ListNode node : listNodes) {
+            Solution.ListNode tmp = node;
+            while (tmp != null) {
+                System.out.print(tmp.val);
+                tmp = tmp.next;
+            }
+            System.out.print("\t");
+        }
     }
 }

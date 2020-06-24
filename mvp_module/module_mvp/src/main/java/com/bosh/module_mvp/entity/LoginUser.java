@@ -5,6 +5,7 @@ package com.bosh.module_mvp.entity;
  * @date 2019-07-17
  */
 public class LoginUser {
+    private long id;
     private String name;
     private String sex;
     private String age;

@@ -1,5 +1,9 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="UnusedResources">
     <string name="app_name">BoshDemo</string>
     <string name="app_title_activity_recycler_view"
         tools:ignore="UnusedResources">RecyclerViewActivity</string>
+    <string name="app_not_support" >暂不支持</string>
+    <string name="app_main_menu">主菜单</string>
+    <string name="app_menu">菜单</string>
 </resources>

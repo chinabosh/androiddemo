@@ -10,6 +10,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Converter;
 
 /**
+ * decode response body by base64
  * @author lzq
  * @date 2019-09-05
  */

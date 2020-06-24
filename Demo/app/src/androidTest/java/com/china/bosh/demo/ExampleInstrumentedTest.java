@@ -1,8 +1,10 @@
-package com.china.bosh.demo.demo;
+package com.china.bosh.demo;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+import android.graphics.Color;
+
+import androidx.test.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,5 +24,15 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.china.bosh.demo.demo", appContext.getPackageName());
+    }
+
+    @Test
+    public void testParseColor() {
+        long beforeTime = System.currentTimeMillis();
+        for (int i = 0; i < 10000; i++) {
+            Color.parseColor("#003fb0");
+        }
+        long afterTime = System.currentTimeMillis();
+        System.out.println("用时（ms）：" + (afterTime - beforeTime));
     }
 }

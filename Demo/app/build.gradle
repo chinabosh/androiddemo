@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.bosh.component.library'
+//apply plugin: 'com.tencent.tinker.patch'
 
 android {
     compileSdkVersion build_version.compileSdkVersion
@@ -60,8 +61,11 @@ dependencies {
     if (isModule.toBoolean()) {
 //        implementation project(':mylibrary')
     } else {
-        api 'com.bosh.demo:library:0.0.6'
+//        api 'com.bosh.demo:library:0.0.10'
         implementation project(':module_demo')
+        implementation project(':module_kotlin')
+        implementation project(':module_mvp')
+        implementation project(':module_mvvm')
 //        api 'com.bosh.demo:moduledemo:0.0.5'
     }
 
@@ -69,8 +73,15 @@ dependencies {
     annotationProcessor libs.butterknife_compiler
 
     annotationProcessor libs.arouter_compiler
+
+    //optional, help to generate the final application
+//    annotationProcessor('com.tencent.tinker:tinker-android-anno:1.9.1')
+    //tinker's main Android lib
+//    api('com.tencent.tinker:tinker-android-lib:1.9.1')
+
+//    debugImplementation('com.squareup.leakcanary:leakcanary-android:2.2')
 }
 
 config {
-    enableRestrictToTransform false
+    enableRestrictToTransform true//TODO 为false时，打的包没有dex文件
 }

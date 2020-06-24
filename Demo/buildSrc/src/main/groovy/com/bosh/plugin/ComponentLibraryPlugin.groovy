@@ -73,9 +73,11 @@ class ComponentLibraryPlugin implements Plugin<Project> {
 //                android.sourceSets.each {set ->
 //
 //                }
-                project.android.sourceSets.each { set ->
-                    if ("main".equals(set.name)) {
-                        GenerateRestrictTo.searchSourcePackage(set.java.srcDirs)
+                if (configExtension.enableRestrictToTransform) {
+                    project.android.sourceSets.each { set ->
+                        if ("main".equals(set.name)) {
+                            GenerateRestrictTo.searchSourcePackage(set.java.srcDirs)
+                        }
                     }
                 }
 
@@ -84,7 +86,7 @@ class ComponentLibraryPlugin implements Plugin<Project> {
                     it.dependencies.each {
                         if (it.group != null && it.name != null && it.version != null && !it.group.equals(project.rootProject.name)) {
                             if (!dwe.dependenciesWhiteList.contains(it.group + ":" + it.name + ":" + it.version)) {
-                                throw new GradleException("the dependency:\"" + it.group + ":" + it.name + ":" + it.version + "\" don't in the white list!")
+                                throw new GradleException("project:" + project.name + "," + "the dependency:\"" + it.group + ":" + it.name + ":" + it.version + "\" don't in the white list!")
                             }
                         }
                     }

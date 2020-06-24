@@ -1,7 +1,9 @@
-package com.china.bosh.demo.demo;
+package com.china.bosh.demo;
 
-import org.junit.Assert;
+import android.graphics.Color;
+
 import org.junit.Test;
+
 
 import static org.junit.Assert.*;
 

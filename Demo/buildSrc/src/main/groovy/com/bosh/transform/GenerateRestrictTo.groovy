@@ -119,6 +119,10 @@ class GenerateRestrictTo {
 
     static boolean checkResourceAndRepeat(String name) {
         def res = false
+        def type = name.substring(name.lastIndexOf(".") + 1, name.length())
+        if ("txt".equals(type)) {
+            return false
+        }
         CtClass ctClass = classPool.get(name)
         boolean isInSource = false
         for (item in sourceDirs) {
@@ -224,6 +228,9 @@ class GenerateRestrictTo {
                 InputStream inputStream = file.getInputStream(jarEntry)
                 jarOutputStream.putNextEntry(zipEntry)
 //                Logger.w("entryName:" + entryName)
+                if (!entryName.contains(".class")) {
+                    continue
+                }
                 String name = entryName.replaceAll(File.separator, ".").replace(".class", "")
                 if (checkResourceAndRepeat(name)) {
                     def cc = classPool.get(name)

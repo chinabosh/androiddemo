@@ -13,6 +13,7 @@ import okhttp3.RequestBody;
 import retrofit2.Converter;
 
 /**
+ * encode request body by base64
  * @author lzq
  * @date 2019-09-05
  */

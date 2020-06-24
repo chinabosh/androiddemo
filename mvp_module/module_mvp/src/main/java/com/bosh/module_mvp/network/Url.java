@@ -7,7 +7,7 @@ import com.bosh.module_mvp.BuildConfig;
  * @date 2019-07-12
  */
 public class Url {
-    public static final String BASE_URL = BuildConfig.BASE_URL;
+    public static final String BASE_URL = "http://47.111.166.134:8080/";
 
     public static final String LOGIN = "hello";
 }

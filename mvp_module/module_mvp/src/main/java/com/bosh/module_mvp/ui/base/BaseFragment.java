@@ -1,6 +1,8 @@
 package com.bosh.module_mvp.ui.base;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 
-import com.afollestad.materialdialogs.GravityEnum;
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.bosh.module_mvp.R;
 import com.bosh.module_mvp.injector.components.DaggerFragmentComponent;
 import com.bosh.module_mvp.injector.components.FragmentComponent;
@@ -45,7 +45,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
 
     protected View mRootView;
     public Activity mActivity;
-    private MaterialDialog progressDialog;
+    private Dialog progressDialog;
 
     protected P mPresenter;
     /**
@@ -122,13 +122,8 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
                 .as(bindLifecycle())
                 .subscribe(s -> {
                     if (progressDialog == null || !progressDialog.isShowing()) {
-                        progressDialog = new MaterialDialog.Builder(mActivity)
-                                .content(content)
-                                .contentGravity(GravityEnum.CENTER)
-                                .cancelable(false)
-                                .canceledOnTouchOutside(false)
-                                .progressIndeterminateStyle(false)
-                                .progress(true, 0)
+                        progressDialog = new AlertDialog.Builder(mActivity)
+                                .setMessage(content)
                                 .show();
                     }
                 });

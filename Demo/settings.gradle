@@ -1,7 +1,17 @@
-include ':app', ':lib', ':libs', ':buildSrc'
+include ':app', ':buildSrc'
 
 if(!isModule.toBoolean()) {
     include ':mylibrary'
     project(':mylibrary').projectDir = new File('./mylibrary')
+
     include ':module_demo'
+
+    include ':module_kotlin'
+    project(':module_kotlin').projectDir = new File('../kotlin_module/module_kotlin')
+
+    include ':module_mvp'
+    project(':module_mvp').projectDir = new File('../mvp_module/module_mvp')
+
+    include ':module_mvvm'
+    project(':module_mvvm').projectDir = new File('../mvvm_module/module_mvvm')
 }

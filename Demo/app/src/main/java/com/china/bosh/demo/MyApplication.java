@@ -1,6 +1,9 @@
 package com.china.bosh.demo;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
 import android.os.Build;
 
 import androidx.annotation.RestrictTo;
@@ -15,6 +18,8 @@ import com.china.bosh.mylibrary.utils.NotificationChannels;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author lzq
@@ -39,6 +44,7 @@ public class MyApplication extends BaseApplication {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             initNotification();
         }
+        initShortCuts(this);
     }
 
     @Override
@@ -77,5 +83,31 @@ public class MyApplication extends BaseApplication {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void initShortCuts(Context context) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
+            List<ShortcutInfo> list = new ArrayList<>();
+            List<String> labels =  new ArrayList<>();
+            labels.add("demo模块");
+            labels.add("kotlin模块");
+            labels.add("mvp模块");
+            labels.add("mvvm模块");
+            int count = 4;
+            for (int i = 0; i < count; i++) {
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.putExtra("intent_type", i);
+                intent.setAction(Intent.ACTION_VIEW);
+                ShortcutInfo info = new ShortcutInfo.Builder(context, "id" + i)
+                        .setShortLabel(labels.get(i))
+                        .setLongLabel("跳转模块：" + labels.get(i))
+                        .setIntent(intent)
+                        .build();
+                list.add(info);
+            }
+            shortcutManager.addDynamicShortcuts(list);
+        }
+
     }
 }
