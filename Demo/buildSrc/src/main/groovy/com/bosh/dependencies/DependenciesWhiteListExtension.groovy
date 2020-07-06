@@ -43,7 +43,9 @@ class DependenciesWhiteListExtension {
         dependenciesWhiteList.add("com.afollestad.material-dialogs:core:0.9.6.0")
 
         dependenciesWhiteList.add("com.jakewharton:butterknife-compiler:10.1.0")
+        dependenciesWhiteList.add("com.jakewharton:butterknife-compiler:10.2.1")
         dependenciesWhiteList.add("com.jakewharton:butterknife:10.1.0")
+        dependenciesWhiteList.add("com.jakewharton:butterknife:10.2.1")
 
         dependenciesWhiteList.add("com.alibaba:arouter-compiler:1.2.2")
 
@@ -57,6 +59,8 @@ class DependenciesWhiteListExtension {
         dependenciesWhiteList.add("com.squareup.leakcanary:leakcanary-android:2.2")
 
         dependenciesWhiteList.add("com.android.tools.build:aapt2:3.4.2-5326820")//? 哪里来的依赖
+        dependenciesWhiteList.add("com.android.tools.build:aapt2:4.0.0-6051327")
+        dependenciesWhiteList.add("com.android.tools.lint:lint-gradle:27.0.0")
     }
 
 }

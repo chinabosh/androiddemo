@@ -198,10 +198,11 @@ public class LogUtils {
                     if(msg == null){
                         continue;
                     }
+                    Date currentDate = new Date();
                     //log日志名，使用时间命名，保证不重复
-                    String fileName = logPath + "/" + dateFormat.format(new Date()) + ".log";
+                    String fileName = logPath + "/" + dateFormat.format(currentDate) + ".log";
                     //log日志内容，可以自行定制
-                    String log = "\r\n" + logDateFormat.format(new Date()) + ":" + msg;
+                    String log = "\r\n" + logDateFormat.format(currentDate) + ":" + msg;
 
                     //如果父路径不存在
                     File file = new File(logPath);
@@ -218,8 +219,6 @@ public class LogUtils {
                         bw = new BufferedWriter(new OutputStreamWriter(fos));
                         bw.write(log);
 
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
                     } catch (IOException e) {
                         e.printStackTrace();
                     } finally {

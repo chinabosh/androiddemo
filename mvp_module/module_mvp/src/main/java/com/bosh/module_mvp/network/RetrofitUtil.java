@@ -53,17 +53,18 @@ public class RetrofitUtil {
                         request.url(), request.headers()));
                 String method = request.method();
                 if ("POST".equals(method)) {
-                    if (request != null) {
-                        Buffer buffer = new Buffer();
-                        if (buffer.size() <= 10000000) {
+                    Buffer buffer = new Buffer();
+                    if (buffer.size() <= 10000000) {
+                        if (request.body() != null) {
                             request.body().writeTo(buffer);
-                            Log.i("http请求入参" , "[" + t1 + "]" + "Sending RequestParams:" + buffer.readUtf8());
                         }
+                        Log.i("http请求入参" , "[" + t1 + "]" + "Sending RequestParams:" + buffer.readUtf8());
                     }
                 }
 
             }
             Response response = chain.proceed(request);
+            assert response.body() != null;
             MediaType mediaType = response.body().contentType();
             String content = response.body().string();
             long t2 = System.nanoTime();
@@ -88,8 +89,8 @@ public class RetrofitUtil {
         mApiService = retrofit.create(ApiService.class);
     }
 
-    public Observable<ResponseData> login(String account, String pwd) {
-        HashMap map = new HashMap(4);
+    public <T> Observable<ResponseData<T>> login(String account, String pwd) {
+        HashMap<String, Object> map = new HashMap<>(4);
         map.put("account", account);
         map.put("pwd", pwd);
         return mApiService.login(map);

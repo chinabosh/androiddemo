@@ -27,6 +27,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
     private LoginContract.Model mModel;
 
     @Inject
+    @SuppressWarnings("rawtypes")
     public LoginPresenter(BaseActivity activity) {
         mModel = new LoginModel();
     }
@@ -59,7 +60,8 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
         String pwd = mView.getPassword();
         mModel.login(account, pwd)
                 .observeOn(AndroidSchedulers.mainThread())
-                .as(bindLifecycle())//与view生命周期关联
+                //与view生命周期关联
+                .as(bindLifecycle())
                 .subscribe(user -> {
                     SpUtils.getInstance().putString(Constants.SP_ACCOUNT, account);
                     mModel.setUser(user);

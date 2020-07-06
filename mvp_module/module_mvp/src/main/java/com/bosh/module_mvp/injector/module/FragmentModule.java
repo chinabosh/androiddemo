@@ -10,6 +10,7 @@ import dagger.Provides;
  * @date 2019-07-17
  */
 @Module
+@SuppressWarnings("rawtypes")
 public class FragmentModule {
     private BaseFragment fragment;
 

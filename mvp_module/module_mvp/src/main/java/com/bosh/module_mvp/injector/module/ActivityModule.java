@@ -13,6 +13,7 @@ import dagger.Provides;
  * @date 2019-07-15
  */
 @Module
+@SuppressWarnings("rawtypes")
 public class ActivityModule {
 
     private BaseActivity activity;

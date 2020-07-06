@@ -4,7 +4,7 @@ package com.bosh.module_mvp.network;
  * @author bosh
  * @date 2019-07-12
  */
-public class ResponseData<T extends Object> {
+public class ResponseData<T> {
     private String code;
     private String msg;
     private T data;

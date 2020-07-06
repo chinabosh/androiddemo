@@ -14,5 +14,5 @@ import retrofit2.http.POST;
 public interface ApiService {
 
     @POST(Url.LOGIN)
-    Observable<ResponseData> login(@Body Map map);
+    <T> Observable<ResponseData<T>> login(@Body Map map);
 }

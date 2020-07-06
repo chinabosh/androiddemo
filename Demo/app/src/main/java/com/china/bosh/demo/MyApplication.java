@@ -4,12 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
+import android.content.res.Resources;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 
+import androidx.annotation.RequiresApi;
 import androidx.annotation.RestrictTo;
 import androidx.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bumptech.glide.load.engine.Resource;
 import com.china.bosh.demo.BuildConfig;
 import com.china.bosh.mylibrary.application.BaseApplication;
 import com.china.bosh.mylibrary.db.DaoManager;
@@ -63,7 +67,7 @@ public class MyApplication extends BaseApplication {
     /**
      * 解决android P出现Detected problems with API compatibility 弹窗问题
      */
-    @SuppressWarnings({"unchecked", "PrivateApi"})
+    @SuppressWarnings({"unchecked", "PrivateApi", "DiscouragedPrivateApi"})
     private void closeAndroidPDialog(){
         try {
             Class aClass = Class.forName("android.content.pm.PackageParser$Package");
@@ -94,6 +98,7 @@ public class MyApplication extends BaseApplication {
             labels.add("kotlin模块");
             labels.add("mvp模块");
             labels.add("mvvm模块");
+            List<Icon> icons = getIcons();
             int count = 4;
             for (int i = 0; i < count; i++) {
                 Intent intent = new Intent(context, MainActivity.class);
@@ -103,11 +108,22 @@ public class MyApplication extends BaseApplication {
                         .setShortLabel(labels.get(i))
                         .setLongLabel("跳转模块：" + labels.get(i))
                         .setIntent(intent)
+                        .setIcon(icons.get(i))
                         .build();
                 list.add(info);
             }
             shortcutManager.addDynamicShortcuts(list);
         }
+    }
 
+    private List<Icon> getIcons() {
+        List<Icon> icons = new ArrayList<>();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            icons.add(Icon.createWithResource(this, R.drawable.app_ic_demo));
+            icons.add(Icon.createWithResource(this, R.drawable.app_ic_kotlin));
+            icons.add(Icon.createWithResource(this, R.drawable.app_ic_kotlin));
+            icons.add(Icon.createWithResource(this, R.drawable.app_ic_kotlin));
+        }
+        return icons;
     }
 }

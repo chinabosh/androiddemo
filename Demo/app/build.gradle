@@ -27,6 +27,10 @@ android {
         resourcePrefix 'app_'
     }
 
+    packagingOptions {
+        exclude 'org/apache/commons/codec/language/bm/gen_approx_greeklatin.txt'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -47,6 +51,7 @@ android {
     lintOptions {
         abortOnError true
         warningsAsErrors true
+        ignore "IconDensities","Overdraw"
     }
 }
 

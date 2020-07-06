@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 @Open
 public class HookHelper {
 
-    @SuppressWarnings("PrivateApi")
+    @SuppressWarnings({"PrivateApi", "DiscouragedPrivateApi"})
     public static void hookOnClickListener(View view, IHookClickListener listener) throws Exception {
         Method getListenerInfo = View.class.getDeclaredMethod("getListenerInfo");
         getListenerInfo.setAccessible(true);

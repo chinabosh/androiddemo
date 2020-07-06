@@ -1,10 +1,16 @@
 package com.china.bosh.mylibrary.utils;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
+
+import androidx.annotation.DrawableRes;
+
+import com.china.bosh.mylibrary.provider.ContextProvider;
 
 /**
  * @author lzq
@@ -25,6 +31,13 @@ public class ImageUtil {
         Canvas canvas = new Canvas(bitmap);
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         drawable.draw(canvas);
+        return bitmap;
+    }
+
+    public static Bitmap getBmFromRs(@DrawableRes int id) {
+        Bitmap bitmap = null;
+        Resources res = ContextProvider.get().getContext().getResources();
+        bitmap = BitmapFactory.decodeResource(res, id);
         return bitmap;
     }
 }

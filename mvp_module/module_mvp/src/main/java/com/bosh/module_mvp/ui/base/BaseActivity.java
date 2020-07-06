@@ -50,10 +50,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * @author bosh
  * @date 2019-07-15
  */
+@SuppressWarnings("rawtypes")
 public abstract class BaseActivity<P extends BasePresenter> extends FragmentActivity implements IView {
 
-    private static float mNoncompatDensity;
-    private static float mNoncompatScaledDensity;
+    private static float mNonCompatDensity;
+    private static float mNonCompatScaledDensity;
     private Dialog progressDialog;
 
     @Inject
@@ -71,7 +72,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends FragmentActi
 
     /**
      * dagger依赖注入
-     * @param component
+     * @param component activity component
      */
     protected abstract void initInject(ActivityComponent component);
 
@@ -86,8 +87,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends FragmentActi
     protected abstract void initData();
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        if (Build.VERSION.SDK_INT == 26 && this.isTranslucentOrFloating()) {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O && this.isTranslucentOrFloating()) {
             this.fixOrientation();
         }
 
@@ -241,14 +243,14 @@ public abstract class BaseActivity<P extends BasePresenter> extends FragmentActi
 
     private static void setCustomDensity(@NonNull Activity activity, @NonNull final Application application) {
         DisplayMetrics appDisplayMetrics = application.getResources().getDisplayMetrics();
-        if (mNoncompatDensity == 0.0F) {
-            mNoncompatDensity = appDisplayMetrics.density;
-            mNoncompatScaledDensity = appDisplayMetrics.scaledDensity;
+        if (Math.abs(mNonCompatDensity) < 1e-6f) {
+            mNonCompatDensity = appDisplayMetrics.density;
+            mNonCompatScaledDensity = appDisplayMetrics.scaledDensity;
             application.registerComponentCallbacks(new ComponentCallbacks() {
                 @Override
                 public void onConfigurationChanged(Configuration newConfig) {
                     if (newConfig != null && newConfig.fontScale > 0.0F) {
-                        mNoncompatScaledDensity = application.getResources().getDisplayMetrics().scaledDensity;
+                        mNonCompatScaledDensity = application.getResources().getDisplayMetrics().scaledDensity;
                     }
 
                 }
@@ -260,7 +262,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends FragmentActi
         }
 
         float targetDensity = (float)(appDisplayMetrics.widthPixels / 360);
-        float targetScaledDensity = targetDensity * (mNoncompatScaledDensity / mNoncompatDensity);
+        float targetScaledDensity = targetDensity * (mNonCompatScaledDensity / mNonCompatDensity);
         int targetDensityDpi = (int)(targetScaledDensity * 160.0F);
         appDisplayMetrics.density = targetDensity;
         appDisplayMetrics.scaledDensity = targetScaledDensity;
