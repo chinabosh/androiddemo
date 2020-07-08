@@ -79,6 +79,7 @@ dependencies {
     implementation androidx.appcompat
     implementation androidx.constraintlayout
     implementation libs.material
+    implementation androidx.recyclerview
     testImplementation 'junit:junit:4.12'
     androidTestImplementation androidx.runner
     androidTestImplementation androidx.espresso_core
@@ -108,7 +109,9 @@ dependencies {
     api libs.rxlifecycle_android
     api libs.rxlifecycle_components
     implementation androidx.recyclerview
-    api libs.BaseRecyclerViewAdapterHelper//封装adapter
+    api (libs.BaseRecyclerViewAdapterHelper){
+        exclude group : 'android.support'
+    }//封装adapter
     api libs.sticky_layoutmanager
     api libs.SwipeToLoadLayout//下拉刷新、上拉加载库
     api androidx.multidex
@@ -134,11 +137,11 @@ uploadArchives { //新增 ，因为Android Studio gradle 支持maven插件，所
             }
 
             pom.project {
-                version '0.0.10' //版本名称 上传是不能和之前的一样，否则上传失败
+                version '0.0.11' //版本名称 上传是不能和之前的一样，否则上传失败
                 artifactId 'library'  //和前面网站上填写的一样
                 groupId maven.GROUP  //和前面网站上填写的一样
                 packaging 'aar' //填写aar
-                description "base library" //更新描述
+                description "base library" //描述
             }
         }
     }

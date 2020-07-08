@@ -32,7 +32,7 @@ public class Base64UtilTest {
     @Test
     public void decode() {
         String res = Base64Util.decode("dGhpcyBpcyBhIGV4YW1wbGU=");
-        assertEquals("res", "this is example");
+        assertEquals(res, "this is a example");
     }
 
     @Test

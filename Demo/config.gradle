@@ -1,3 +1,14 @@
+def getIp() {
+    def out = new ByteArrayOutputStream()
+    exec {
+        workingDir '/Users/bosh/AndroidStudioProject/git/mine/android/shell'
+        commandLine './getIp.sh'
+//        commandLine 'sh', '-c', 'ifconfig en0|grep 'inet '|cut -d \' \' -f2'
+        standardOutput = out
+    }
+    return out.toString().trim()
+}
+
 ext {
     build_version = [
             compileSdkVersion: 28,
@@ -29,6 +40,8 @@ ext {
     libs = [
             butterknife                           : [group: "com.jakewharton", name: "butterknife", version: "10.2.1"],
             butterknife_compiler                  : [group: "com.jakewharton", name: "butterknife-compiler", version: "10.2.1"],
+
+            my_library                            : [group: "com.bosh.demo", name: "library", version: "0.0.11"],
 
             zxing                                 : [group: "com.google.zxing", name: "core", version: "3.3.2"],
             material                              : [group: "com.google.android.material", name: "material", version: "1.2.0-alpha02"],
@@ -75,7 +88,7 @@ ext {
     ]
 
     maven_url = [
-            url: "http://192.168.1.106:8081"
+            url: "http://${getIp()}:8081"
     ]
     maven = [
             MAVEN_REPO_RELEASE_URL : maven_url.url + "/repository/maven-releases/",

@@ -52,7 +52,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api "com.bosh.demo:library:0.0.10"
+    api libs.my_library
+//    api project(':mylibrary')
     implementation androidx.constraintlayout
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

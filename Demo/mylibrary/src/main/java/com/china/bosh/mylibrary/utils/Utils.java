@@ -14,7 +14,7 @@ public class Utils {
      * view.setId(generateViewid()) 避免id冲突
      * @return
      */
-    public static int generateViewid(){
+    public static int generateViewId(){
         for(;;){
             final int result = sNextGeneratedId.get();
             int newValue = result + 1;

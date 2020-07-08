@@ -51,6 +51,7 @@ class DependenciesWhiteListExtension {
 
         dependenciesWhiteList.add("com.bosh.demo:library:0.0.6")
         dependenciesWhiteList.add("com.bosh.demo:library:0.0.10")
+        dependenciesWhiteList.add("com.bosh.demo:library:0.0.11")
         dependenciesWhiteList.add("com.bosh.demo:flutter:0.0.4")
 
         dependenciesWhiteList.add("com.tencent.tinker:tinker-android-lib:1.9.1")

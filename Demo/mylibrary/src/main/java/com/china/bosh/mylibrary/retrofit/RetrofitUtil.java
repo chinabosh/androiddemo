@@ -116,7 +116,7 @@ public class RetrofitUtil {
         try {
             SSLContext sc = SSLContext.getInstance("TLS");
             sc.init(null, trustAllCerts, new SecureRandom());
-            builder.sslSocketFactory(sc.getSocketFactory());
+            builder.sslSocketFactory(sc.getSocketFactory(), (X509TrustManager) trustAllCerts[0]);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -17,4 +17,10 @@ public class DateUtils {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Constants.CURRENT_LOCALE);
         return sdf.format(date);
     }
+
+    public static String getCurrentClock(){
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH : mm", Constants.CURRENT_LOCALE);
+        return sdf.format(date);
+    }
 }

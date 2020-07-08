@@ -21,7 +21,7 @@ public class StringUtilsTest {
         Assert.assertEquals(res, "2");
     }
 
-    @Test(timeout = 100)
+    @Test
     public void getCharacterPosition() {
         int count = StringUtils.getCharacterPosition("jasldjfoiwj", "j", 2);
         Assert.assertEquals(count, 5);
@@ -33,5 +33,9 @@ public class StringUtilsTest {
 
     @Test
     public void replaceString() {
+        String str = StringUtils.replaceString(0, 2, "123456789", "21");
+        Assert.assertEquals(str, "213456789");
+        str = StringUtils.replaceString(4,12, "123456", "12");
+        Assert.assertEquals(str, "123412");
     }
 }

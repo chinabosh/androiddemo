@@ -4,55 +4,33 @@
     package="com.bosh.module_demo">
 
     <permission android:name="com.bosh.module_demo.send_notification" />
-
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="com.bosh.module_demo.send_notificaition" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"
-        tools:ignore="ProtectedPermissions"/>
+    <uses-permission
+        android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"
+        tools:ignore="ProtectedPermissions" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application android:theme="@style/AppTheme">
-        <service
-            android:name=".service.InstallAccessibilityService"
-            android:label="智能安装"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.accessibilityservice.AccessibilityService" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.accessibilityservice"
-                android:resource="@xml/demo_accessibility_service_config"/>
-        </service>
-
         <activity android:name=".ui.activity.SilentInstallActivity" />
+
         <activity android:name=".ui.activity.HookClickActivity" />
+
         <activity android:name=".ui.activity.sms.VerificationActivity" />
         <activity android:name=".ui.activity.recyclerview.stickyheader.StickyHeaderActivity" />
-
-        <service
-            android:name=".ui.activity.MusicService"
-            android:enabled="true"
-            android:exported="false" />
-
         <activity android:name=".ui.activity.SpannableActivity" />
-        <activity android:name=".ui.activity.GaussActivity" /> <!-- <activity android:name=".ui.flutter.FlutterActivity" /> -->
-        <receiver
-            android:name=".receiver.NotificationReceiver"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="com.bosh.module_demo.send_notification" />
+        <activity android:name=".ui.activity.GaussActivity" />
 
         <activity android:name=".ui.activity.NotificationActivity" />
-        <activity android:name=".ui.activity.MainActivity" />
-        <activity android:name=".ui.activity.SmsActivity" />
-        <activity android:name=".ui.activity.recyclerview.RecyclerViewActivity" />
-        <activity android:name=".ui.flutter.FlutterActivity" />
 
+        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.SmsActivity" /> <!-- <activity android:name=".ui.flutter.FlutterActivity" /> -->
+        <activity android:name=".ui.activity.recyclerview.RecyclerViewActivity" />
+
+        <activity android:name=".ui.flutter.FlutterActivity" />
         <provider
             android:name=".fileprovider.MyUpdateFileProvider"
             android:authorities="${applicationId}.share"
@@ -62,6 +40,40 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/demo_file_paths" />
         </provider>
+        <receiver android:name=".ui.NewAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.bosh.module.demo.appwidget.update"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/demo_new_app_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".receiver.NotificationReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.bosh.module_demo.send_notification" />
+        <service
+            android:name=".service.InstallAccessibilityService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="智能安装"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/demo_accessibility_service_config" />
+        </service>
+
+        <service
+            android:name=".ui.activity.MusicService"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>

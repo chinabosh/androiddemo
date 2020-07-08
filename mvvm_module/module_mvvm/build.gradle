@@ -42,7 +42,7 @@ dependencies {
     androidTestImplementation androidx.runner
     androidTestImplementation androidx.espresso_core
 
-    api 'com.bosh.demo:library:0.0.10'
+    api libs.my_library
 
     api libs.butterknife
     annotationProcessor libs.butterknife_compiler

@@ -49,11 +49,11 @@ public class LogUtils {
 
     private static ArrayBlockingQueue<String> logList = new ArrayBlockingQueue<>(100);
 
-    private static long ONE_DAY = 24 * 60 * 60 * 1000;
+    private static final long ONE_DAY = 24 * 60 * 60 * 1000;
 
     private static boolean isRunning = false;
 
-    private static int MAX_LENGTH = 2000;
+    private static final int MAX_LENGTH = 2000;
 
     /**
      * 初始化，须在使用之前设置，最好在Application创建时调用

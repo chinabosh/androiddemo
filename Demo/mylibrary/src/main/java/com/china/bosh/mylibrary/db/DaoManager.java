@@ -1,6 +1,11 @@
 package com.china.bosh.mylibrary.db;
 
 import android.content.Context;
+import android.util.Log;
+
+import com.china.bosh.mylibrary.BuildConfig;
+
+import org.greenrobot.greendao.database.Database;
 
 /**
  * @author lzq
@@ -14,7 +19,7 @@ public class DaoManager {
     private static DaoManager daoManager;
     private static DaoMaster daoMaster;
     private static DaoSession daoSession;
-    private static DaoMaster.DevOpenHelper helper;
+    private static MyOpenHelper helper;
 
     private DaoManager(){}
 
@@ -30,8 +35,12 @@ public class DaoManager {
     }
 
     public void init(Context context){
-        helper = new DaoMaster.DevOpenHelper(context, DB_NAME);
-        daoMaster = new DaoMaster(helper.getWritableDatabase());
+        helper = new MyOpenHelper(context, DB_NAME);
+        Database db = helper.getWritableDb();
+        if (BuildConfig.DEBUG) {
+            Log.e("test", "数据库版本：" + helper.getWritableDatabase().getVersion());
+        }
+        daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
     }
 
