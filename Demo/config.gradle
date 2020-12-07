@@ -1,9 +1,10 @@
 def getIp() {
     def out = new ByteArrayOutputStream()
     exec {
-        workingDir '/Users/bosh/AndroidStudioProject/git/mine/android/shell'
-        commandLine './getIp.sh'
+//        workDir "/"
+//        commandLine './getIp.sh'
 //        commandLine 'sh', '-c', 'ifconfig en0|grep 'inet '|cut -d \' \' -f2'
+        commandLine 'cmd', '/c', 'for /f "tokens=2 delims=:" %i in (\'ipconfig^|findstr IPv4\') do @echo %i'
         standardOutput = out
     }
     return out.toString().trim()
