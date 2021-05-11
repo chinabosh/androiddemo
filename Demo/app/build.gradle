@@ -1,6 +1,24 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.bosh.component.library'
 //apply plugin: 'com.tencent.tinker.patch'
+
+static def getGitVersion() {
+    try {
+        return 'git rev-parse --short HEAD'.execute().text.trim()
+    } catch (Throwable th) {
+        th.printStackTrace()
+        return ""
+    }
+}
+
+static def getBuildTime() {
+    Date date = new Date()
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss")
+    return simpleDateFormat.format(date)
+}
+
 
 android {
     compileSdkVersion build_version.compileSdkVersion
@@ -53,6 +71,14 @@ android {
         warningsAsErrors true
         ignore "IconDensities","Overdraw"
     }
+
+    applicationVariants.all {
+        variant ->
+            variant.outputs.all { output ->
+//                outputFileName = "demo_${variant.productFlavors[0].name}_v${variant.versionName}-${getBuildTime()}-${getGitVersion()}.apk"
+                outputFileName = "demo_v${variant.versionName}-${getBuildTime()}-${getGitVersion()}.apk"
+            }
+    }
 }
 
 dependencies {
@@ -88,5 +114,5 @@ dependencies {
 }
 
 config {
-    enableRestrictToTransform true//TODO 为false时，打的包没有dex文件
+    enableRestrictToTransform false
 }

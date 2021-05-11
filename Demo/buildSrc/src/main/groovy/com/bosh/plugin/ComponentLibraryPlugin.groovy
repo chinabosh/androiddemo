@@ -25,9 +25,10 @@ class ComponentLibraryPlugin implements Plugin<Project> {
         Logger.w("enableRestrictToTransform:" + configExtension.enableRestrictToTransform)
 
 
-        if (project.plugins.hasPlugin(AppPlugin)) {
-            registerTransform(project)
-        }
+//        if (project.plugins.hasPlugin(AppPlugin) && configExtension.enableRestrictToTransform) {
+//            Logger.w("registerTransform")
+//            registerTransform(project)
+//        }
 
         project.android {
             Logger.i("Arouter module name setting")
@@ -59,6 +60,10 @@ class ComponentLibraryPlugin implements Plugin<Project> {
                 void execute(TestTask t) {
                     t.setMsg("external msg")
                     t.sayHello()
+                    if (project.plugins.hasPlugin(AppPlugin) && configExtension.enableRestrictToTransform) {
+                        Logger.w("registerTransform")
+                        registerTransform(project)
+                    }
                 }
             })
 

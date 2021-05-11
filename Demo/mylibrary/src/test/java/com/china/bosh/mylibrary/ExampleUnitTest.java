@@ -39,19 +39,36 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void gson_test() {
-//        Gson gson = new Gson();
-//        String json = "{\n" +
-//                "    \"inner\":{\n" +
-//                "        \"a\":\"b\"\n" +
-//                "    }\n" +
-//                "}";
-//        TestGson testGson = gson.fromJson(json, TestGson.class);
-//        System.out.println(testGson.getInner().getA());
-        char[] out = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
-        for (int i = 0; i < 9; i++) {
-            System.out.println((int) out[i]);
+    public void convertByRulesTest() {
+        System.out.println(convertByRulesTest("242884817", "2698375e1717ab9c"));
+//        "216bc19e98737a75e1717ab9c"
+    }
+
+    public static String convertByRulesTest(String rule, String content){
+        StringBuilder sb =new StringBuilder(content);
+        int v = 1;
+        for(int i = 0; i < rule.length(); i++){
+            String jg = content.substring(content.length() - v, content.length() - v + 1);
+            sb.insert(Integer.parseInt(rule.substring(i, i + 1)), jg);
+            v++;
         }
+
+        return sb.toString();
+    }
+
+    @Test
+    public void gson_test() {
+        Gson gson = new Gson();
+        String json = "{\n" +
+                "    \"abc\": \"123\",\n" +
+                "    \"test\": null" +
+                "}";
+        TestGson testGson = gson.fromJson(json, TestGson.class);
+        System.out.println(testGson.getTest());
+//        char[] out = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+//        for (int i = 0; i < 9; i++) {
+//            System.out.println((int) out[i]);
+//        }
     }
 
     @Test
@@ -382,6 +399,21 @@ public class ExampleUnitTest {
                 tmp = tmp.next;
             }
             System.out.print("\t");
+        }
+    }
+
+    @Test
+    public void test31() {
+        for (long i = 1; i < Integer.MAX_VALUE; i += 2) {
+            long tmp = i;
+            do {
+                if (tmp % 2 == 0) {
+                    tmp = tmp >> 1;
+                } else {
+                    tmp = tmp * 3 + 1;
+                }
+                //                System.out.print(tmp + " ");
+            } while (tmp > i);
         }
     }
 }

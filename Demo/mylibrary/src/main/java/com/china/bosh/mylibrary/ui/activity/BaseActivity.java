@@ -25,8 +25,7 @@ import com.china.bosh.mylibrary.entity.DataEvent;
 import com.china.bosh.mylibrary.utils.PermissionsManager;
 import com.china.bosh.mylibrary.utils.PermissionsResultAction;
 import com.china.bosh.mylibrary.utils.ToastUtil;
-import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
-import com.trello.rxlifecycle3.components.support.RxFragmentActivity;
+import com.trello.rxlifecycle4.components.support.RxFragmentActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

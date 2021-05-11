@@ -4,6 +4,7 @@ import androidx.multidex.MultiDexApplication;
 
 import com.china.bosh.mylibrary.utils.CrashHandler;
 import com.china.bosh.mylibrary.utils.LogUtils;
+import com.china.bosh.mylibrary.utils.NewsLifecycleHandler;
 import com.china.bosh.mylibrary.utils.StringUtils;
 
 /**
@@ -21,6 +22,10 @@ public class BaseApplication  extends MultiDexApplication{
         initLog();
         initCrashHandler();
         instance = this;
+        //界面防劫持
+        registerActivityLifecycleCallbacks(new NewsLifecycleHandler("应用切换至后台")
+                .setUnnoticeActivity("SplashActivity")
+                .setDestroyedActivity("LoginActivity", "mainActivity"));
         StringUtils.test();
     }
 

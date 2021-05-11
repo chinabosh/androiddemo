@@ -1,10 +1,9 @@
 def getIp() {
     def out = new ByteArrayOutputStream()
     exec {
-//        workDir "/"
-//        commandLine './getIp.sh'
-//        commandLine 'sh', '-c', 'ifconfig en0|grep 'inet '|cut -d \' \' -f2'
-        commandLine 'cmd', '/c', 'for /f "tokens=2 delims=:" %i in (\'ipconfig^|findstr IPv4\') do @echo %i'
+//        commandLine 'cmd', '/c', 'for /f "tokens=2 delims=:" %i in (\'ipconfig^|findstr IPv4\') do @echo %i'
+        executable 'sh'
+        args "-c", "ifconfig en0 | grep 'inet ' | cut -d ' ' -f2"
         standardOutput = out
     }
     return out.toString().trim()
@@ -67,9 +66,9 @@ ext {
             rxandroid                             : [group: "io.reactivex.rxjava2", name: "rxandroid", version: "2.1.1"],
             rxjava                                : [group: "io.reactivex.rxjava2", name: "rxjava", version: "2.2.8"],
 
-            rxlifecycle                           : [group: "com.trello.rxlifecycle3", name: "rxlifecycle", version: "3.1.0"],
-            rxlifecycle_android                   : [group: "com.trello.rxlifecycle3", name: "rxlifecycle-android", version: "3.1.0"],
-            rxlifecycle_components                : [group: "com.trello.rxlifecycle3", name: "rxlifecycle-components", version: "3.1.0"],
+            rxlifecycle                           : [group: "com.trello.rxlifecycle4", name: "rxlifecycle", version: "4.0.2"],
+            rxlifecycle_android                   : [group: "com.trello.rxlifecycle4", name: "rxlifecycle-android", version: "4.0.2"],
+            rxlifecycle_components                : [group: "com.trello.rxlifecycle4", name: "rxlifecycle-components", version: "4.0.2"],
 
             logging_interceptor                   : [group: "com.squareup.okhttp3", name: "logging-interceptor", version: "3.11.0"],
 

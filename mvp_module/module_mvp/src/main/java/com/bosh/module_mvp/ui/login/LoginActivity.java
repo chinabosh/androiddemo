@@ -10,8 +10,11 @@ import com.bosh.module_mvp.R2;
 import com.bosh.module_mvp.injector.components.ActivityComponent;
 import com.bosh.module_mvp.ui.base.BaseActivity;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.subjects.PublishSubject;
 
 /**
  * @author bosh
@@ -23,6 +26,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     EditText mEtAccount;
     @BindView(R2.id.et_pwd)
     EditText mEtPwd;
+
+    PublishSubject<String> publishSubject;
 
     @Override
     protected int attachLayoutRes() {
@@ -41,6 +46,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected void initData() {
+        publishSubject = PublishSubject.create();
+        //2秒内只触发一次
+        publishSubject.throttleFirst(2, TimeUnit.SECONDS)
+                .as(bindLifecycle())
+                .subscribe(s -> {
+                    mPresenter.login();
+                }, Throwable::printStackTrace);
         mPresenter.initAccount();
     }
 
@@ -74,7 +86,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     public void onClick(View view){
         int id = view.getId();
         if(id == R.id.tv_login) {
-            mPresenter.login();
+            publishSubject.onNext("");
         }
     }
 }

@@ -184,9 +184,10 @@ public class LogUtils {
 
     /**
      * 使用线程写log
+     * TODO 解决每次都要打开关闭流，提高性能
      */
     private static void startWriteLog(){
-        if(null == logPath){
+        if(null == logPath || isRunning){
             return;
         }
         ExecutorService single = Executors.newSingleThreadExecutor();
@@ -243,6 +244,7 @@ public class LogUtils {
     private static void dealLong(String tag, String msg, char level){
         int length = msg.length();
         if(length <= MAX_LENGTH){
+            log(tag, msg, level);
             return;
         }
         int index = 0;
@@ -254,24 +256,28 @@ public class LogUtils {
                 sub = msg.substring(index, length);
             }
             index += MAX_LENGTH;
-            switch (level){
-                case VERBOSE:
-                    Log.v(tag, sub);
-                    break;
-                case DEBUG:
-                    Log.d(tag, sub);
-                    break;
-                case INFO:
-                    Log.i(tag, sub);
-                    break;
-                case WARN:
-                    Log.w(tag, sub);
-                    break;
-                case ERROR:
-                    Log.e(tag, sub);
-                    break;
-                default:
-            }
+            log(tag, sub, level);
+        }
+    }
+
+    private static void log(String tag, String msg, char level) {
+        switch (level){
+            case VERBOSE:
+                Log.v(tag, msg);
+                break;
+            case DEBUG:
+                Log.d(tag, msg);
+                break;
+            case INFO:
+                Log.i(tag, msg);
+                break;
+            case WARN:
+                Log.w(tag, msg);
+                break;
+            case ERROR:
+                Log.e(tag, msg);
+                break;
+            default:
         }
     }
 }

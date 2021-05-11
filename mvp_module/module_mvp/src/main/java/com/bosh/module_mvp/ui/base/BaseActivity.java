@@ -114,7 +114,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends FragmentActi
                 .build());
         mPresenter.setLifecycleOwner(this);
         mPresenter.attachView(this);
-        getLifecycle().addObserver(mPresenter);
         initView();
         initData();
         setCustomDensity(this, BaseApplication.instance);

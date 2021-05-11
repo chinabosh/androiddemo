@@ -3,7 +3,8 @@ package com.china.bosh.mylibrary.provider;
 import android.content.Context;
 
 /**
- * @author lzq
+ * 采用ContentProvider实现无侵入式context
+ * @author bosh
  * @date 2020-03-30
  */
 public class ContextProvider {

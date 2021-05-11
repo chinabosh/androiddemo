@@ -24,6 +24,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     lateinit var loadingDialog: MaterialDialog
 
+    var count = 0
+
     protected val scopeProvider : AndroidLifecycleScopeProvider by lazy {
         AndroidLifecycleScopeProvider.from(this, Lifecycle.Event.ON_DESTROY)
     }
@@ -55,6 +57,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun showLoading(msg: String) {
+        count++;
         val view = View.inflate(this, R.layout.kotlin_dialog_progress, null)
         val tv = view.findViewById<TextView>(R.id.tv_msg)
         tv.setText(msg)
@@ -64,8 +67,12 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun hideLoading() {
         //this::是必须的
-        if (this::loadingDialog.isInitialized) {
-            loadingDialog.dismiss()
+        count--;
+        if (count <= 0) {
+            if (this::loadingDialog.isInitialized) {
+                loadingDialog.dismiss()
+            }
+            count = 0;
         }
     }
 }

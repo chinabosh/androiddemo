@@ -69,13 +69,12 @@ class RestrictToTransform extends Transform {
 
     @Override
     void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
-//        super.transform(transformInvocation)
-        ConfigExtension configExtension = mProject.config
-        if (!configExtension.enableRestrictToTransform) {
-            Logger.i("do not transform restrict to")
-            super.transform(transformInvocation)
-            return
-        }
+//        ConfigExtension configExtension = mProject.config
+//        if (!configExtension.enableRestrictToTransform) {
+//            Logger.i("do not transform restrict to")
+//            super.transform(transformInvocation)
+//            return
+//        }
         def inputs = transformInvocation.inputs
         def outputProvider = transformInvocation.outputProvider
         def isIncremental = transformInvocation.incremental
@@ -94,6 +93,7 @@ class RestrictToTransform extends Transform {
                 def jarFile = jarInput.file
                 Logger.i("jarFile from:" + jarFile.absolutePath + ",to:" + dest.absolutePath)
                 FileUtils.copyFile(jarFile, dest)
+
                 if (shouldProcessPreDexJar(jarFile.absolutePath)) {
 
                     GenerateRestrictTo.insertRestrictCodeIntoJarFile(dest, mProject)

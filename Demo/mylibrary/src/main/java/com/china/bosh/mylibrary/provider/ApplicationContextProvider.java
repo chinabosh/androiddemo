@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * @author lzq
+ * @author bosh
  * @date 2020-03-30
  */
 public class ApplicationContextProvider extends ContentProvider {

@@ -30,6 +30,8 @@ public class BasePresenter<V extends IView> implements IPresenter {
 
     public void setLifecycleOwner(LifecycleOwner owner){
         this.owner = owner;
+        //需加上监听，才会调用注解的方法
+        owner.getLifecycle().addObserver(this);
     }
 
     public void attachView(V view) {
@@ -44,7 +46,7 @@ public class BasePresenter<V extends IView> implements IPresenter {
     }
 
     /**
-     * 子类重新这个方法来做presenter的清理工作
+     * 子类重写这个方法来做presenter的清理工作
      */
     @Override
     public void onDestroy() {

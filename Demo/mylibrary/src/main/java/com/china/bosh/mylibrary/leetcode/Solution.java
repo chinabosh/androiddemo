@@ -1,6 +1,5 @@
 package com.china.bosh.mylibrary.leetcode;
 
-import com.china.bosh.mylibrary.entity.TestGson;
 
 import java.util.ArrayList;
 import java.util.Arrays;
