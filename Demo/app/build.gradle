@@ -22,6 +22,7 @@ static def getBuildTime() {
 
 android {
     compileSdkVersion build_version.compileSdkVersion
+    buildToolsVersion build_version.buildToolsVersion
     defaultConfig {
         applicationId "com.china.bosh.demo"
         minSdkVersion build_version.minSdkVersion

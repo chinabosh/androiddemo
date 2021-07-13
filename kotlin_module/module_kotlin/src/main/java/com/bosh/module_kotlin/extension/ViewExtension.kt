@@ -5,6 +5,7 @@ import android.view.View
 
 /**
  * click debounce
+ * 拦截点击请求，超过上次点击一定时间以后才响应
  * @author lzq
  * @date  2020/8/6
  */

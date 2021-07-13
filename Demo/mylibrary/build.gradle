@@ -3,7 +3,7 @@ apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'maven'
 android {
     compileSdkVersion build_version.compileSdkVersion
-
+    buildToolsVersion build_version.buildToolsVersion
 
     defaultConfig {
         minSdkVersion build_version.minSdkVersion
