@@ -69,8 +69,8 @@ android {
 
     lintOptions {
         abortOnError true
-        warningsAsErrors true
-        ignore "IconDensities","Overdraw"
+        warningsAsErrors false
+        ignore "IconDensities","Overdraw", "NonConstantResourceId"
     }
 
     applicationVariants.all {
@@ -84,9 +84,9 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.1'
     implementation androidx.appcompat
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation libs.material
     androidTestImplementation androidx.runner
     androidTestImplementation androidx.espresso_core

@@ -86,16 +86,16 @@ class ComponentLibraryPlugin implements Plugin<Project> {
                     }
                 }
 
-                DependenciesWhiteListExtension dwe = new DependenciesWhiteListExtension()
-                project.configurations.each {
-                    it.dependencies.each {
-                        if (it.group != null && it.name != null && it.version != null && !it.group.equals(project.rootProject.name)) {
-                            if (!dwe.dependenciesWhiteList.contains(it.group + ":" + it.name + ":" + it.version)) {
-                                throw new GradleException("project:" + project.name + "," + "the dependency:\"" + it.group + ":" + it.name + ":" + it.version + "\" don't in the white list!")
-                            }
-                        }
-                    }
-                }
+//                DependenciesWhiteListExtension dwe = new DependenciesWhiteListExtension()
+//                project.configurations.each {
+//                    it.dependencies.each {
+//                        if (it.group != null && it.name != null && it.version != null && !it.group.equals(project.rootProject.name)) {
+//                            if (!dwe.dependenciesWhiteList.contains(it.group + ":" + it.name + ":" + it.version)) {
+//                                throw new GradleException("project:" + project.name + "," + "the dependency:\"" + it.group + ":" + it.name + ":" + it.version + "\" don't in the white list!")
+//                            }
+//                        }
+//                    }
+//                }
 
             }
         }
