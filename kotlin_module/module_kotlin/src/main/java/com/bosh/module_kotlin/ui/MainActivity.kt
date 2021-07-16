@@ -2,23 +2,22 @@ package com.bosh.module_kotlin.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bosh.module_kotlin.R
 import com.bosh.module_kotlin.base.BaseActivity
 import com.bosh.module_kotlin.databinding.KotlinActivityMainBinding
+import com.bosh.module_kotlin.extension.inflate
 import com.bosh.module_kotlin.ui.splash.SplashActivity
 import com.uber.autodispose.autoDisposable
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.kotlin_activity_main.*
 import java.util.concurrent.TimeUnit
 
 @Route(path = "/kotlin/main")
 class MainActivity : BaseActivity() {
 
-    override fun getLayoutRes(): Int {
-        return R.layout.kotlin_activity_main
-    }
+    private val binding : KotlinActivityMainBinding by inflate()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         ARouter.getInstance().inject(this)
@@ -26,12 +25,12 @@ class MainActivity : BaseActivity() {
     }
 
     override fun bindView() {
-        tv_test.text = "对话框例子列表"
-        tv_test.setOnClickListener {
+        binding.tvTest.text = "对话框例子列表"
+        binding.tvTest.setOnClickListener {
             startActivity(Intent(this, MaterialDialogListActivity::class.java))
         }
 
-        tv_show_dialog.setOnClickListener {
+        binding.tvShowDialog.setOnClickListener {
             showLoading()
             Observable.interval(5, TimeUnit.SECONDS)
                     .take(1)//限制发射次数
@@ -40,7 +39,7 @@ class MainActivity : BaseActivity() {
                         hideLoading()
                     }
         }
-        tv_splash.setOnClickListener {
+        binding.tvSplash.setOnClickListener {
             startActivity(Intent(this, SplashActivity::class.java))
         }
     }

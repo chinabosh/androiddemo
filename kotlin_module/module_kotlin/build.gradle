@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-android-extensions'
 apply plugin: 'io.objectbox'
 android {
     compileSdkVersion build_version.compileSdkVersion
@@ -32,6 +32,10 @@ android {
     //慎用，要改很多warning！！！不过倒是可以提高代码质量
     kotlinOptions {
         allWarningsAsErrors = false
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     dataBinding {

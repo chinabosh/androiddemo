@@ -17,9 +17,9 @@ import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.bosh.module_kotlin.R
 import com.bosh.module_kotlin.base.BaseActivity
 import com.bosh.module_kotlin.databinding.KotlinActivityMaterialDialogListBinding
+import com.bosh.module_kotlin.extension.inflate
 import com.bosh.module_kotlin.widget.SpacesItemDecoration
 import com.chad.library.adapter.base.BaseQuickAdapter
-import kotlinx.android.synthetic.main.kotlin_activity_material_dialog_list.*
 import java.lang.IllegalArgumentException
 
 class MaterialDialogListActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
@@ -28,10 +28,7 @@ class MaterialDialogListActivity : BaseActivity(), BaseQuickAdapter.OnItemClickL
     private val adapter: MaterialDialogAdapter by lazy {
         MaterialDialogAdapter(mData)
     }
-
-    override fun getLayoutRes(): Int {
-        return R.layout.kotlin_activity_material_dialog_list
-    }
+    private val binding : KotlinActivityMaterialDialogListBinding by inflate()
 
     override fun bindView() {
 
@@ -51,11 +48,11 @@ class MaterialDialogListActivity : BaseActivity(), BaseQuickAdapter.OnItemClickL
     }
 
     override fun initView() {
-        rv_main.adapter = adapter
-        rv_main.layoutManager = LinearLayoutManager(this)
+        binding.rvMain.adapter = adapter
+        binding.rvMain.layoutManager = LinearLayoutManager(this)
         adapter.onItemClickListener = this
 //        rv_main.addItemDecoration(DividerItemDecoration(this, LinearLayout.VERTICAL))
-        rv_main.addItemDecoration(SpacesItemDecoration(20, 1))
+        binding.rvMain.addItemDecoration(SpacesItemDecoration(20, 1))
     }
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {

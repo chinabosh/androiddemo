@@ -31,8 +31,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
-    protected abstract fun getLayoutRes(): Int
-
     protected abstract fun bindView()
 
     protected abstract fun initData()
@@ -42,7 +40,6 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.e(tag, "onCreate")
-        setContentView(getLayoutRes())
         bindView()
         initData()
         initView()
@@ -57,7 +54,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun showLoading(msg: String) {
-        count++;
+        count++
         val view = View.inflate(this, R.layout.kotlin_dialog_progress, null)
         val tv = view.findViewById<TextView>(R.id.tv_msg)
         tv.setText(msg)
