@@ -80,11 +80,11 @@ dependencies {
     implementation androidx.constraintlayout
     implementation libs.material
     implementation androidx.recyclerview
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation androidx.runner
     androidTestImplementation androidx.espresso_core
-    androidTestImplementation 'androidx.test:core:1.2.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:core:1.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 //    testCompile "org.mockito:mockito-core:+"
 //    androidTestCompile "org.mockito:mockito-android:+"
 //test可以调用android api
@@ -137,7 +137,7 @@ uploadArchives { //新增 ，因为Android Studio gradle 支持maven插件，所
             }
 
             pom.project {
-                version '0.0.11' //版本名称 上传是不能和之前的一样，否则上传失败
+                version '0.0.13' //版本名称 上传是不能和之前的一样，否则上传失败
                 artifactId 'library'  //和前面网站上填写的一样
                 groupId maven.GROUP  //和前面网站上填写的一样
                 packaging 'aar' //填写aar

@@ -74,39 +74,24 @@ public class NetWorkUtil {
 
         switch (telephonyManager.getNetworkType()) {
             case TelephonyManager.NETWORK_TYPE_1xRTT:
-                return false;
             case TelephonyManager.NETWORK_TYPE_CDMA:
-                return false;
             case TelephonyManager.NETWORK_TYPE_EDGE:
-                return false;
-            case TelephonyManager.NETWORK_TYPE_EVDO_0:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_EVDO_A:
-                return true;
             case TelephonyManager.NETWORK_TYPE_GPRS:
-                return false;
-            case TelephonyManager.NETWORK_TYPE_HSDPA:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_HSPA:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_HSUPA:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_UMTS:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_EHRPD:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_EVDO_B:
-                return true;
-            case TelephonyManager.NETWORK_TYPE_HSPAP:
-                return true;
             case TelephonyManager.NETWORK_TYPE_IDEN:
-                return false;
-            case TelephonyManager.NETWORK_TYPE_LTE:
-                return true;
             case TelephonyManager.NETWORK_TYPE_UNKNOWN:
-                return false;
             default:
                 return false;
+            case TelephonyManager.NETWORK_TYPE_EVDO_0:
+            case TelephonyManager.NETWORK_TYPE_EVDO_A:
+            case TelephonyManager.NETWORK_TYPE_HSDPA:
+            case TelephonyManager.NETWORK_TYPE_HSPA:
+            case TelephonyManager.NETWORK_TYPE_HSUPA:
+            case TelephonyManager.NETWORK_TYPE_UMTS:
+            case TelephonyManager.NETWORK_TYPE_EHRPD:
+            case TelephonyManager.NETWORK_TYPE_EVDO_B:
+            case TelephonyManager.NETWORK_TYPE_HSPAP:
+            case TelephonyManager.NETWORK_TYPE_LTE:
+                return true;
         }
     }
 
@@ -158,30 +143,28 @@ public class NetWorkUtil {
         //wifi
         NetworkInfo.State wifi = conMan.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
 
-        Intent intent = null;
-        intent = new Intent();
+        Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        String sdkVersion = Build.VERSION.SDK;
+        int sdkVersion = Build.VERSION.SDK_INT;
         if ((mobile == NetworkInfo.State.CONNECTED || mobile == NetworkInfo.State.CONNECTING) || (wifi == NetworkInfo.State.DISCONNECTED)) {
             //进入wifi网络设置界面
-            if (Integer.valueOf(sdkVersion) > 10) {
+            if (sdkVersion > 10) {
                 intent.setAction(Settings.ACTION_WIFI_SETTINGS);
             } else {
                 ComponentName comp = new ComponentName("com.android.settings", "com.android.settings.WIFI_SETTINGS");
                 intent.setComponent(comp);
                 intent.setAction("android.intent.action.VIEW");
             }
-            context.startActivity(intent);
         } else {
             //进入无线网络配置界面
-            if (Integer.valueOf(sdkVersion) > 10) {
+            if (sdkVersion > 10) {
                 intent.setAction(Settings.ACTION_WIRELESS_SETTINGS);
             } else {
                 ComponentName comp = new ComponentName("com.android.settings", "com.android.settings.WirelessSettings");
                 intent.setComponent(comp);
                 intent.setAction("android.intent.action.VIEW");
             }
-            context.startActivity(intent);
         }
+        context.startActivity(intent);
     }
 }

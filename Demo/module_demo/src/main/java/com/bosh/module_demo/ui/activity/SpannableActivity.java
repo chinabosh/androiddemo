@@ -20,6 +20,8 @@ import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.china.bosh.mylibrary.ui.activity.BaseActivity;
 
@@ -165,7 +167,7 @@ public class SpannableActivity extends BaseActivity {
 
     private SpannableString getHuaji(){
         SpannableString ss = new SpannableString("手动滑稽xx");
-        Drawable drawable = getResources().getDrawable(R.drawable.demo_huaji);
+        Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.demo_huaji, null);
         int drawableHeight = drawable.getMinimumHeight();
         drawable.setBounds(0, 0, drawableHeight, drawableHeight);
         ImageSpan span = new ImageSpan(drawable);

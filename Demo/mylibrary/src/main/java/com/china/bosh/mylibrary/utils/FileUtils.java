@@ -3,6 +3,7 @@ package com.china.bosh.mylibrary.utils;
 import android.content.Context;
 import android.os.Environment;
 import android.os.storage.StorageManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,8 @@ import com.china.bosh.mylibrary.constant.Constants;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -145,5 +148,50 @@ public class FileUtils {
         }
         outZip.finish();
         outZip.close();
+    }
+
+    public static boolean writeFile(String filePath, byte[] content, boolean append) {
+        if (content == null || content.length == 0) {
+            return false;
+        }
+
+        FileOutputStream fileWriter = null;
+        try {
+            makeDirs(filePath);
+            fileWriter = new FileOutputStream(filePath, append);
+            fileWriter.write(content, 0, content.length);
+            fileWriter.close();
+            return true;
+        } catch (IOException e) {
+            throw new RuntimeException("IOException occurred. ", e);
+        } finally {
+            if (fileWriter != null) {
+                try {
+                    fileWriter.close();
+                } catch (IOException e) {
+                    throw new RuntimeException("IOException occurred. ", e);
+                }
+            }
+        }
+    }
+
+    public static boolean makeDirs(String filePath) {
+        String folderName = getFolderName(filePath);
+        if (TextUtils.isEmpty(folderName)) {
+            return false;
+        }
+
+        File folder = new File(folderName);
+        return (folder.exists() && folder.isDirectory()) || folder.mkdirs();
+    }
+
+    public static String getFolderName(String filePath) {
+
+        if (TextUtils.isEmpty(filePath)) {
+            return filePath;
+        }
+
+        int filePosi = filePath.lastIndexOf(File.separator);
+        return (filePosi == -1) ? "" : filePath.substring(0, filePosi);
     }
 }
