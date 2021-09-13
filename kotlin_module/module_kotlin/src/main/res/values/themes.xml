@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="kotlin_AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="kotlin_AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="kotlin_AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

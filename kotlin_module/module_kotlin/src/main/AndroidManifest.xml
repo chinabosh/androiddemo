@@ -6,7 +6,12 @@
         android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/kotlin_AppTheme">
-        <activity android:name=".ui.splash.SplashActivity"/>
+        <activity
+            android:name=".ui.compose.ComposeTestActivity"
+            android:exported="true"
+            android:label="@string/title_activity_compose_test"
+            android:theme="@style/kotlin_AppTheme.NoActionBar" />
+        <activity android:name=".ui.splash.SplashActivity" />
         <activity android:name=".ui.MaterialDialogListActivity" />
         <activity android:name=".ui.MainActivity" />
     </application>

@@ -10,8 +10,8 @@ import javassist.bytecode.ClassFile
 import javassist.bytecode.ConstPool
 import javassist.bytecode.annotation.Annotation
 import javassist.bytecode.annotation.EnumMemberValue
-import org.apache.commons.io.IOUtils
 import org.gradle.api.Project
+import org.gradle.internal.impldep.org.apache.commons.compress.utils.IOUtils
 
 import java.util.jar.JarEntry
 import java.util.jar.JarFile

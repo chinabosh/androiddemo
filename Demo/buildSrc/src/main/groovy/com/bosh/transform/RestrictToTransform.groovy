@@ -1,33 +1,14 @@
 package com.bosh.transform
 
-import com.alibaba.android.arouter.register.core.RegisterTransform
-import com.alibaba.android.arouter.register.utils.ScanSetting
-import com.android.build.api.transform.Context
 import com.android.build.api.transform.Format
 import com.android.build.api.transform.JarInput
 import com.android.build.api.transform.QualifiedContent
-import com.android.build.api.transform.Status
 import com.android.build.api.transform.Transform
 import com.android.build.api.transform.TransformException
 import com.android.build.api.transform.TransformInput
 import com.android.build.api.transform.TransformInvocation
-import com.android.build.api.transform.TransformOutputProvider
-import com.android.build.gradle.AppExtension
 import com.android.build.gradle.internal.pipeline.TransformManager
-import com.android.ddmlib.Log
-import com.android.utils.FileUtils
-import com.bosh.ext.ConfigExtension
 import com.bosh.utils.Logger
-import javassist.ClassPool
-import javassist.CtClass
-import javassist.NotFoundException
-import javassist.bytecode.AnnotationsAttribute
-import javassist.bytecode.ClassFile
-import javassist.bytecode.ConstPool
-import javassist.bytecode.annotation.Annotation
-import javassist.bytecode.annotation.ClassMemberValue
-import javassist.bytecode.annotation.EnumMemberValue
-import org.apache.commons.codec.digest.DigestUtils
 import org.gradle.api.Project
 import org.objectweb.asm.AnnotationVisitor
 import org.objectweb.asm.ClassReader
@@ -35,12 +16,11 @@ import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.Opcodes
 
-import java.util.jar.JarEntry
-import java.util.jar.JarFile
-
 class RestrictToTransform extends Transform {
 
     static Project mProject
+    static List<String> restrictToList = ArrayList
+    static List<String> restrictPathList = ArrayList
 
     RestrictToTransform(Project project) {
         super()

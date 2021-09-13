@@ -1,19 +1,15 @@
 plugins {
     id 'groovy'
     id 'java'
-    id 'maven'
+//    id 'maven'
 }
 
 group 'com.bosh.demo'
 version '1.0'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
 repositories {
     mavenCentral()
     google()
-    jcenter()
 //    flatDir {
 //        dirs 'src/lib'
 //    }
@@ -28,9 +24,9 @@ sourceSets {
 }
 
 dependencies {
-    implementation 'org.codehaus.groovy:groovy-all:2.5.4'
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
-    implementation 'com.android.tools.build:gradle:4.2.2'
+    implementation 'org.codehaus.groovy:groovy-all:3.0.7'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    implementation 'com.android.tools.build:gradle:7.0.2'
 
     implementation 'com.alibaba:arouter-register:1.0.2'
 //    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
@@ -39,7 +35,7 @@ dependencies {
     implementation localGroovy()
     testImplementation 'org.spockframework:spock-core:1.0-groovy-2.4'
     implementation 'org.javassist:javassist:3.26.0-GA'
-    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.annotation:annotation:1.2.0'
 //    compile fileTree(dir: 'src/lib', includes: ['*.jar'])
 }
 
@@ -59,19 +55,19 @@ def getIp() {
     return out.toString().trim()
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: uri("http://${getIp()}:8081/repository/maven-releases/")) {
-                authentication(userName: 'admin', password: 'admin123')
-            }
-            pom.project {
-                version "0.3.73"
-                artifactId 'gradleplugin'
-                groupId 'com.bosh.demo'
-            }
-        }
-    }
-}
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            repository(url: uri("http://${getIp()}:8081/repository/maven-releases/")) {
+//                authentication(userName: 'admin', password: 'admin123')
+//            }
+//            pom.project {
+//                version "0.3.73"
+//                artifactId 'gradleplugin'
+//                groupId 'com.bosh.demo'
+//            }
+//        }
+//    }
+//}
 
 

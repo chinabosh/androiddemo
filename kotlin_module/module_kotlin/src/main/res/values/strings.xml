@@ -3,4 +3,5 @@
 
     <string name="text_dialog">对话框</string>
     <string name="text_please_wait">请稍候...</string>
+    <string name="title_activity_compose_test">ComposeTestActivity</string>
 </resources>

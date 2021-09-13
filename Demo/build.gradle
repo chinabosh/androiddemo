@@ -2,35 +2,38 @@
 apply plugin: 'com.alibaba.arouter'
 
 buildscript {
-    apply from:'config.gradle'
-    ext.kotlin_version = '1.5.20'
+    apply from: 'config.gradle'
+    ext {
+        compose_version = '1.0.1'
+    }
+    ext.kotlin_version = '1.5.30'
     ext.objectboxVersion = "2.4.1"
     repositories {
 //        google()
 //        jcenter()
-        maven{ url 'https://maven.aliyun.com/repository/google'}
+        maven { url 'https://maven.aliyun.com/repository/google' }
 
-        maven{ url 'https://maven.aliyun.com/repository/gradle-plugin'}
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
 
-        maven{ url 'https://maven.aliyun.com/repository/public'}
+        maven { url 'https://maven.aliyun.com/repository/public' }
 
-        maven{ url 'https://maven.aliyun.com/repository/jcenter'}
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
 //        maven {
 //            url maven.MAVEN_REPO_RELEASE_URL
 //        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
+        classpath 'com.android.tools.build:gradle:7.0.2'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath "com.jakewharton:butterknife-gradle-plugin:10.2.1"
         classpath 'com.alibaba:arouter-register:1.0.2'
-        classpath 'com.kezong:fat-aar:1.0.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.kezong:fat-aar:1.2.7'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30"
         classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
 //        classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
 //        classpath 'com.bosh.demo:gradleplugin:0.3.72'
-        
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -40,19 +43,28 @@ buildscript {
 allprojects {
     repositories {
         google()
-        maven { url maven.MAVEN_REPO_RELEASE_URL}
+        maven {
+            url mavens.MAVEN_REPO_RELEASE_URL
+            allowInsecureProtocol = true
+        }
         maven { url "https://jitpack.io" }
-        maven{ url'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+            allowInsecureProtocol = true
+        }
 
-        maven{ url'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'
+            allowInsecureProtocol = true
+        }
 
-        maven{ url 'https://maven.aliyun.com/repository/google'}
+        maven { url 'https://maven.aliyun.com/repository/google' }
 
-        maven{ url 'https://maven.aliyun.com/repository/gradle-plugin'}
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
 
-        maven{ url 'https://maven.aliyun.com/repository/public'}
+        maven { url 'https://maven.aliyun.com/repository/public' }
 
-        maven{ url 'https://maven.aliyun.com/repository/jcenter'}
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
         //支持aar包
         flatDir {
             dirs 'libs'
