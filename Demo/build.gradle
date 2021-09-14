@@ -4,9 +4,9 @@ apply plugin: 'com.alibaba.arouter'
 buildscript {
     apply from: 'config.gradle'
     ext {
-        compose_version = '1.0.1'
+        compose_version = '1.0.2'
     }
-    ext.kotlin_version = '1.5.30'
+    ext.kotlin_version = '1.5.21'
     ext.objectboxVersion = "2.4.1"
     repositories {
 //        google()
@@ -29,7 +29,7 @@ buildscript {
         classpath "com.jakewharton:butterknife-gradle-plugin:10.2.1"
         classpath 'com.alibaba:arouter-register:1.0.2'
         classpath 'com.kezong:fat-aar:1.2.7'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21"
         classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
 //        classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
 //        classpath 'com.bosh.demo:gradleplugin:0.3.72'

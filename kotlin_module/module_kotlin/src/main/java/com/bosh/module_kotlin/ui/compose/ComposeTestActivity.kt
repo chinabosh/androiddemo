@@ -7,6 +7,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.bosh.module_kotlin.ui.compose.ui.theme.DemoTheme
 
@@ -26,7 +27,9 @@ class ComposeTestActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+    Text(text = "Hello $name!",
+        color = Color.Blue
+    )
 }
 
 @Preview(showBackground = false)

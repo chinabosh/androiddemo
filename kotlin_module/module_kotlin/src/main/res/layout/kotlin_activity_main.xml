@@ -41,5 +41,14 @@
             android:padding="5dp"
             android:text="引导页测试" />
 
+        <TextView
+            android:id="@+id/tv_compose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_10"
+            android:padding="5dp"
+            android:text="compose测试" />
+
     </LinearLayout>
 </layout>

@@ -9,6 +9,7 @@ import com.bosh.module_kotlin.R
 import com.bosh.module_kotlin.base.BaseActivity
 import com.bosh.module_kotlin.databinding.KotlinActivityMainBinding
 import com.bosh.module_kotlin.extension.inflate
+import com.bosh.module_kotlin.ui.compose.ComposeTestActivity
 import com.bosh.module_kotlin.ui.splash.SplashActivity
 import com.uber.autodispose.autoDisposable
 import io.reactivex.Observable
@@ -41,6 +42,9 @@ class MainActivity : BaseActivity() {
         }
         binding.tvSplash.setOnClickListener {
             startActivity(Intent(this, SplashActivity::class.java))
+        }
+        binding.tvCompose.setOnClickListener {
+            startActivity(Intent(this, ComposeTestActivity::class.java))
         }
     }
 
