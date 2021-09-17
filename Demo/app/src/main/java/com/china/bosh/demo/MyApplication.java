@@ -51,12 +51,6 @@ public class MyApplication extends BaseApplication {
         initShortCuts(this);
     }
 
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
-    }
-
     /**
      * android 8.0以上通知
      */

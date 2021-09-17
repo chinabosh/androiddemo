@@ -27,6 +27,7 @@
     <string name="demo_accessibility_service_description">智能安装服务，无需用户点击</string>
     <string name="demo_text_open_accessibility_service">打开智能安装服务</string>
     <string name="demo_text_test_smart_install">测试智能安装</string>
+    <string name="demo_text_kotlin">进入模块kotlin</string>
     <string name="demo_appwidget_text">EXAMPLE</string>
     <string name="demo_add_widget">Add widget</string>
 </resources>

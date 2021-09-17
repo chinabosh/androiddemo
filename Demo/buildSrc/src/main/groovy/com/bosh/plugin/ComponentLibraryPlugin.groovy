@@ -31,74 +31,77 @@ class ComponentLibraryPlugin implements Plugin<Project> {
 //        }
 
         project.android {
-            Logger.i("Arouter module name setting")
-            defaultConfig {
-                javaCompileOptions {
-                    annotationProcessorOptions {
-                        arguments = [AROUTER_MODULE_NAME: project.getName()]
-                    }
-                }
-            }
-
-            lintOptions {
-
-                //should deal all warnings
-                abortOnError true
-                warningsAsErrors true
-
-                // improve the priority of RestrictedApi
-                enable "RestrictedApi"
-                fatal "RestrictedApi"
-
-                ignore "InvalidPackage"
-            }
-        }
-        project.afterEvaluate {
-            Logger.i('create task: hello')
-            project.tasks.create("hello", TestTask.class, new Action<TestTask>() {
-                @Override
-                void execute(TestTask t) {
-                    t.setMsg("external msg")
-                    t.sayHello()
-                    if (project.plugins.hasPlugin(AppPlugin) && configExtension.enableRestrictToTransform) {
-                        Logger.w("registerTransform")
-                        registerTransform(project)
-                    }
-                }
-            })
-
-            checkAndroid(project)
-            if (project.hasProperty('android')) {
-
-                project.android.compileOptions.sourceCompatibility = JavaVersion.VERSION_1_8
-                project.android.compileOptions.targetCompatibility = JavaVersion.VERSION_1_8
-
-                checkResourcePrefix(project)
-//                AppExtension android = getAndroid(project)
-//                android.sourceSets.each {set ->
-//
+//            Logger.i("Arouter module name setting")
+//            defaultConfig {
+//                javaCompileOptions {
+//                    annotationProcessorOptions {
+//                        arguments = [AROUTER_MODULE_NAME: project.getName()]
+//                    }
 //                }
-                if (configExtension.enableRestrictToTransform) {
-                    project.android.sourceSets.each { set ->
-                        if ("main".equals(set.name)) {
-                            GenerateRestrictTo.searchSourcePackage(set.java.srcDirs)
-                        }
-                    }
-                }
+//            }
+            buildFeatures {
+                compose true
+            }
 
-//                DependenciesWhiteListExtension dwe = new DependenciesWhiteListExtension()
-//                project.configurations.each {
-//                    it.dependencies.each {
-//                        if (it.group != null && it.name != null && it.version != null && !it.group.equals(project.rootProject.name)) {
-//                            if (!dwe.dependenciesWhiteList.contains(it.group + ":" + it.name + ":" + it.version)) {
-//                                throw new GradleException("project:" + project.name + "," + "the dependency:\"" + it.group + ":" + it.name + ":" + it.version + "\" don't in the white list!")
-//                            }
+//            lintOptions {
+//
+//                //should deal all warnings
+//                abortOnError true
+//                warningsAsErrors true
+//
+//                // improve the priority of RestrictedApi
+//                enable "RestrictedApi"
+//                fatal "RestrictedApi"
+//
+//                ignore "InvalidPackage"
+//            }
+        }
+//        project.afterEvaluate {
+//            Logger.i('create task: hello')
+//            project.tasks.create("hello", TestTask.class, new Action<TestTask>() {
+//                @Override
+//                void execute(TestTask t) {
+//                    t.setMsg("external msg")
+//                    t.sayHello()
+//                    if (project.plugins.hasPlugin(AppPlugin) && configExtension.enableRestrictToTransform) {
+//                        Logger.w("registerTransform")
+//                        registerTransform(project)
+//                    }
+//                }
+//            })
+//
+//            checkAndroid(project)
+//            if (project.hasProperty('android')) {
+//
+//                project.android.compileOptions.sourceCompatibility = JavaVersion.VERSION_1_8
+//                project.android.compileOptions.targetCompatibility = JavaVersion.VERSION_1_8
+//
+//                checkResourcePrefix(project)
+////                AppExtension android = getAndroid(project)
+////                android.sourceSets.each {set ->
+////
+////                }
+//                if (configExtension.enableRestrictToTransform) {
+//                    project.android.sourceSets.each { set ->
+//                        if ("main".equals(set.name)) {
+//                            GenerateRestrictTo.searchSourcePackage(set.java.srcDirs)
 //                        }
 //                    }
 //                }
-
-            }
-        }
+//
+////                DependenciesWhiteListExtension dwe = new DependenciesWhiteListExtension()
+////                project.configurations.each {
+////                    it.dependencies.each {
+////                        if (it.group != null && it.name != null && it.version != null && !it.group.equals(project.rootProject.name)) {
+////                            if (!dwe.dependenciesWhiteList.contains(it.group + ":" + it.name + ":" + it.version)) {
+////                                throw new GradleException("project:" + project.name + "," + "the dependency:\"" + it.group + ":" + it.name + ":" + it.version + "\" don't in the white list!")
+////                            }
+////                        }
+////                    }
+////                }
+//
+//            }
+//        }
     }
 
     /**

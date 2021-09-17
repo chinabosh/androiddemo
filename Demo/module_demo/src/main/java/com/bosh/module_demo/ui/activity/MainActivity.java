@@ -9,7 +9,10 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
+import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.facade.callback.NavigationCallback;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bosh.module_demo.R;
 import com.bosh.module_demo.R2;
 import com.bosh.module_demo.ui.activity.recyclerview.RecyclerViewActivity;
@@ -64,7 +67,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick({R2.id.tv_span, R2.id.tv_sms, R2.id.tv_recycler, R2.id.tv_notify, R2.id.tv_flutter,
             R2.id.tv_gauss, R2.id.tv_music, R2.id.tv_sticky_header, R2.id.tv_verification_code,
-            R2.id.tv_hook, R2.id.tv_silent_install})
+            R2.id.tv_hook, R2.id.tv_silent_install, R2.id.tv_kotlin})
     public void onClick(@NonNull  View view) {
         int id = view.getId();
         if(id == R.id.tv_span) {
@@ -92,6 +95,28 @@ public class MainActivity extends BaseActivity {
             startActivity(HookClickActivity.class);
         } else if (id == R.id.tv_silent_install) {
             startActivity(SilentInstallActivity.class);
+        } else if(id == R.id.tv_kotlin) {
+            ARouter.getInstance().build("/kotlin/main").navigation(this, new NavigationCallback() {
+                @Override
+                public void onFound(Postcard postcard) {
+                    Log.i("arouter", "found kotlin main");
+                }
+
+                @Override
+                public void onLost(Postcard postcard) {
+                    Log.i("arouter", "lost kotlin main");
+                }
+
+                @Override
+                public void onArrival(Postcard postcard) {
+                    Log.i("arouter", "跳转到 kotlin main界面");
+                }
+
+                @Override
+                public void onInterrupt(Postcard postcard) {
+                    Log.i("arouter", "to kotlin main interrupt");
+                }
+            });
         }
     }
 

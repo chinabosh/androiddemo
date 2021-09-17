@@ -18,7 +18,7 @@ class ComposeTestActivity : ComponentActivity() {
             DemoTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("1223")
+                    Greeting("121453")
                 }
             }
         }
@@ -36,6 +36,6 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     DemoTheme {
-        Greeting("123")
+        Greeting("12453")
     }
 }

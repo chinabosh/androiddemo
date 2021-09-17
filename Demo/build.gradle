@@ -5,9 +5,9 @@ buildscript {
     apply from: 'config.gradle'
     ext {
         compose_version = '1.0.2'
+        kotlin_version = '1.5.21'
+        objectboxVersion = "2.9.1"
     }
-    ext.kotlin_version = '1.5.21'
-    ext.objectboxVersion = "2.4.1"
     repositories {
 //        google()
 //        jcenter()
@@ -26,10 +26,10 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.0.2'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath "com.jakewharton:butterknife-gradle-plugin:10.2.1"
+        classpath "com.jakewharton:butterknife-gradle-plugin:10.2.3"
         classpath 'com.alibaba:arouter-register:1.0.2'
         classpath 'com.kezong:fat-aar:1.2.7'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
 //        classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.9.1')
 //        classpath 'com.bosh.demo:gradleplugin:0.3.72'

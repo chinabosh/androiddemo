@@ -2,8 +2,8 @@ import java.text.SimpleDateFormat
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.bosh.component.library'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 //apply plugin: 'com.tencent.tinker.patch'
 
 static def getGitVersion() {
@@ -46,6 +46,8 @@ android {
 
         resConfigs 'zh', 'en'
         resourcePrefix 'app_'
+
+        multiDexKeepProguard file('../multiDex-config.txt')
     }
 
     packagingOptions {
@@ -58,7 +60,6 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion '1.5.21'
         kotlinCompilerExtensionVersion "$compose_version"
     }
 
@@ -73,12 +74,15 @@ android {
     kotlinOptions {
         allWarningsAsErrors = false
         jvmTarget = JavaVersion.VERSION_11
+        useIR = true
     }
 
     buildTypes {
         debug {
             minifyEnabled false
+            zipAlignEnabled false
             debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         release {
@@ -88,7 +92,7 @@ android {
     }
 
     lintOptions {
-        abortOnError true
+        abortOnError false
         warningsAsErrors false
         ignore "IconDensities","Overdraw", "NonConstantResourceId"
     }
@@ -130,7 +134,9 @@ dependencies {
     api libs.butterknife
     annotationProcessor libs.butterknife_compiler
 
+    api libs.arouter_api
     annotationProcessor libs.arouter_compiler
+    kapt libs.arouter_compiler
 
     //optional, help to generate the final application
 //    annotationProcessor('com.tencent.tinker:tinker-android-anno:1.9.1')

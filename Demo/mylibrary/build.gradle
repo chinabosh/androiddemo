@@ -80,7 +80,7 @@ dependencies {
     implementation androidx.constraintlayout
     implementation libs.material
     implementation androidx.recyclerview
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation androidx.runner
     androidTestImplementation androidx.espresso_core
     androidTestImplementation 'androidx.test:core:1.3.0'

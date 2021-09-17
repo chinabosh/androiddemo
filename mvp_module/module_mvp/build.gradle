@@ -41,6 +41,10 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
@@ -48,7 +52,7 @@ dependencies {
 
     implementation androidx.appcompat
     implementation androidx.constraintlayout
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation androidx.runner
     androidTestImplementation androidx.espresso_core
 

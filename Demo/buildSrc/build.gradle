@@ -33,7 +33,7 @@ dependencies {
 
     implementation gradleApi()
     implementation localGroovy()
-    testImplementation 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
     implementation 'org.javassist:javassist:3.26.0-GA'
     implementation 'androidx.annotation:annotation:1.2.0'
 //    compile fileTree(dir: 'src/lib', includes: ['*.jar'])
