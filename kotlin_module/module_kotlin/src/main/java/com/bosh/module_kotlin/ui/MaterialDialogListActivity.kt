@@ -20,9 +20,10 @@ import com.bosh.module_kotlin.databinding.KotlinActivityMaterialDialogListBindin
 import com.bosh.module_kotlin.extension.inflate
 import com.bosh.module_kotlin.widget.SpacesItemDecoration
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemClickListener
 import java.lang.IllegalArgumentException
 
-class MaterialDialogListActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
+class MaterialDialogListActivity : BaseActivity(), OnItemClickListener {
 
     private var mData: ArrayList<String> = ArrayList()
     private val adapter: MaterialDialogAdapter by lazy {
@@ -50,12 +51,12 @@ class MaterialDialogListActivity : BaseActivity(), BaseQuickAdapter.OnItemClickL
     override fun initView() {
         binding.rvMain.adapter = adapter
         binding.rvMain.layoutManager = LinearLayoutManager(this)
-        adapter.onItemClickListener = this
+        adapter.setOnItemClickListener(this)
 //        rv_main.addItemDecoration(DividerItemDecoration(this, LinearLayout.VERTICAL))
         binding.rvMain.addItemDecoration(SpacesItemDecoration(20, 1))
     }
 
-    override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+    override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
         when (position) {
             0 -> MaterialDialog(this@MaterialDialogListActivity).show {
                 title(text = "对话框")
@@ -160,6 +161,5 @@ class MaterialDialogListActivity : BaseActivity(), BaseQuickAdapter.OnItemClickL
             }
             else -> throw IllegalArgumentException("not type code yet!")
         }
-
     }
 }

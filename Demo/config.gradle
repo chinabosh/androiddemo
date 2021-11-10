@@ -34,7 +34,7 @@ ext {
             recyclerview                 : [group: "androidx.recyclerview", name: "recyclerview", version: "1.1.0"],
             multidex                     : [group: "androidx.multidex", name: "multidex", version: "2.0.1"],
             lifecycle_extensions         : [group: "androidx.lifecycle", name: "lifecycle-extensions", version: "2.1.0"],
-            BaseRecyclerViewAdapterHelper: [group: "com.github.CymChad", name: "BaseRecyclerViewAdapterHelper", version: "2.9.48-androidx"],
+            BaseRecyclerViewAdapterHelper: [group: "com.github.CymChad", name: "BaseRecyclerViewAdapterHelper", version: "3.0.6"],
             compose                      : [group: "androidx.compose.ui", name: "ui", version: "1.0.2"]
     ]
 
@@ -43,7 +43,7 @@ ext {
             butterknife                           : [group: "com.jakewharton", name: "butterknife", version: "10.2.1"],
             butterknife_compiler                  : [group: "com.jakewharton", name: "butterknife-compiler", version: "10.2.1"],
 
-            my_library                            : [group: "com.bosh.demo", name: "library", version: "0.0.13"],
+            my_library                            : [group: "com.bosh.demo", name: "library", version: "0.0.14"],
 
             zxing                                 : [group: "com.google.zxing", name: "core", version: "3.3.2"],
             material                              : [group: "com.google.android.material", name: "material", version: '1.4.0-alpha02'],
@@ -114,6 +114,7 @@ ext {
 
             kodein_di_generic_jvm        : [group: "org.kodein.di", name: "kodein-di-generic-jvm", version: version.kodein],
             kodein_di_framework_android_x: [group: "org.kodein.di", name: "kodein-di-framework-android-x", version: version.kodein],
+            coil                         : [group: "io.coil-kt", name: "coil", version: "0.9.5"],
     ]
 }
 

@@ -2,6 +2,7 @@ package com.bosh.module_demo.ui.activity;
 
 
 import android.content.Intent;
+import android.location.Address;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.bosh.module_demo.ui.activity.recyclerview.stickyheader.StickyHeaderAc
 import com.bosh.module_demo.ui.activity.sms.VerificationActivity;
 import com.bosh.module_demo.ui.flutter.FlutterActivity;
 import com.china.bosh.mylibrary.ui.activity.BaseActivity;
+import com.china.bosh.mylibrary.utils.LocationUtil;
 import com.china.bosh.mylibrary.utils.PermissionUtil;
 
 import java.io.PrintWriter;
@@ -62,7 +64,6 @@ public class MainActivity extends BaseActivity {
 
             }
         });
-
     }
 
     @OnClick({R2.id.tv_span, R2.id.tv_sms, R2.id.tv_recycler, R2.id.tv_notify, R2.id.tv_flutter,
@@ -71,7 +72,18 @@ public class MainActivity extends BaseActivity {
     public void onClick(@NonNull  View view) {
         int id = view.getId();
         if(id == R.id.tv_span) {
-            startActivity(SpannableActivity.class);
+            LocationUtil.getInstance(this).setAddressCallback(new LocationUtil.AddressCallback() {
+                @Override
+                public void onGetAddress(Address address) {
+                    Log.e("test", address.getAdminArea() + address.getLocality());
+                }
+
+                @Override
+                public void onGetLocation(double lat, double lng) {
+
+                }
+            });
+//            startActivity(SpannableActivity.class);
         } else if(id == R.id.tv_sms) {
             startActivity(SmsActivity.class);
         } else if(id == R.id.tv_recycler){

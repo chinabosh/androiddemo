@@ -93,6 +93,8 @@ dependencies {
     implementation kotlin_libs.dialog_datetime
     implementation kotlin_libs.dialog_bottomsheets
     implementation kotlin_libs.dialog_lifecycle
+    //kotlin图片加载库 说是比glide好 https://github.com/coil-kt/coil/
+    implementation kotlin_libs.coil
 
     //jitpack
     implementation androidx.BaseRecyclerViewAdapterHelper

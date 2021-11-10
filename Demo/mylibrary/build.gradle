@@ -78,8 +78,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation androidx.appcompat
     implementation androidx.constraintlayout
-    implementation libs.material
-    implementation androidx.recyclerview
+    api libs.material
+    api androidx.recyclerview
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation androidx.runner
     androidTestImplementation androidx.espresso_core
@@ -133,7 +133,7 @@ publishing { //新增 ，因为Android Studio gradle 支持maven插件，所以�
         release(MavenPublication) {
             groupId = mavens.GROUP
             artifactId 'library'  //和前面网站上填写的一样
-            version '0.0.13' //版本名称 上传是不能和之前的一样，否则上传失败
+            version '0.0.14' //版本名称 上传是不能和之前的一样，否则上传失败
             afterEvaluate {
                 artifact bundleReleaseAar
             }
