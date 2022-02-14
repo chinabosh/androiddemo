@@ -1,14 +1,8 @@
 package com.bosh.module_kotlin.ui.splash
 
-import android.os.CountDownTimer
-import android.util.Log
-import androidx.databinding.BaseObservable
-import androidx.databinding.ObservableInt
-import androidx.lifecycle.ViewModel
 import com.bosh.module_kotlin.base.BaseViewModel
 import com.uber.autodispose.autoDisposable
 import io.reactivex.Observable
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import java.util.concurrent.TimeUnit

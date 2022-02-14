@@ -2,10 +2,8 @@ package com.bosh.module_kotlin.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.bosh.module_kotlin.R
 import com.bosh.module_kotlin.base.BaseActivity
 import com.bosh.module_kotlin.databinding.KotlinActivityMainBinding
 import com.bosh.module_kotlin.extension.inflate

@@ -20,6 +20,7 @@ inline fun <reified VB : ViewBinding> Activity.inflate() = lazy {
     inflateBinding<VB>(layoutInflater).apply { setContentView(root) }
 }
 
+@SuppressWarnings("unused")
 inline fun <reified VB : ViewBinding> Dialog.inflate() = lazy {
     inflateBinding<VB>(layoutInflater).apply { setContentView(root) }
 }

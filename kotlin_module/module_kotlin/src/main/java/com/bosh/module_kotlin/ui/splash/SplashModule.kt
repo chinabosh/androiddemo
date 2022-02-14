@@ -1,12 +1,8 @@
 package com.bosh.module_kotlin.ui.splash
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 import org.kodein.di.Kodein
-import org.kodein.di.android.ActivityRetainedScope
 import org.kodein.di.android.x.AndroidLifecycleScope
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.scoped

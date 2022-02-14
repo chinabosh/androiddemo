@@ -29,7 +29,7 @@ class MaterialDialogListActivity : BaseActivity(), OnItemClickListener {
     private val adapter: MaterialDialogAdapter by lazy {
         MaterialDialogAdapter(mData)
     }
-    private val binding : KotlinActivityMaterialDialogListBinding by inflate()
+    private val binding: KotlinActivityMaterialDialogListBinding by inflate()
 
     override fun bindView() {
 
@@ -94,36 +94,52 @@ class MaterialDialogListActivity : BaseActivity(), OnItemClickListener {
                     Log.i(tag, "取消时回调！")
                 }
             }
-            3 -> MaterialDialog(this).show {
-                listItems(items = mData) { _, _, text ->
-                    toast(text)
-                }
-                positiveButton(text = "确认")
-                noAutoDismiss()//点击选项不关闭对话框
-            }
-            4 -> MaterialDialog(this).show {
-                listItemsSingleChoice(items = mData) { _, _, text ->
-                    //有positiveButton，这个会等按下positionButton后回调，否则会在选中后就回调
-                    toast("选中了" + text)
-                }
-                positiveButton(text = "确认")
-            }
-            5 -> MaterialDialog(this).show {
-                listItemsSingleChoice(items = mData, initialSelection = 2, disabledIndices = intArrayOf(0, 1))
-            }
+            3 -> MaterialDialog(this)
+                    .listItems(items = mData) { _, _, text ->
+                        toast(text)
+                    }
+                    .noAutoDismiss()//点击选项不关闭对话框
+                    .show {
+                        positiveButton(text = "确认")
+                    }
+            4 -> MaterialDialog(this)
+                    .listItemsSingleChoice(items = mData) { _, _, text ->
+                        //有positiveButton，这个会等按下positionButton后回调，否则会在选中后就回调
+                        toast("选中了$text")
+                    }
+                    .show {
+                        positiveButton(text = "确认")
+                    }
+            5 -> MaterialDialog(this)
+                    .listItemsSingleChoice(items = mData, initialSelection = 2,
+                            disabledIndices = intArrayOf(0, 1))
+                    .show()
             //dialog.checkItem(index)
             //dialog.uncheckItem(index)
             //dialog.toggleItemChecked(index)
             //val checked : Boolean = dialog.isItemChecked(index)
-            6 -> MaterialDialog(this).show {
-                listItemsMultiChoice(items = mData, initialSelection = intArrayOf(2), disabledIndices = intArrayOf(0, 1)) { _, _, items ->
-                    var str = "选中了"
-                    for (item in items) {
-                        str = str.plus(item).plus(",")
-                    }
-                    toast(str)
-                }
-                positiveButton(text = "确认")
+//            6 -> MaterialDialog(this).show {
+//                listItemsMultiChoice(items = mData, initialSelection = intArrayOf(2), disabledIndices = intArrayOf(0, 1)) { _, _, items ->
+//                    var str = "选中了"
+//                    for (item in items) {
+//                        str = str.plus(item).plus(",")
+//                    }
+//                    toast(str)
+//                }
+//                positiveButton(text = "确认")
+//            }
+            6 -> {
+                val dialog = MaterialDialog(this)
+                        .listItemsMultiChoice(items = mData, initialSelection = intArrayOf(2),
+                                disabledIndices = intArrayOf(0, 1)) { _, _, items ->
+                            var str = "选中了"
+                            for (item in items) {
+                                str = str.plus(item).plus(",")
+                            }
+                            toast(str)
+                        }
+                        .positiveButton(text = "确认")
+                dialog.show()
             }
             7 -> MaterialDialog(this).show {
                 title(text = "开通会员")

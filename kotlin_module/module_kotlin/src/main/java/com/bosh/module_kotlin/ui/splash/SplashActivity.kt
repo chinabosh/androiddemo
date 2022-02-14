@@ -1,8 +1,5 @@
 package com.bosh.module_kotlin.ui.splash
 
-import android.util.Log
-import android.view.View
-import com.bosh.module_kotlin.R
 import com.bosh.module_kotlin.base.BaseActivity
 import com.bosh.module_kotlin.databinding.KotlinActivitySplashBinding
 import com.bosh.module_kotlin.extension.inflate

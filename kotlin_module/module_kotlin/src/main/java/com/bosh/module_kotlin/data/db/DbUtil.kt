@@ -1,7 +1,5 @@
 package com.bosh.module_kotlin.data.db
 
-import android.content.Context
-import com.bosh.module_kotlin.data.db.table.MyObjectBox
 import com.bosh.module_kotlin.data.db.table.TeacherDb
 import io.objectbox.Box
 import io.objectbox.BoxStore
