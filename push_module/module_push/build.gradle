@@ -1,0 +1,84 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+android {
+
+    defaultConfig {
+        compileSdkVersion build_version.compileSdkVersion
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        resourcePrefix "push_"
+
+    }
+
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", '"http://47.111.166.134:8080/"')
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation androidx.appcompat
+    implementation androidx.constraintlayout
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation androidx.runner
+    androidTestImplementation androidx.espresso_core
+
+    annotationProcessor libs.arouter_compiler
+    api libs.arouter_api
+    api libs.arouter_annotation
+
+    api 'cn.jiguang.sdk:jpush:3.6.6'
+    api 'cn.jiguang.sdk:jcore:2.3.8'
+}
+
+uploadArchives { //新增 ，因为Android Studio gradle 支持maven插件，所以可以添加此task
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+
+            snapshotRepository(url: maven.MAVEN_REPO_SNAPSHOT_URL) {
+                authentication(userName: maven.NEXUS_USERNAME, password: maven.NEXUS_PASSWORD)
+            }
+
+            repository(url: maven.MAVEN_REPO_RELEASE_URL) {
+                authentication(userName: maven.NEXUS_USERNAME, password: maven.NEXUS_PASSWORD)
+            }
+
+            pom.project {
+                version '0.0.1' //版本名称 上传是不能和之前的一样，否则上传失败
+                artifactId 'push'  //和前面网站上填写的一样
+                groupId maven.GROUP  //和前面网站上填写的一样
+                packaging maven.TYPE //填写aar
+                description 'push模块' //描述
+            }
+        }
+    }
+}

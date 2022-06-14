@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="push_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/push_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/push_colorPrimaryDark</item>
+        <item name="colorAccent">@color/push_colorAccent</item>
+    </style>
+
+    <style name="push_login_exitText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style>
+
+</resources>

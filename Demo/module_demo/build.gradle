@@ -61,6 +61,7 @@ dependencies {
     annotationProcessor libs.arouter_compiler
     implementation androidx.appcompat
     api 'com.bosh.demo:flutter:0.0.4@aar'
+    implementation libs.palette
 
     api libs.butterknife
     annotationProcessor libs.butterknife_compiler

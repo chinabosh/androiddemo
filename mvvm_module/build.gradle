@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    apply from:'../Demo/config.gradle'
     repositories {
         google()
         jcenter()
@@ -20,7 +21,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url MAVEN_REPO_RELEASE_URL}
+        maven { url maven.MAVEN_REPO_RELEASE_URL}
         maven { url "https://jitpack.io" }
     }
 }

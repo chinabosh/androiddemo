@@ -80,6 +80,7 @@ ext {
             SwipeToLoadLayout                     : [group: "com.github.Aspsine", name: "SwipeToLoadLayout", version: "1.0.4"],
 
             blurry                                : [group: "jp.wasabeef", name: "blurry", version: "3.0.0"],
+            palette                               : [group: "androidx.palette", name: "palette", version: "1.0.0"],
 
             autodispose                           : [group: "com.uber.autodispose", name: "autodispose", version: version.autodispose],
             autodispose_android_archcomponents    : [group: "com.uber.autodispose", name: "autodispose-android-archcomponents", version: version.autodispose],
